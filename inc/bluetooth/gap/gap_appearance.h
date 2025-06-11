@@ -1,0 +1,837 @@
+/**
+*****************************************************************************************
+*     Copyright(c) 2016, Realtek Semiconductor Corporation. All rights reserved.
+*****************************************************************************************
+  * @file    gap_appearance.h
+  * @brief   This file contains all the GAP appearance categories and sub-categories.
+  * @details This file is used both bredr and le.
+  * @author  Carrie
+  * @date    2023-05-08
+  * @version v1.0
+  * *************************************************************************************
+  */
+
+/*============================================================================*
+ *               Define to prevent recursive inclusion
+ *============================================================================*/
+#ifndef GAP_APPEARANCE_H
+#define GAP_APPEARANCE_H
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+/** @addtogroup BT_GAP_Appearance BT GAP Appearances
+  * @brief Defines GAP Appearances related definitions.
+  * @{
+  */
+/*============================================================================*
+ *                         Macros
+ *============================================================================*/
+/** @addtogroup GAP_Appearance_Exported_Macros
+  * @{
+  */
+
+/** @defgroup GAP_APPEARANCE_CATEGORY GAP Appearance Categories
+  * @brief GAP Appearance: Category bits 15 to 6, Sub-category: bits 5 to 0
+  * @{
+  */
+/** @defgroup GAP_APPEARANCE_UNKNOWN GAP Appearance Unknown
+  * @{
+  */
+#define GAP_APPEARANCE_CATEGORY_UNKNOWN                             0x000
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_UNKNOWN                 0x00
+/** @} End GAP_APPEARANCE_UNKNOWN */
+
+/** @defgroup GAP_APPEARANCE_PHONE GAP Appearance Phone
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_PHONE                               0x001
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_PHONE                   0x00
+/** @} End GAP_APPEARANCE_PHONE */
+
+/** @defgroup GAP_APPEARANCE_COMPUTER GAP Appearance Computer
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_COMPUTER                            0x002
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_COMPUTER                0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_DESKTOP_WORKSTATION             0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_SERVER_CLASS_COMPUTER           0x02
+#define GAP_APPEARANCE_SUB_CATEGORY_LAPTOP                          0x03
+#define GAP_APPEARANCE_SUB_CATEGORY_HANDHELD_PC_PDA                 0x04
+#define GAP_APPEARANCE_SUB_CATEGORY_PALM_SIZE_PC_PDA                0x05
+#define GAP_APPEARANCE_SUB_CATEGORY_WEARABLE_COMPUTER               0x06
+#define GAP_APPEARANCE_SUB_CATEGORY_TABLET                          0x07
+#define GAP_APPEARANCE_SUB_CATEGORY_DOCKING_STATION                 0x08
+#define GAP_APPEARANCE_SUB_CATEGORY_ALL_IN_ONE                      0x09
+#define GAP_APPEARANCE_SUB_CATEGORY_BLADE_SERVER                    0x0A
+#define GAP_APPEARANCE_SUB_CATEGORY_CONVERTIBLE                     0x0B
+#define GAP_APPEARANCE_SUB_CATEGORY_DETACHABLE                      0x0C
+#define GAP_APPEARANCE_SUB_CATEGORY_IOT_GATEWAY                     0x0D
+#define GAP_APPEARANCE_SUB_CATEGORY_MINI_PC                         0x0E
+#define GAP_APPEARANCE_SUB_CATEGORY_STICK_PC                        0x0F
+/** @} End GAP_APPEARANCE_COMPUTER */
+
+/** @defgroup GAP_APPEARANCE_WATCH GAP Appearance Watch
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_WATCH                               0x003
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_WATCH                   0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_SPORTS_WATCH                    0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_SMART_WATCH                     0x02
+/** @} End GAP_APPEARANCE_WATCH */
+
+/** @defgroup GAP_APPEARANCE_CLOCK GAP Appearance Clock
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_CLOCK                               0x004
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_CLOCK                   0x00
+/** @} End GAP_APPEARANCE_CLOCK */
+
+/** @defgroup GAP_APPEARANCE_DISPLAY GAP Appearance Display
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_DISPLAY                             0x005
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_DISPLAY                 0x00
+/** @} End GAP_APPEARANCE_DISPLAY */
+
+/** @defgroup GAP_APPEARANCE_REMOTE_CONTROL GAP Appearance Remote Control
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_REMOTE_CONTROL                      0x006
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_REMOTE_CONTROL          0x00
+/** @} End GAP_APPEARANCE_REMOTE_CONTROL */
+
+/** @defgroup GAP_APPEARANCE_EYE_GLASSES GAP Appearance Eye Glasses
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_EYE_GLASSES                         0x007
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_EYE_GLASSES             0x00
+/** @} End GAP_APPEARANCE_EYE_GLASSES */
+
+/** @defgroup GAP_APPEARANCE_TAG GAP Appearance Tag
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_TAG                                 0x008
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_TAG                     0x00
+/** @} End GAP_APPEARANCE_TAG */
+
+/** @defgroup GAP_APPEARANCE_KEYRING GAP Appearance Keyring
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_KEYRING                             0x009
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_KEYRING                 0x00
+/** @} End GAP_APPEARANCE_KEYRING */
+
+/** @defgroup GAP_APPEARANCE_MEDIA_PLAYER GAP Appearance Media Player
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_MEDIA_PLAYER                        0x00A
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_MEDIA_PLAYER            0x00
+/** @} End GAP_APPEARANCE_MEDIA_PLAYER */
+
+/** @defgroup GAP_APPEARANCE_BARCODE_SCANNER GAP Appearance Barcode Scanner
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_BARCODE_SCANNER                     0x00B
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_BARCODE_SCANNER         0x00
+/** @} End GAP_APPEARANCE_BARCODE_SCANNER */
+
+/** @defgroup GAP_APPEARANCE_THERMOMETER GAP Appearance Thermometer
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_THERMOMETER                         0x00C
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_THERMOMETER             0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_EAR_THERMOMETER                 0x01
+/** @} End GAP_APPEARANCE_THERMOMETER */
+
+/** @defgroup GAP_APPEARANCE_HEART_RATE_SENSOR GAP Appearance Heart Rate Sensor
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_HEART_RATE_SENSOR                   0x00D
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_HEART_RATE_SENSOR       0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_HEART_RATE_BELT                 0x01
+/** @} End GAP_APPEARANCE_HEART_RATE_SENSOR */
+
+/** @defgroup GAP_APPEARANCE_BLOOD_PRESSURE GAP Appearance Blood Pressure
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_BLOOD_PRESSURE                      0x00E
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_BLOOD_PRESSURE          0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_ARM_BLOOD_PRESSURE              0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_WRIST_BLOOD_PRESSURE            0x02
+/** @} End GAP_APPEARANCE_BLOOD_PRESSURE */
+
+/** @defgroup GAP_APPEARANCE_HUMAN_INTERFACE_DEVICE GAP Appearance Human Interface Device
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_HUMAN_INTERFACE_DEVICE              0x00F
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_HUMAN_INTERFACE_DEVICE  0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_KEYBOARD                        0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_MOUSE                           0x02
+#define GAP_APPEARANCE_SUB_CATEGORY_JOYSTICK                        0x03
+#define GAP_APPEARANCE_SUB_CATEGORY_GAMEPAD                         0x04
+#define GAP_APPEARANCE_SUB_CATEGORY_DIGITIZER_TABLET                0x05
+#define GAP_APPEARANCE_SUB_CATEGORY_CARD_READER                     0x06
+#define GAP_APPEARANCE_SUB_CATEGORY_DIGITAL_PEN                     0x07
+#define GAP_APPEARANCE_SUB_CATEGORY_BARCODE_SCANNER                 0x08
+#define GAP_APPEARANCE_SUB_CATEGORY_TOUCHPAD                        0x09
+#define GAP_APPEARANCE_SUB_CATEGORY_PRESENTATION_REMOTE             0x0A
+/** @} End GAP_APPEARANCE_HUMAN_INTERFACE_DEVICE */
+
+/** @defgroup GAP_APPEARANCE_GLUCOSE_METER GAP Appearance Glucose Meter
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_GLUCOSE_METER                       0x010
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_GLUCOSE_METER           0x00
+/** @} End GAP_APPEARANCE_GLUCOSE_METER */
+
+/** @defgroup GAP_APPEARANCE_RUNNING_WALKING_SENSOR GAP Appearance Running Walking Sensor
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_RUNNING_WALKING_SENSOR              0x011
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_RUNNING_WALKING_SENSOR  0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_IN_SHOE_RUNNING_WALKING_SENSOR  0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_ON_SHOE_RUNNING_WALKING_SENSOR  0x02
+#define GAP_APPEARANCE_SUB_CATEGORY_IN_HIP_RUNNING_WALKING_SENSOR   0x03
+/** @} End GAP_APPEARANCE_RUNNING_WALKING_SENSOR */
+
+/** @defgroup GAP_APPEARANCE_CYCLING GAP Appearance Cycling
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_CYCLING                             0x012
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_CYCLING                 0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_CYCLING_COMPUTER                0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_SPEED_SENSOR                    0x02
+#define GAP_APPEARANCE_SUB_CATEGORY_CADENCE_SENSOR                  0x03
+#define GAP_APPEARANCE_SUB_CATEGORY_POWER_SENSOR                    0x04
+#define GAP_APPEARANCE_SUB_CATEGORY_SPEED_CADENCE_SENSOR            0x05
+/** @} End GAP_APPEARANCE_CYCLING */
+
+/** @defgroup GAP_APPEARANCE_CONTROL_DEVICE GAP Appearance Control Device
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_CONTROL_DEVICE                      0x013
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_CONTROL_DEVICE          0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_SWITCH                          0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_MULTI_SWITCH                    0x02
+#define GAP_APPEARANCE_SUB_CATEGORY_BUTTON                          0x03
+#define GAP_APPEARANCE_SUB_CATEGORY_SLIDER                          0x04
+#define GAP_APPEARANCE_SUB_CATEGORY_ROTARY_SWITCH                   0x05
+#define GAP_APPEARANCE_SUB_CATEGORY_TOUCH_PANEL                     0x06
+#define GAP_APPEARANCE_SUB_CATEGORY_SINGLE_SWITCH                   0x07
+#define GAP_APPEARANCE_SUB_CATEGORY_DOUBLE_SWITCH                   0x08
+#define GAP_APPEARANCE_SUB_CATEGORY_TRIPLE_SWITCH                   0x09
+#define GAP_APPEARANCE_SUB_CATEGORY_BATTERY_SWITCH                  0x0A
+#define GAP_APPEARANCE_SUB_CATEGORY_ENERGY_HARVESTING_SWITCH        0x0B
+#define GAP_APPEARANCE_SUB_CATEGORY_PUSH_BUTTON                     0x0C
+/** @} End GAP_APPEARANCE_CONTROL_DEVICE */
+
+/** @defgroup GAP_APPEARANCE_NETWORK_DEVICE GAP Appearance Network Device
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_NETWORK_DEVICE                      0x014
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_NETWORK_DEVICE          0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_ACCESS_POINT                    0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_MESH_DEVICE                     0x02
+#define GAP_APPEARANCE_SUB_CATEGORY_MESH_NETWORK_PROXY              0x03
+/** @} End GAP_APPEARANCE_NETWORK_DEVICE */
+
+/** @defgroup GAP_APPEARANCE_SENSOR GAP Appearance Sensor
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_SENSOR                              0x015
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_SENSOR                  0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_MOTION_SENSOR                   0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_AIR_QUALITY_SENSOR              0x02
+#define GAP_APPEARANCE_SUB_CATEGORY_TEMPERATURE_SENSOR              0x03
+#define GAP_APPEARANCE_SUB_CATEGORY_HUMIDITY_SENSOR                 0x04
+#define GAP_APPEARANCE_SUB_CATEGORY_LEAK_SENSOR                     0x05
+#define GAP_APPEARANCE_SUB_CATEGORY_SMOKE_SENSOR                    0x06
+#define GAP_APPEARANCE_SUB_CATEGORY_OCCUPANCY_SENSOR                0x07
+#define GAP_APPEARANCE_SUB_CATEGORY_CONTACT_SENSOR                  0x08
+#define GAP_APPEARANCE_SUB_CATEGORY_CARBON_MONOXIDE_SENSOR          0x09
+#define GAP_APPEARANCE_SUB_CATEGORY_CARBON_DIOXIDE_SENSOR           0x0A
+#define GAP_APPEARANCE_SUB_CATEGORY_AMBIENT_LIGHT_SENSOR            0x0B
+#define GAP_APPEARANCE_SUB_CATEGORY_ENERGY_SENSOR                   0x0C
+#define GAP_APPEARANCE_SUB_CATEGORY_COLOR_LIGHT_SENSOR              0x0D
+#define GAP_APPEARANCE_SUB_CATEGORY_RAIN_SENSOR                     0x0E
+#define GAP_APPEARANCE_SUB_CATEGORY_FIRE_SENSOR                     0x0F
+#define GAP_APPEARANCE_SUB_CATEGORY_WIND_SENSOR                     0x10
+#define GAP_APPEARANCE_SUB_CATEGORY_PROXIMITY_SENSOR                0x11
+#define GAP_APPEARANCE_SUB_CATEGORY_MULTI_SENSOR                    0x12
+#define GAP_APPEARANCE_SUB_CATEGORY_FLUSH_MOUNTED_SENSOR            0x13
+#define GAP_APPEARANCE_SUB_CATEGORY_CEILING_MOUNTED_SENSOR          0x14
+#define GAP_APPEARANCE_SUB_CATEGORY_WALL_MOUNTED_SENSOR             0x15
+#define GAP_APPEARANCE_SUB_CATEGORY_MULTISENSOR                     0x16
+#define GAP_APPEARANCE_SUB_CATEGORY_ENERGY_METER                    0x17
+#define GAP_APPEARANCE_SUB_CATEGORY_FLAME_DETECTOR                  0x18
+#define GAP_APPEARANCE_SUB_CATEGORY_VEHICLE_TIRE_PRESSURE_SENSOR    0x19
+/** @} End GAP_APPEARANCE_SENSOR */
+
+/** @defgroup GAP_APPEARANCE_LIGHT_FIXTURES GAP Appearance Light Fixtures
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_LIGHT_FIXTURES                      0x016
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_LIGHT_FIXTURES          0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_WALL_LIGHT                      0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_CEILING_LIGHT                   0x02
+#define GAP_APPEARANCE_SUB_CATEGORY_FLOOR_LIGHT                     0x03
+#define GAP_APPEARANCE_SUB_CATEGORY_CABINET_LIGHT                   0x04
+#define GAP_APPEARANCE_SUB_CATEGORY_DESK_LIGHT                      0x05
+#define GAP_APPEARANCE_SUB_CATEGORY_TROFFER_LIGHT                   0x06
+#define GAP_APPEARANCE_SUB_CATEGORY_PENDANT_LIGHT                   0x07
+#define GAP_APPEARANCE_SUB_CATEGORY_IN_GROUND_LIGHT                 0x08
+#define GAP_APPEARANCE_SUB_CATEGORY_FLOOD_LIGHT                     0x09
+#define GAP_APPEARANCE_SUB_CATEGORY_UNDERWATER_LIGHT                0x0A
+#define GAP_APPEARANCE_SUB_CATEGORY_BOLLARD_WITH_LIGHT              0x0B
+#define GAP_APPEARANCE_SUB_CATEGORY_PATHWAY_LIGHT                   0x0C
+#define GAP_APPEARANCE_SUB_CATEGORY_GARDEN_LIGHT                    0x0D
+#define GAP_APPEARANCE_SUB_CATEGORY_POLE_TOP_LIGHT                  0x0E
+#define GAP_APPEARANCE_SUB_CATEGORY_SPOTLIGHT                       0x0F
+#define GAP_APPEARANCE_SUB_CATEGORY_LINEAR_LIGHT                    0x10
+#define GAP_APPEARANCE_SUB_CATEGORY_STREET_LIGHT                    0x11
+#define GAP_APPEARANCE_SUB_CATEGORY_SHELVES_LIGHT                   0x12
+#define GAP_APPEARANCE_SUB_CATEGORY_BAY_LIGHT                       0x13
+#define GAP_APPEARANCE_SUB_CATEGORY_EMERGENCY_EXIT_LIGHT            0x14
+#define GAP_APPEARANCE_SUB_CATEGORY_LIGHT_CONTROLLER                0x15
+#define GAP_APPEARANCE_SUB_CATEGORY_LIGHT_DRIVER                    0x16
+#define GAP_APPEARANCE_SUB_CATEGORY_BULB                            0x17
+#define GAP_APPEARANCE_SUB_CATEGORY_LOW_BAY_LIGHT                   0x18
+#define GAP_APPEARANCE_SUB_CATEGORY_HIGH_BAY_LIGHT                  0x19
+/** @} End GAP_APPEARANCE_LIGHT_FIXTURES */
+
+/** @defgroup GAP_APPEARANCE_FAN GAP Appearance Fan
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_FAN                                 0x017
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_FAN                     0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_CEILING_FAN                     0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_AXIAL_FAN                       0x02
+#define GAP_APPEARANCE_SUB_CATEGORY_EXHAUST_FAN                     0x03
+#define GAP_APPEARANCE_SUB_CATEGORY_PEDESTAL_FAN                    0x04
+#define GAP_APPEARANCE_SUB_CATEGORY_DESK_FAN                        0x05
+#define GAP_APPEARANCE_SUB_CATEGORY_WALL_FAN                        0x06
+/** @} End GAP_APPEARANCE_FAN */
+
+/** @defgroup GAP_APPEARANCE_HVAC GAP Appearance HVAC
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_HVAC                                0x018
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_HVAC                    0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_THERMOSTAT                      0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_HUMIDIFIER                      0x02
+#define GAP_APPEARANCE_SUB_CATEGORY_DE_HUMIDIFIER                   0x03
+#define GAP_APPEARANCE_SUB_CATEGORY_HEATER                          0x04
+#define GAP_APPEARANCE_SUB_CATEGORY_RADIATOR                        0x05
+#define GAP_APPEARANCE_SUB_CATEGORY_BOILER                          0x06
+#define GAP_APPEARANCE_SUB_CATEGORY_HEAT_PUMP                       0x07
+#define GAP_APPEARANCE_SUB_CATEGORY_INFRARED_HEATER                 0x08
+#define GAP_APPEARANCE_SUB_CATEGORY_RADIANT_PANEL_HEATER            0x09
+#define GAP_APPEARANCE_SUB_CATEGORY_FAN_HEATER                      0x0A
+#define GAP_APPEARANCE_SUB_CATEGORY_AIR_CURTAIN                     0x0B
+/** @} End GAP_APPEARANCE_HVAC */
+
+/** @defgroup GAP_APPEARANCE_AIR_CONDITIONING GAP Appearance Air Conditioning
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_AIR_CONDITIONING                    0x019
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_AIR_CONDITIONING        0x00
+/** @} End GAP_APPEARANCE_AIR_CONDITIONING */
+
+/** @defgroup GAP_APPEARANCE_HUMIDIFIER GAP Appearance Humidifier
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_HUMIDIFIER                          0x01A
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_HUMIDIFIER              0x00
+/** @} End GAP_APPEARANCE_HUMIDIFIER */
+
+/** @defgroup GAP_APPEARANCE_HEATING GAP Appearance Heating
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_HEATING                             0x01B
+
+#define GAP_APPEARANCE_SUB_CATEGORY_HEATING_GENERIC_HEATING         0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_HEATING_RADIATOR                0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_HEATING_BOILER                  0x02
+#define GAP_APPEARANCE_SUB_CATEGORY_HEATING_HEAT_PUMP               0x03
+#define GAP_APPEARANCE_SUB_CATEGORY_HEATING_INFRARED_HEATER         0x04
+#define GAP_APPEARANCE_SUB_CATEGORY_HEATING_RADIANT_PANEL_HEATER    0x05
+#define GAP_APPEARANCE_SUB_CATEGORY_HEATING_FAN_HEATER              0x06
+#define GAP_APPEARANCE_SUB_CATEGORY_HEATING_AIR_CURTAIN             0x07
+/** @} End GAP_APPEARANCE_HEATING */
+
+/** @defgroup GAP_APPEARANCE_ACCESS_CONTROL GAP Appearance Access Control
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_ACCESS_CONTROL                      0x01C
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_ACCESS_CONTROL          0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_ACCESS_DOOR                     0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_GARAGE_DOOR                     0x02
+#define GAP_APPEARANCE_SUB_CATEGORY_EMERGENCY_EXIT_DOOR             0x03
+#define GAP_APPEARANCE_SUB_CATEGORY_ACCESS_LOCK                     0x04
+#define GAP_APPEARANCE_SUB_CATEGORY_ELEVATOR                        0x05
+#define GAP_APPEARANCE_SUB_CATEGORY_WINDOW                          0x06
+#define GAP_APPEARANCE_SUB_CATEGORY_ENTRANCE_GATE                   0x07
+#define GAP_APPEARANCE_SUB_CATEGORY_DOOR_LOCK                       0x08
+#define GAP_APPEARANCE_SUB_CATEGORY_LOCKER                          0x09
+/** @} End GAP_APPEARANCE_ACCESS_CONTROL */
+
+/** @defgroup GAP_APPEARANCE_MOTORIZED_DEVICE GAP Appearance Motorized Device
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_MOTORIZED_DEVICE                    0x01D
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_MOTORIZED_DEVICE        0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_MOTORIZED_GATE                  0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_AWNING                          0x02
+#define GAP_APPEARANCE_SUB_CATEGORY_BLINDS_SHADES                   0x03
+#define GAP_APPEARANCE_SUB_CATEGORY_CURTAINS                        0x04
+#define GAP_APPEARANCE_SUB_CATEGORY_SCREEN                          0x05
+/** @} End GAP_APPEARANCE_MOTORIZED_DEVICE */
+
+/** @defgroup GAP_APPEARANCE_POWER_DEVICE GAP Appearance Power Device
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_POWER_DEVICE                        0x01E
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_POWER_DEVICE            0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_POWER_OUTLET                    0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_POWER_STRIP                     0x02
+#define GAP_APPEARANCE_SUB_CATEGORY_PLUG                            0x03
+#define GAP_APPEARANCE_SUB_CATEGORY_POWER_SUPPLY                    0x04
+#define GAP_APPEARANCE_SUB_CATEGORY_LED_DRIVER                      0x05
+#define GAP_APPEARANCE_SUB_CATEGORY_FLUORESCENT_LAMP_GEAR           0x06
+#define GAP_APPEARANCE_SUB_CATEGORY_HID_LAMP_GEAR                   0x07
+#define GAP_APPEARANCE_SUB_CATEGORY_CHARGE_CASE                     0x08
+#define GAP_APPEARANCE_SUB_CATEGORY_POWER_BANK                      0x09
+/** @} End GAP_APPEARANCE_POWER_DEVICE */
+
+/** @defgroup GAP_APPEARANCE_LIGHT_SOURCE GAP Appearance Light Source
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_LIGHT_SOURCE                        0x01F
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_LIGHT_SOURCE            0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_INCANDESCENT_LIGHT_BULB         0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_LED_LAMP                        0x02
+#define GAP_APPEARANCE_SUB_CATEGORY_HID_LAMP                        0x03
+#define GAP_APPEARANCE_SUB_CATEGORY_FLUORESCENT_LAMP                0x04
+#define GAP_APPEARANCE_SUB_CATEGORY_LED_ARRAY                       0x05
+#define GAP_APPEARANCE_SUB_CATEGORY_MULTI_COLOR_LED_ARRAY           0x06
+#define GAP_APPEARANCE_SUB_CATEGORY_LOW_VOLTAGE_HALOGEN             0x07
+#define GAP_APPEARANCE_SUB_CATEGORY_ORGANIC_LIGHT_EMITTING_DIODE    0x08
+/** @} End GAP_APPEARANCE_LIGHT_SOURCE */
+
+/** @defgroup GAP_APPEARANCE_WINDOW_COVERING GAP Appearance Window Covering
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_WINDOW_COVERING                     0x020
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_WINDOW_COVERING         0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_WINDOW_SHADES                   0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_WINDOW_BLINDS                   0x02
+#define GAP_APPEARANCE_SUB_CATEGORY_WINDOW_AWNING                   0x03
+#define GAP_APPEARANCE_SUB_CATEGORY_WINDOW_CURTAIN                  0x04
+#define GAP_APPEARANCE_SUB_CATEGORY_EXTERIOR_SHUTTER                0x05
+#define GAP_APPEARANCE_SUB_CATEGORY_EXTERIOR_SCREEN                 0x06
+/** @} End GAP_APPEARANCE_WINDOW_COVERING */
+
+/** @defgroup GAP_APPEARANCE_AUDIO_SINK GAP Appearance Audio Sink
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_AUDIO_SINK                          0x021
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_AUDIO_SINK              0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_STANDALONE_SPEAKER              0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_SOUNDBAR                        0x02
+#define GAP_APPEARANCE_SUB_CATEGORY_BOOKSHELF_SPEAKER               0x03
+#define GAP_APPEARANCE_SUB_CATEGORY_STANDMOUNTED_SPEAKER            0x04
+#define GAP_APPEARANCE_SUB_CATEGORY_SPEAKERPHONE                    0x05
+/** @} End GAP_APPEARANCE_AUDIO_SINK */
+
+/** @defgroup GAP_APPEARANCE_AUDIO_SOURCE GAP Appearance Audio Source
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_AUDIO_SOURCE                        0x022
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_AUDIO_SOURCE            0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_MICROPHONE                      0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_ALARM                           0x02
+#define GAP_APPEARANCE_SUB_CATEGORY_BELL                            0x03
+#define GAP_APPEARANCE_SUB_CATEGORY_HORN                            0x04
+#define GAP_APPEARANCE_SUB_CATEGORY_BROADCASTING_DEVICE             0x05
+#define GAP_APPEARANCE_SUB_CATEGORY_SERVICE_DESK                    0x06
+#define GAP_APPEARANCE_SUB_CATEGORY_KIOSK                           0x07
+#define GAP_APPEARANCE_SUB_CATEGORY_BROADCASTING_ROOM               0x08
+#define GAP_APPEARANCE_SUB_CATEGORY_AUDITORIUM                      0x09
+/** @} End GAP_APPEARANCE_AUDIO_SOURCE */
+
+/** @defgroup GAP_APPEARANCE_MOTORIZED_VEHICLE GAP Appearance Motorized Vehicle
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_MOTORIZED_VEHICLE                   0x023
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_MOTORIZED_VEHICLE       0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_CAR                             0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_LARGE_GOODS_VEHICLE             0x02
+#define GAP_APPEARANCE_SUB_CATEGORY_2_WHEELED_VEHICLE               0x03
+#define GAP_APPEARANCE_SUB_CATEGORY_MOTORBIKE                       0x04
+#define GAP_APPEARANCE_SUB_CATEGORY_SCOOTER                         0x05
+#define GAP_APPEARANCE_SUB_CATEGORY_MOPED                           0x06
+#define GAP_APPEARANCE_SUB_CATEGORY_3_WHEELED_VEHICLE               0x07
+#define GAP_APPEARANCE_SUB_CATEGORY_LIGHT_VEHICLE                   0x08
+#define GAP_APPEARANCE_SUB_CATEGORY_QUAD_BIKE                       0x09
+#define GAP_APPEARANCE_SUB_CATEGORY_MINIBUS                         0x0A
+#define GAP_APPEARANCE_SUB_CATEGORY_BUS                             0x0B
+#define GAP_APPEARANCE_SUB_CATEGORY_TROLLEY                         0x0C
+#define GAP_APPEARANCE_SUB_CATEGORY_AGRICULTURAL_VEHICLE            0x0D
+#define GAP_APPEARANCE_SUB_CATEGORY_CAMPER_CARAVAN                  0x0E
+#define GAP_APPEARANCE_SUB_CATEGORY_RECREATIONAL_VEHICLE_MOTOR_HOME 0x0F
+/** @} End GAP_APPEARANCE_MOTORIZED_VEHICLE */
+
+/** @defgroup GAP_APPEARANCE_DOMESTIC_APPLIANCE GAP Appearance Domestic Appliance
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_DOMESTIC_APPLIANCE                  0x024
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_DOMESTIC_APPLIANCE      0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_REFRIGERATOR                    0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_FREEZER                         0x02
+#define GAP_APPEARANCE_SUB_CATEGORY_OVEN                            0x03
+#define GAP_APPEARANCE_SUB_CATEGORY_MICROWAVE                       0x04
+#define GAP_APPEARANCE_SUB_CATEGORY_TOASTER                         0x05
+#define GAP_APPEARANCE_SUB_CATEGORY_WASHING_MACHINE                 0x06
+#define GAP_APPEARANCE_SUB_CATEGORY_DRYER                           0x07
+#define GAP_APPEARANCE_SUB_CATEGORY_COFFEE_MAKER                    0x08
+#define GAP_APPEARANCE_SUB_CATEGORY_CLOTHES_IRON                    0x09
+#define GAP_APPEARANCE_SUB_CATEGORY_CURLING_IRON                    0x0A
+#define GAP_APPEARANCE_SUB_CATEGORY_HAIR_DRYER                      0x0B
+#define GAP_APPEARANCE_SUB_CATEGORY_VACUUM_CLEANER                  0x0C
+#define GAP_APPEARANCE_SUB_CATEGORY_ROBOTIC_VACUUM_CLEANER          0x0D
+#define GAP_APPEARANCE_SUB_CATEGORY_RICE_COOKER                     0x0E
+#define GAP_APPEARANCE_SUB_CATEGORY_CLOTHES_STEAMER                 0x0F
+/** @} End GAP_APPEARANCE_DOMESTIC_APPLIANCE */
+
+/** @defgroup GAP_APPEARANCE_WEARABLE_AUDIO_DEVICE GAP Appearance Wearable Audio Device
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_WEARABLE_AUDIO_DEVICE               0x025
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_WEARABLE_AUDIO_DEVICE   0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_EARBUD                          0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_HEADSET                         0x02
+#define GAP_APPEARANCE_SUB_CATEGORY_HEADPHONES                      0x03
+#define GAP_APPEARANCE_SUB_CATEGORY_NECK_BAND                       0x04
+/** @} End GAP_APPEARANCE_WEARABLE_AUDIO_DEVICE */
+
+/** @defgroup GAP_APPEARANCE_AIRCRAFT GAP Appearance Aircraft
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_AIRCRAFT                            0x026
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_AIRCRAFT                0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_LIGHT_AIRCRAFT                  0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_MICROLIGHT                      0x02
+#define GAP_APPEARANCE_SUB_CATEGORY_PARAGLIDER                      0x03
+#define GAP_APPEARANCE_SUB_CATEGORY_LARGE_PASSENGER_AIRCRAFT        0x04
+/** @} End GAP_APPEARANCE_AIRCRAFT */
+
+/** @defgroup GAP_APPEARANCE_AV_EQUIPMENT GAP Appearance AV Equipment
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_AV_EQUIPMENT                        0x027
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_AV_EQUIPMENT            0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_AMPLIFIER                       0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_RECEIVER                        0x02
+#define GAP_APPEARANCE_SUB_CATEGORY_RADIO                           0x03
+#define GAP_APPEARANCE_SUB_CATEGORY_TUNER                           0x04
+#define GAP_APPEARANCE_SUB_CATEGORY_TURNTABLE                       0x05
+#define GAP_APPEARANCE_SUB_CATEGORY_CD_PLAYER                       0x06
+#define GAP_APPEARANCE_SUB_CATEGORY_DVD_PLAYER                      0x07
+#define GAP_APPEARANCE_SUB_CATEGORY_BLURAY_PLAYER                   0x08
+#define GAP_APPEARANCE_SUB_CATEGORY_OPTICAL_DISC_PLAYER             0x09
+#define GAP_APPEARANCE_SUB_CATEGORY_SET_TOP_BOX                     0x0A
+/** @} End GAP_APPEARANCE_AV_EQUIPMENT */
+
+/** @defgroup GAP_APPEARANCE_DISPLAY_EQUIPMENT GAP Appearance Display Equipment
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_DISPLAY_EQUIPMENT                   0x028
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_DISPLAY_EQUIPMENT       0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_TELEVISION                      0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_MONITOR                         0x02
+#define GAP_APPEARANCE_SUB_CATEGORY_PROJECTOR                       0x03
+/** @} End GAP_APPEARANCE_DISPLAY_EQUIPMENT */
+
+/** @defgroup GAP_APPEARANCE_HEARING_AID GAP Appearance Hearing Aid
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_HEARING_AID                         0x029
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_HEARING_AID             0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_IN_EAR_HEARING_AID              0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_BEHIND_EAR_HEARING_AID          0x02
+#define GAP_APPEARANCE_SUB_CATEGORY_COCHLEAR_IMPLANT                0x03
+/** @} End GAP_APPEARANCE_HEARING_AID */
+
+/** @defgroup GAP_APPEARANCE_GAMING GAP Appearance Gaming
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_GAMING                              0x02A
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_GAMING                  0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_HOME_VIDEO_GAME_CONSOLE         0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_PORTABLE_HANDHELD_CONSOLE       0x02
+/** @} End GAP_APPEARANCE_GAMING */
+
+/** @defgroup GAP_APPEARANCE_SIGNAGE GAP Appearance Signage
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_SIGNAGE                             0x02B
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_SIGNAGE                 0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_DIGITAL_SIGNAGE                 0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_ELECTRONIC_LABEL                0x02
+/** @} End GAP_APPEARANCE_SIGNAGE */
+
+/** @defgroup GAP_APPEARANCE_PULSE_OXIMETER GAP Appearance Pulse Oximeter
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_PULSE_OXIMETER                      0x031
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_PULSE_OXIMETER          0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_FINGERTIP_PULSE_OXIMETER        0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_WRIST_WORN_PULSE_OXIMETER       0x02
+/** @} End GAP_APPEARANCE_PULSE_OXIMETER */
+
+/** @defgroup GAP_APPEARANCE_WEIGHT_SCALE GAP Appearance Weight Scale
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_WEIGHT_SCALE                        0x032
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_WEIGHT_SCALE            0x00
+/** @} End GAP_APPEARANCE_WEIGHT_SCALE */
+
+/** @defgroup GAP_APPEARANCE_PERSONAL_MOBILITY_DEVICE GAP Appearance Personal Mobility Device
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_PERSONAL_MOBILITY_DEVICE            0x033
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_PERSONAL_MOBILITY_DEVICE  0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_POWERED_WHEELCHAIR              0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_MOBILITY_SCOOTER                0x02
+/** @} End GAP_APPEARANCE_PERSONAL_MOBILITY_DEVICE */
+
+/** @defgroup GAP_APPEARANCE_CONTINUOUS_GLUCOSE_MONITOR GAP Appearance Continuous Glucose Monitor
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_CONTINUOUS_GLUCOSE_MONITOR          0x034
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_CONTINUOUS_GLUCOSE_MONITOR  0x00
+/** @} End GAP_APPEARANCE_CONTINUOUS_GLUCOSE_MONITOR */
+
+/** @defgroup GAP_APPEARANCE_INSULIN_PUMP GAP Appearance Insulin Pump
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_INSULIN_PUMP                        0x035
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_INSULIN_PUMP            0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_INSULIN_PUMP_DURABLE_PUMP       0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_INSULIN_PUMP_PATCH_PUMP         0x04
+#define GAP_APPEARANCE_SUB_CATEGORY_INSULIN_PEN                     0x08
+/** @} End GAP_APPEARANCE_INSULIN_PUMP */
+
+/** @defgroup GAP_APPEARANCE_MEDICATION_DELIVERY GAP Appearance Medication Delivery
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_MEDICATION_DELIVERY                 0x036
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_MEDICATION_DELIVERY     0x00
+/** @} End GAP_APPEARANCE_MEDICATION_DELIVERY */
+
+/** @defgroup GAP_APPEARANCE_SPIROMETER GAP Appearance Spirometer
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_SPIROMETER                          0x037
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_SPIROMETER              0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_HANDHELD_SPIROMETER             0x01
+/** @} End GAP_APPEARANCE_SPIROMETER */
+
+/** @defgroup GAP_APPEARANCE_OUTDOOR_SPORTS_ACTIVITY GAP Appearance Outdoor Sports Activity
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_OUTDOOR_SPORTS_ACTIVITY             0x051
+
+#define GAP_APPEARANCE_SUB_CATEGORY_GENERIC_OUTDOOR_SPORTS_ACTIVITY 0x00
+#define GAP_APPEARANCE_SUB_CATEGORY_LOCATION_DISPLAY                0x01
+#define GAP_APPEARANCE_SUB_CATEGORY_LOCATION_NAVIGATION_DISPLAY     0x02
+#define GAP_APPEARANCE_SUB_CATEGORY_LOCATION_POD                    0x03
+#define GAP_APPEARANCE_SUB_CATEGORY_LOCATION_NAVIGATION_POD         0x04
+/** @} End GAP_APPEARANCE_OUTDOOR_SPORTS_ACTIVITY */
+/** @} End GAP_APPEARANCE_CATEGORY */
+
+/** @defgroup GAP_APPEARANCE_VALUES GAP Appearance Values
+ * @brief A partial appearance consisting of categories and sub-categories.
+ *        If the appearance that the APP wants to use is not included, the APP can make
+ *        its own appearance with categories and sub-categories @ref GAP_APPEARANCE_CATEGORY.
+ * @{
+ */
+#define GAP_APPEARANCE_CATEGORY_OFFSET                             6    /**< GAP Appearance: Category bit15~6, Sub-category: bit5~0 */
+
+#define GAP_GATT_APPEARANCE_UNKNOWN                                (GAP_APPEARANCE_CATEGORY_UNKNOWN << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_GENERIC_UNKNOWN)
+#define GAP_GATT_APPEARANCE_GENERIC_PHONE                          (GAP_APPEARANCE_CATEGORY_PHONE << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_GENERIC_PHONE)
+#define GAP_GATT_APPEARANCE_GENERIC_COMPUTER                       (GAP_APPEARANCE_CATEGORY_COMPUTER << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_GENERIC_COMPUTER)
+#define GAP_GATT_APPEARANCE_GENERIC_WATCH                          (GAP_APPEARANCE_CATEGORY_WATCH << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_GENERIC_WATCH)
+#define GAP_GATT_APPEARANCE_WATCH_SPORTS_WATCH                     (GAP_APPEARANCE_CATEGORY_WATCH << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_SPORTS_WATCH)
+
+#define GAP_GATT_APPEARANCE_GENERIC_CLOCK                          (GAP_APPEARANCE_CATEGORY_CLOCK << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_GENERIC_CLOCK)
+#define GAP_GATT_APPEARANCE_GENERIC_DISPLAY                        (GAP_APPEARANCE_CATEGORY_DISPLAY << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_GENERIC_DISPLAY)
+#define GAP_GATT_APPEARANCE_GENERIC_REMOTE_CONTROL                 (GAP_APPEARANCE_CATEGORY_REMOTE_CONTROL << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_GENERIC_REMOTE_CONTROL)
+#define GAP_GATT_APPEARANCE_GENERIC_EYE_GLASSES                    (GAP_APPEARANCE_CATEGORY_EYE_GLASSES << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_GENERIC_EYE_GLASSES)
+#define GAP_GATT_APPEARANCE_GENERIC_TAG                            (GAP_APPEARANCE_CATEGORY_TAG << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_GENERIC_TAG)
+#define GAP_GATT_APPEARANCE_GENERIC_KEYRING                        (GAP_APPEARANCE_CATEGORY_KEYRING << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_GENERIC_KEYRING)
+#define GAP_GATT_APPEARANCE_GENERIC_MEDIA_PLAYER                   (GAP_APPEARANCE_CATEGORY_MEDIA_PLAYER << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_GENERIC_MEDIA_PLAYER)
+#define GAP_GATT_APPEARANCE_GENERIC_BARCODE_SCANNER                (GAP_APPEARANCE_CATEGORY_BARCODE_SCANNER << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_GENERIC_BARCODE_SCANNER)
+
+#define GAP_GATT_APPEARANCE_GENERIC_THERMOMETER                    (GAP_APPEARANCE_CATEGORY_THERMOMETER << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_GENERIC_THERMOMETER)
+#define GAP_GATT_APPEARANCE_THERMOMETER_EAR                        (GAP_APPEARANCE_CATEGORY_THERMOMETER << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_EAR_THERMOMETER)
+
+#define GAP_GATT_APPEARANCE_GENERIC_HEART_RATE_SENSOR              (GAP_APPEARANCE_CATEGORY_HEART_RATE_SENSOR << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_GENERIC_HEART_RATE_SENSOR)
+#define GAP_GATT_APPEARANCE_HEART_RATE_SENSOR_HEART_RATE_BELT      (GAP_APPEARANCE_CATEGORY_HEART_RATE_SENSOR << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_HEART_RATE_BELT)
+
+#define GAP_GATT_APPEARANCE_GENERIC_BLOOD_PRESSURE                 (GAP_APPEARANCE_CATEGORY_BLOOD_PRESSURE << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_GENERIC_BLOOD_PRESSURE)
+#define GAP_GATT_APPEARANCE_BLOOD_PRESSURE_ARM                     (GAP_APPEARANCE_CATEGORY_BLOOD_PRESSURE << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_ARM_BLOOD_PRESSURE)
+#define GAP_GATT_APPEARANCE_BLOOD_PRESSURE_WRIST                   (GAP_APPEARANCE_CATEGORY_BLOOD_PRESSURE << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_WRIST_BLOOD_PRESSURE)
+
+#define GAP_GATT_APPEARANCE_HUMAN_INTERFACE_DEVICE                 (GAP_APPEARANCE_CATEGORY_HUMAN_INTERFACE_DEVICE << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_GENERIC_HUMAN_INTERFACE_DEVICE)
+#define GAP_GATT_APPEARANCE_KEYBOARD                               (GAP_APPEARANCE_CATEGORY_HUMAN_INTERFACE_DEVICE << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_KEYBOARD)
+#define GAP_GATT_APPEARANCE_MOUSE                                  (GAP_APPEARANCE_CATEGORY_HUMAN_INTERFACE_DEVICE << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_MOUSE)
+#define GAP_GATT_APPEARANCE_JOYSTICK                               (GAP_APPEARANCE_CATEGORY_HUMAN_INTERFACE_DEVICE << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_JOYSTICK)
+#define GAP_GATT_APPEARANCE_GAMEPAD                                (GAP_APPEARANCE_CATEGORY_HUMAN_INTERFACE_DEVICE << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_GAMEPAD)
+#define GAP_GATT_APPEARANCE_DIGITIZER_TABLET                       (GAP_APPEARANCE_CATEGORY_HUMAN_INTERFACE_DEVICE << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_DIGITIZER_TABLET)
+#define GAP_GATT_APPEARANCE_CARD_READER                            (GAP_APPEARANCE_CATEGORY_HUMAN_INTERFACE_DEVICE << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_CARD_READER)
+#define GAP_GATT_APPEARANCE_DIGITAL_PEN                            (GAP_APPEARANCE_CATEGORY_HUMAN_INTERFACE_DEVICE << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_DIGITAL_PEN)
+#define GAP_GATT_APPEARANCE_BARCODE_SCANNER                        (GAP_APPEARANCE_CATEGORY_HUMAN_INTERFACE_DEVICE << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_BARCODE_SCANNER)
+
+#define GAP_GATT_APPEARANCE_GENERIC_GLUCOSE_METER                  (GAP_APPEARANCE_CATEGORY_GLUCOSE_METER << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_GENERIC_GLUCOSE_METER)
+
+#define GAP_GATT_APPEARANCE_GENERIC_RUNNING_WALKING_SENSOR         (GAP_APPEARANCE_CATEGORY_RUNNING_WALKING_SENSOR << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_GENERIC_RUNNING_WALKING_SENSOR)
+#define GAP_GATT_APPEARANCE_RUNNING_WALKING_SENSOR_IN_SHOE         (GAP_APPEARANCE_CATEGORY_RUNNING_WALKING_SENSOR << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_IN_SHOE_RUNNING_WALKING_SENSOR)
+#define GAP_GATT_APPEARANCE_RUNNING_WALKING_SENSOR_ON_SHOE         (GAP_APPEARANCE_CATEGORY_RUNNING_WALKING_SENSOR << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_ON_SHOE_RUNNING_WALKING_SENSOR)
+#define GAP_GATT_APPEARANCE_RUNNING_WALKING_SENSOR_ON_HIP          (GAP_APPEARANCE_CATEGORY_RUNNING_WALKING_SENSOR << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_IN_HIP_RUNNING_WALKING_SENSOR)
+
+#define GAP_GATT_APPEARANCE_GENERIC_CYCLING                        (GAP_APPEARANCE_CATEGORY_CYCLING << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_GENERIC_CYCLING)
+#define GAP_GATT_APPEARANCE_CYCLING_CYCLING_COMPUTER               (GAP_APPEARANCE_CATEGORY_CYCLING << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_CYCLING_COMPUTER)
+#define GAP_GATT_APPEARANCE_CYCLING_SPEED_SENSOR                   (GAP_APPEARANCE_CATEGORY_CYCLING << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_SPEED_SENSOR)
+#define GAP_GATT_APPEARANCE_CYCLING_CADENCE_SENSOR                 (GAP_APPEARANCE_CATEGORY_CYCLING << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_CADENCE_SENSOR)
+#define GAP_GATT_APPEARANCE_CYCLING_POWER_SENSOR                   (GAP_APPEARANCE_CATEGORY_CYCLING << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_POWER_SENSOR)
+#define GAP_GATT_APPEARANCE_CYCLING_SPEED_AND_CADENCE_SENSOR       (GAP_APPEARANCE_CATEGORY_CYCLING << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_SPEED_CADENCE_SENSOR)
+
+#define GAP_GATT_APPEARANCE_GENERIC_PULSE_OXIMETER                 (GAP_APPEARANCE_CATEGORY_PULSE_OXIMETER << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_GENERIC_PULSE_OXIMETER)
+#define GAP_GATT_APPEARANCE_FINGERTIP                              (GAP_APPEARANCE_CATEGORY_PULSE_OXIMETER << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_FINGERTIP_PULSE_OXIMETER)
+#define GAP_GATT_APPEARANCE_WRIST_WORN                             (GAP_APPEARANCE_CATEGORY_PULSE_OXIMETER << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_WRIST_WORN_PULSE_OXIMETER)
+#define GAP_GATT_APPEARANCE_GENERIC_WEIGHT_SCALE                   (GAP_APPEARANCE_CATEGORY_WEIGHT_SCALE << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_GENERIC_WEIGHT_SCALE)
+
+#define GAP_GATT_APPEARANCE_GENERIC_OUTDOOR_SPORTS_ACTIVITY        (GAP_APPEARANCE_CATEGORY_OUTDOOR_SPORTS_ACTIVITY << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_GENERIC_OUTDOOR_SPORTS_ACTIVITY)
+#define GAP_GATT_APPEARANCE_LOCATION_DISPLAY_DEVICE                (GAP_APPEARANCE_CATEGORY_OUTDOOR_SPORTS_ACTIVITY << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_LOCATION_DISPLAY)
+#define GAP_GATT_APPEARANCE_LOCATION_AND_NAVIGATION_DISPLAY_DEVICE (GAP_APPEARANCE_CATEGORY_OUTDOOR_SPORTS_ACTIVITY << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_LOCATION_NAVIGATION_DISPLAY)
+#define GAP_GATT_APPEARANCE_LOCATION_POD                           (GAP_APPEARANCE_CATEGORY_OUTDOOR_SPORTS_ACTIVITY << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_LOCATION_POD)
+#define GAP_GATT_APPEARANCE_LOCATION_AND_NAVIGATION_POD            (GAP_APPEARANCE_CATEGORY_OUTDOOR_SPORTS_ACTIVITY << GAP_APPEARANCE_CATEGORY_OFFSET |\
+                                                                    GAP_APPEARANCE_SUB_CATEGORY_LOCATION_NAVIGATION_POD)
+/** @} End GAP_APPEARANCE_VALUES */
+
+/** End of GAP_Appearance_Exported_Macros
+  * @}
+  */
+/** @} */ /* End of group BT_GAP_Appearance */
+
+
+/*-------------------------------------------------------------------
+-------------------------------------------------------------------*/
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* GAP_APPEARANCE_H */

@@ -1,0 +1,17 @@
+.\objects\app_nrec.o: ..\..\..\src\sample\common\app_nrec.c
+.\objects\app_nrec.o: ..\..\..\inc\bluetooth\leaudio\ble_audio_flags.h
+.\objects\app_nrec.o: ..\..\..\src\sample\rws\app_flags.h
+.\objects\app_nrec.o: ..\..\..\src\sample\rws\lea\app_lea_flags.h
+.\objects\app_nrec.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\app_nrec.o: ..\..\..\src\sample\common\app_nrec.h
+.\objects\app_nrec.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\app_nrec.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\app_nrec.o: ..\..\..\inc\framework\audio\audio_track.h
+.\objects\app_nrec.o: ..\..\..\inc\framework\audio\audio_type.h
+.\objects\app_nrec.o: ..\..\..\src\sample\rws\app_cfg.h
+.\objects\app_nrec.o: ..\..\..\src\sample\rws\harman\app_harman_ble_ota.h
+.\objects\app_nrec.o: ..\..\..\inc\rtl87x3e\platform\patch_header_check.h
+.\objects\app_nrec.o: ..\..\..\src\sample\rws\harman\app_harman_eq.h
+.\objects\app_nrec.o: ..\..\..\src\sample\rws\eq\eq_utils.h
+.\objects\app_nrec.o: ..\..\..\inc\framework\audio\nrec.h
+.\objects\app_nrec.o: ..\..\..\inc\framework\remote\remote.h

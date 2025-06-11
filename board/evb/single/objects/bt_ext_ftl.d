@@ -1,0 +1,13 @@
+.\objects\bt_ext_ftl.o: ..\..\..\src\ble\gatt_client\bt_ext_ftl.c
+.\objects\bt_ext_ftl.o: ..\..\..\inc\bluetooth\leaudio\ble_audio_flags.h
+.\objects\bt_ext_ftl.o: ..\..\..\src\sample\rws\app_flags.h
+.\objects\bt_ext_ftl.o: ..\..\..\src\sample\rws\lea\app_lea_flags.h
+.\objects\bt_ext_ftl.o: ..\..\..\inc\hal\platform\ftl_ext.h
+.\objects\bt_ext_ftl.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\bt_ext_ftl.o: ..\..\..\inc\hal\platform\ftl.h
+.\objects\bt_ext_ftl.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\bt_ext_ftl.o: ..\..\..\inc\rtl87x3e\platform\errno.h
+.\objects\bt_ext_ftl.o: ..\..\..\inc\rtl87x3e\hal\storage.h
+.\objects\bt_ext_ftl.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\bt_ext_ftl.o: ..\..\..\src\ble\gatt_client\bt_ext_ftl.h
+.\objects\bt_ext_ftl.o: ..\..\..\inc\rtl87x3e\platform\trace.h

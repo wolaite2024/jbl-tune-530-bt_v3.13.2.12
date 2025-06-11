@@ -1,0 +1,12 @@
+.\objects\app_sidetone.o: ..\..\..\src\sample\common\app_sidetone.c
+.\objects\app_sidetone.o: ..\..\..\inc\bluetooth\leaudio\ble_audio_flags.h
+.\objects\app_sidetone.o: ..\..\..\src\sample\rws\app_flags.h
+.\objects\app_sidetone.o: ..\..\..\src\sample\rws\lea\app_lea_flags.h
+.\objects\app_sidetone.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\app_sidetone.o: ..\..\..\src\sample\common\app_sidetone.h
+.\objects\app_sidetone.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\app_sidetone.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\app_sidetone.o: ..\..\..\inc\framework\audio\audio_track.h
+.\objects\app_sidetone.o: ..\..\..\inc\framework\audio\audio_type.h
+.\objects\app_sidetone.o: ..\..\..\src\sample\common\app_dsp_cfg.h
+.\objects\app_sidetone.o: ..\..\..\inc\framework\audio\sidetone.h

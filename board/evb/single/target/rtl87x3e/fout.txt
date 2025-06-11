@@ -1,0 +1,1871 @@
+;#<FEEDBACK># ARM Linker, 5060960: Last Updated: Sat Jun 07 14:28:34 2025
+;VERSION 0.2
+;FILE a2dp.o
+a2dp_get_stream_cid <= USED 0
+a2dp_signal_abort <= USED 0
+a2dp_signal_cfg_set <= USED 0
+a2dp_signal_close <= USED 0
+a2dp_signal_cpbs_get <= USED 0
+a2dp_signal_open <= USED 0
+a2dp_signal_start <= USED 0
+a2dp_signal_suspend <= USED 0
+;FILE aes256_ecb_api.o
+__asm___16_aes256_ecb_api_c_8e23fa2c____REV16 <= USED 0
+__asm___16_aes256_ecb_api_c_8e23fa2c____REVSH <= USED 0
+__asm___16_aes256_ecb_api_c_8e23fa2c____RRX <= USED 0
+aes256_ecb_decrypt <= USED 0
+aes256_ecb_decrypt_msb2lsb <= USED 0
+aes256_ecb_encrypt_msb2lsb <= USED 0
+;FILE anc_tuning.o
+__asm___12_anc_tuning_c_174346fa____REV16 <= USED 0
+__asm___12_anc_tuning_c_174346fa____REVSH <= USED 0
+__asm___12_anc_tuning_c_174346fa____RRX <= USED 0
+anc_tool_anc_mp_bak_buf_config <= USED 0
+anc_tool_burn_gain_mismatch <= USED 0
+anc_tool_burn_llapt_gain_mismatch <= USED 0
+anc_tool_config_adsp_para <= USED 0
+anc_tool_config_data_log <= USED 0
+anc_tool_disable <= USED 0
+anc_tool_enable <= USED 0
+anc_tool_enable_adaptive_anc <= USED 0
+anc_tool_get_adsp_image_load_done <= USED 0
+anc_tool_get_anc_scenario_info <= USED 0
+anc_tool_get_data_log_dest_addr <= USED 0
+anc_tool_get_data_log_length <= USED 0
+anc_tool_get_feature_map <= USED 0
+anc_tool_get_llapt_scenario_info <= USED 0
+anc_tool_get_scenario_addr <= USED 0
+anc_tool_limiter_wns_switch <= USED 0
+anc_tool_load_adsp_image <= USED 0
+anc_tool_load_adsp_para <= USED 0
+anc_tool_load_data_log <= USED 0
+anc_tool_load_scenario <= USED 0
+anc_tool_query_para <= USED 0
+anc_tool_ramp_data_write <= USED 0
+anc_tool_read_gain_mismatch <= USED 0
+anc_tool_read_llapt_ext_data <= USED 0
+anc_tool_read_llapt_gain_mismatch <= USED 0
+anc_tool_read_mp_ext_data <= USED 0
+anc_tool_read_reg <= USED 0
+anc_tool_response_measure_enable <= USED 0
+anc_tool_set_feature_map <= USED 0
+anc_tool_set_gain_mismatch <= USED 0
+anc_tool_set_llapt_gain_mismatch <= USED 0
+anc_tool_set_para <= USED 0
+anc_tool_trigger_wdg_reset <= USED 0
+anc_tool_turn_on_adsp <= USED 0
+;FILE app_a2dp.o
+__asm___10_app_a2dp_c_bce8620f____REV16 <= USED 0
+__asm___10_app_a2dp_c_bce8620f____REVSH <= USED 0
+__asm___10_app_a2dp_c_bce8620f____RRX <= USED 0
+;FILE app_adp.o
+__asm___9_app_adp_c_dc83d2db____REV16 <= USED 0
+__asm___9_app_adp_c_dc83d2db____REVSH <= USED 0
+__asm___9_app_adp_c_dc83d2db____RRX <= USED 0
+app_adp_set_disable_charger_by_box_battery <= USED 0
+app_adp_set_disallow_enable_charger <= USED 0
+;FILE app_anc.o
+__asm___9_app_anc_c____REV16 <= USED 0
+__asm___9_app_anc_c____REVSH <= USED 0
+__asm___9_app_anc_c____RRX <= USED 0
+;FILE app_audio_passthrough.o
+__asm___23_app_audio_passthrough_c____REV16 <= USED 0
+__asm___23_app_audio_passthrough_c____REVSH <= USED 0
+__asm___23_app_audio_passthrough_c____RRX <= USED 0
+;FILE app_audio_passthrough_brightness.o
+__asm___34_app_audio_passthrough_brightness_c____REV16 <= USED 0
+__asm___34_app_audio_passthrough_brightness_c____REVSH <= USED 0
+__asm___34_app_audio_passthrough_brightness_c____RRX <= USED 0
+;FILE app_audio_policy.o
+__asm___18_app_audio_policy_c_54ae07cc____REV16 <= USED 0
+__asm___18_app_audio_policy_c_54ae07cc____REVSH <= USED 0
+__asm___18_app_audio_policy_c_54ae07cc____RRX <= USED 0
+app_audio_get_mp_dual_mic_setting <= USED 0
+app_audio_is_enable_play_mic_mute_tone <= USED 0
+app_audio_is_enable_play_mic_unmute_tone <= USED 0
+app_audio_remote_join_set <= USED 0
+app_audio_set_mp_dual_mic_setting <= USED 0
+app_audio_spk_mute_unmute <= USED 0
+;FILE app_audio_route.o
+app_audio_route_physical_mic_get <= USED 0
+app_audio_route_physical_mic_set <= USED 0
+;FILE app_auto_power_off.o
+__asm___20_app_auto_power_off_c_b5133052____REV16 <= USED 0
+__asm___20_app_auto_power_off_c_b5133052____REVSH <= USED 0
+__asm___20_app_auto_power_off_c_b5133052____RRX <= USED 0
+;FILE app_avrcp.o
+__asm___11_app_avrcp_c_0265588b____REV16 <= USED 0
+__asm___11_app_avrcp_c_0265588b____REVSH <= USED 0
+__asm___11_app_avrcp_c_0265588b____RRX <= USED 0
+app_avrcp_abs_vol_check_timer_exist <= USED 0
+;FILE app_ble_client.o
+__asm___16_app_ble_client_c_f1836470____REV16 <= USED 0
+__asm___16_app_ble_client_c_f1836470____REVSH <= USED 0
+__asm___16_app_ble_client_c_f1836470____RRX <= USED 0
+;FILE app_ble_common_adv.o
+__asm___20_app_ble_common_adv_c_6523ce7e____REV16 <= USED 0
+__asm___20_app_ble_common_adv_c_6523ce7e____REVSH <= USED 0
+__asm___20_app_ble_common_adv_c_6523ce7e____RRX <= USED 0
+app_ble_common_adv_cb_reg <= USED 0
+app_ble_common_adv_get_adv_handle <= USED 0
+app_ble_common_adv_handle_role_swap_fail <= USED 0
+app_ble_common_adv_handle_roleswap <= USED 0
+app_ble_common_adv_ota_data_update <= USED 0
+;FILE app_ble_device.o
+__asm___16_app_ble_device_c_230e9659____REV16 <= USED 0
+__asm___16_app_ble_device_c_230e9659____REVSH <= USED 0
+__asm___16_app_ble_device_c_230e9659____RRX <= USED 0
+app_ble_device_is_active <= USED 0
+;FILE app_ble_gap.o
+__asm___13_app_ble_gap_c_c147600e____REV16 <= USED 0
+__asm___13_app_ble_gap_c_c147600e____REVSH <= USED 0
+__asm___13_app_ble_gap_c_c147600e____RRX <= USED 0
+app_ble_gap_get_link_encryption_status <= USED 0
+;FILE app_ble_rand_addr_mgr.o
+app_ble_rand_addr_handle_remote_conn_cmpl <= USED 0
+;FILE app_ble_sc_key_derive.o
+;FILE app_ble_service.o
+__asm___17_app_ble_service_c_94c97be0____REV16 <= USED 0
+__asm___17_app_ble_service_c_94c97be0____REVSH <= USED 0
+__asm___17_app_ble_service_c_94c97be0____RRX <= USED 0
+;FILE app_ble_swift_pair.o
+__asm___20_app_ble_swift_pair_c_2cb398c9____REV16 <= USED 0
+__asm___20_app_ble_swift_pair_c_2cb398c9____REVSH <= USED 0
+__asm___20_app_ble_swift_pair_c_2cb398c9____RRX <= USED 0
+;FILE app_ble_whitelist.o
+app_ble_whitelist_get_operation_state <= USED 0
+;FILE app_bond.o
+__asm___10_app_bond_c_8a38e870____REV16 <= USED 0
+__asm___10_app_bond_c_8a38e870____REVSH <= USED 0
+__asm___10_app_bond_c_8a38e870____RRX <= USED 0
+app_bond_is_b2s_link_record_exist <= USED 0
+app_bond_le_clear_non_lea_keys <= USED 0
+app_bond_push_sec_diff_link_record <= USED 0
+app_bond_sync_b2s_link_record <= USED 0
+;FILE app_bt_point.o
+app_bt_point_br_link_get <= USED 0
+app_bt_point_br_link_is_empty <= USED 0
+app_bt_point_br_link_num_set <= USED 0
+app_bt_point_le_link_get <= USED 0
+app_bt_point_le_link_is_empty <= USED 0
+app_bt_point_lea_link_is_empty <= USED 0
+;FILE app_bt_policy.o
+__asm___15_app_bt_policy_c_84c968fd____REV16 <= USED 0
+__asm___15_app_bt_policy_c_84c968fd____REVSH <= USED 0
+__asm___15_app_bt_policy_c_84c968fd____RRX <= USED 0
+app_bt_policy_b2s_connected_get_last_conn_index <= USED 0
+app_bt_policy_b2s_connected_is_over <= USED 0
+app_bt_policy_b2s_connected_set_last_conn_index <= USED 0
+app_bt_policy_is_startup_state <= USED 0
+app_bt_policy_set_legacy <= USED 0
+app_bt_policy_stop_reconnect_timer <= USED 0
+;FILE app_bt_policy_api.o
+__asm___19_app_bt_policy_api_c_566e0a6c____REV16 <= USED 0
+__asm___19_app_bt_policy_api_c_566e0a6c____REVSH <= USED 0
+__asm___19_app_bt_policy_api_c_566e0a6c____RRX <= USED 0
+app_bt_policy_conn_all_b2s <= USED 0
+app_bt_policy_disc_all_b2s <= USED 0
+app_bt_policy_get_enlarge_tpoll_state <= USED 0
+app_bt_policy_get_linkback_device <= USED 0
+app_bt_policy_restore <= USED 0
+app_bt_policy_stop <= USED 0
+;FILE app_bt_sniffing.o
+__asm___17_app_bt_sniffing_c_793099f4____REV16 <= USED 0
+__asm___17_app_bt_sniffing_c_793099f4____REVSH <= USED 0
+__asm___17_app_bt_sniffing_c_793099f4____RRX <= USED 0
+app_bt_sniffing_audio_cfg <= USED 0
+app_bt_sniffing_init <= USED 0
+app_bt_sniffing_roleswap <= USED 0
+app_bt_sniffing_set_low_latency <= USED 0
+;FILE app_bud_loc.o
+__asm___13_app_bud_loc_c____REV16 <= USED 0
+__asm___13_app_bud_loc_c____REVSH <= USED 0
+__asm___13_app_bud_loc_c____RRX <= USED 0
+;FILE app_cfg.o
+__asm___9_app_cfg_c_187adfdf____REV16 <= USED 0
+__asm___9_app_cfg_c_187adfdf____REVSH <= USED 0
+__asm___9_app_cfg_c_187adfdf____RRX <= USED 0
+;FILE app_charger.o
+__asm___13_app_charger_c_c6852ddd____REV16 <= USED 0
+__asm___13_app_charger_c_c6852ddd____REVSH <= USED 0
+__asm___13_app_charger_c_c6852ddd____RRX <= USED 0
+app_charger_get_battery_info <= USED 0
+app_charger_remote_battery_status_is_low <= USED 0
+;FILE app_cmd.o
+__asm___9_app_cmd_c_17b11b87____REV16 <= USED 0
+__asm___9_app_cmd_c_17b11b87____REVSH <= USED 0
+__asm___9_app_cmd_c_17b11b87____RRX <= USED 0
+app_cmd_cback_register <= USED 0
+app_cmd_get_max_payload_len <= USED 0
+app_cmd_relay_command_set <= USED 0
+app_cmd_relay_event <= USED 0
+app_cmd_set_event_broadcast <= USED 0
+;FILE app_console_msg.o
+__asm___17_app_console_msg_c____REV16 <= USED 0
+__asm___17_app_console_msg_c____REVSH <= USED 0
+__asm___17_app_console_msg_c____RRX <= USED 0
+;FILE app_device.o
+__asm___12_app_device_c_66cf86b7____REV16 <= USED 0
+__asm___12_app_device_c_66cf86b7____REVSH <= USED 0
+__asm___12_app_device_c_66cf86b7____RRX <= USED 0
+app_device_bt_policy_startup <= USED 0
+app_device_get_bud_channel <= USED 0
+;FILE app_dlps.o
+__asm___10_app_dlps_c_66d9ca3d____REV16 <= USED 0
+__asm___10_app_dlps_c_66d9ca3d____REVSH <= USED 0
+__asm___10_app_dlps_c_66d9ca3d____RRX <= USED 0
+;FILE app_dsp_cfg.o
+;FILE app_dult.o
+__asm___10_app_dult_c_9238a291____REV16 <= USED 0
+__asm___10_app_dult_c_9238a291____REVSH <= USED 0
+__asm___10_app_dult_c_9238a291____RRX <= USED 0
+app_dult_get_none_owner_state <= USED 0
+;FILE app_dult_device.o
+;FILE app_dult_svc.o
+;FILE app_ecc.o
+;FILE app_eq.o
+__asm___8_app_eq_c_7a0dcdd7____REV16 <= USED 0
+__asm___8_app_eq_c_7a0dcdd7____REVSH <= USED 0
+__asm___8_app_eq_c_7a0dcdd7____RRX <= USED 0
+app_eq_deinit <= USED 0
+app_eq_get_supported_sample_rate <= USED 0
+app_eq_play_apt_eq_tone <= USED 0
+app_eq_sample_rate_get <= USED 0
+;FILE app_ext_charger.o
+__asm___17_app_ext_charger_c_01e3d476____REV16 <= USED 0
+__asm___17_app_ext_charger_c_01e3d476____REVSH <= USED 0
+__asm___17_app_ext_charger_c_01e3d476____RRX <= USED 0
+app_ext_charger_is_pin_status_det_pin <= USED 0
+app_ext_charger_vbat_is_normal_set <= USED 0
+;FILE app_gap.o
+__asm___9_app_gap_c_cc1c3f84____REV16 <= USED 0
+__asm___9_app_gap_c_cc1c3f84____REVSH <= USED 0
+__asm___9_app_gap_c_cc1c3f84____RRX <= USED 0
+;FILE app_gfps.o
+__asm___10_app_gfps_c_ec843c28____REV16 <= USED 0
+__asm___10_app_gfps_c_ec843c28____REVSH <= USED 0
+__asm___10_app_gfps_c_ec843c28____RRX <= USED 0
+app_gfps_adv_update_adv_interval <= USED 0
+app_gfps_handle_case_status <= USED 0
+app_gfps_pri_handle_additional_bond_info <= USED 0
+app_gfps_sec_adv_start <= USED 0
+app_gfps_sec_handle_addition_bond_info <= USED 0
+app_gfps_set_ble_conn_param <= USED 0
+;FILE app_gfps_account_key.o
+__asm___22_app_gfps_account_key_c_fb02e0d3____REV16 <= USED 0
+__asm___22_app_gfps_account_key_c_fb02e0d3____REVSH <= USED 0
+__asm___22_app_gfps_account_key_c_fb02e0d3____RRX <= USED 0
+app_gfps_account_key_add <= USED 0
+app_gfps_account_key_find_index_by_account_key <= USED 0
+app_gfps_account_key_get_table_size <= USED 0
+app_gfps_account_key_remote_handle_add <= USED 0
+app_gfps_account_key_remote_handle_sync <= USED 0
+app_gfps_account_key_remote_sync <= USED 0
+app_gfps_account_key_table_print <= USED 0
+app_gfps_account_key_update_owner_key <= USED 0
+;FILE app_gfps_battery.o
+__asm___18_app_gfps_battery_c_69cab646____REV16 <= USED 0
+__asm___18_app_gfps_battery_c_69cab646____REVSH <= USED 0
+__asm___18_app_gfps_battery_c_69cab646____RRX <= USED 0
+;FILE app_gfps_device.o
+__asm___17_app_gfps_device_c_5ac07546____REV16 <= USED 0
+__asm___17_app_gfps_device_c_5ac07546____REVSH <= USED 0
+__asm___17_app_gfps_device_c_5ac07546____RRX <= USED 0
+;FILE app_gfps_finder.o
+__asm___17_app_gfps_finder_c_d487aa16____REV16 <= USED 0
+__asm___17_app_gfps_finder_c_d487aa16____REVSH <= USED 0
+__asm___17_app_gfps_finder_c_d487aa16____RRX <= USED 0
+app_gfps_finder_provisoned <= USED 0
+app_gfps_finder_update_battery <= USED 0
+;FILE app_gfps_finder_adv.o
+__asm___21_app_gfps_finder_adv_c_b279f27e____REV16 <= USED 0
+__asm___21_app_gfps_finder_adv_c_b279f27e____REVSH <= USED 0
+__asm___21_app_gfps_finder_adv_c_b279f27e____RRX <= USED 0
+;FILE app_gfps_link.o
+__asm___15_app_gfps_link_c_2dda2348____REV16 <= USED 0
+__asm___15_app_gfps_link_c_2dda2348____REVSH <= USED 0
+__asm___15_app_gfps_link_c_2dda2348____RRX <= USED 0
+app_gfps_link_delete_oldest_link_from_priority_queue <= USED 0
+;FILE app_gfps_msg.o
+__asm___14_app_gfps_msg_c_96ad6cd9____REV16 <= USED 0
+__asm___14_app_gfps_msg_c_96ad6cd9____REVSH <= USED 0
+__asm___14_app_gfps_msg_c_96ad6cd9____RRX <= USED 0
+app_gfps_rfc_set_buffer_size <= USED 0
+;FILE app_gfps_personalized_name.o
+;FILE app_gfps_psm.o
+__asm___14_app_gfps_psm_c_5e53821a____REV16 <= USED 0
+__asm___14_app_gfps_psm_c_5e53821a____REVSH <= USED 0
+__asm___14_app_gfps_psm_c_5e53821a____RRX <= USED 0
+;FILE app_gfps_rfc.o
+__asm___14_app_gfps_rfc_c_5f9d1e13____REV16 <= USED 0
+__asm___14_app_gfps_rfc_c_5f9d1e13____REVSH <= USED 0
+__asm___14_app_gfps_rfc_c_5f9d1e13____RRX <= USED 0
+;FILE app_gfps_sync.o
+__asm___15_app_gfps_sync_c____REV16 <= USED 0
+__asm___15_app_gfps_sync_c____REVSH <= USED 0
+__asm___15_app_gfps_sync_c____RRX <= USED 0
+;FILE app_gfps_timer.o
+;FILE app_harman_adc.o
+__asm___16_app_harman_adc_c_0a6fe15c____REV16 <= USED 0
+__asm___16_app_harman_adc_c_0a6fe15c____REVSH <= USED 0
+__asm___16_app_harman_adc_c_0a6fe15c____RRX <= USED 0
+;FILE app_harman_behaviors.o
+__asm___22_app_harman_behaviors_c_4dfb2263____REV16 <= USED 0
+__asm___22_app_harman_behaviors_c_4dfb2263____REVSH <= USED 0
+__asm___22_app_harman_behaviors_c_4dfb2263____RRX <= USED 0
+app_harman_pairable_mode_set <= USED 0
+;FILE app_harman_ble.o
+__asm___16_app_harman_ble_c_1da37a49____REV16 <= USED 0
+__asm___16_app_harman_ble_c_1da37a49____REVSH <= USED 0
+__asm___16_app_harman_ble_c_1da37a49____RRX <= USED 0
+app_harman_ble_process <= USED 0
+;FILE app_harman_ble_ota.o
+__asm___20_app_harman_ble_ota_c_16d20707____REV16 <= USED 0
+__asm___20_app_harman_ble_ota_c_16d20707____REVSH <= USED 0
+__asm___20_app_harman_ble_ota_c_16d20707____RRX <= USED 0
+app_harman_ble_ota_power_on_handle <= USED 0
+app_harman_ble_ota_set_upgrate_status <= USED 0
+;FILE app_harman_eq.o
+__asm___15_app_harman_eq_c_a9f1222d____REV16 <= USED 0
+__asm___15_app_harman_eq_c_a9f1222d____REVSH <= USED 0
+__asm___15_app_harman_eq_c_a9f1222d____RRX <= USED 0
+app_harman_eq_power_on_handle <= USED 0
+app_harman_eq_utils_stage_num_get <= USED 0
+;FILE app_harman_license.o
+__asm___20_app_harman_license_c_340a4568____REV16 <= USED 0
+__asm___20_app_harman_license_c_340a4568____REVSH <= USED 0
+__asm___20_app_harman_license_c_340a4568____RRX <= USED 0
+;FILE app_harman_parser.o
+__asm___19_app_harman_parser_c_923c8120____REV16 <= USED 0
+__asm___19_app_harman_parser_c_923c8120____REVSH <= USED 0
+__asm___19_app_harman_parser_c_923c8120____RRX <= USED 0
+;FILE app_harman_report.o
+__asm___19_app_harman_report_c_e8f3c26c____REV16 <= USED 0
+__asm___19_app_harman_report_c_e8f3c26c____REVSH <= USED 0
+__asm___19_app_harman_report_c_e8f3c26c____RRX <= USED 0
+;FILE app_harman_usb_connector_protect.o
+__asm___34_app_harman_usb_connector_protect_c_b46fcc55____REV16 <= USED 0
+__asm___34_app_harman_usb_connector_protect_c_b46fcc55____REVSH <= USED 0
+__asm___34_app_harman_usb_connector_protect_c_b46fcc55____RRX <= USED 0
+;FILE app_harman_vendor_cmd.o
+__asm___23_app_harman_vendor_cmd_c_d3180c33____REV16 <= USED 0
+__asm___23_app_harman_vendor_cmd_c_d3180c33____REVSH <= USED 0
+__asm___23_app_harman_vendor_cmd_c_d3180c33____RRX <= USED 0
+app_check_cmd_avail <= USED 0
+harman_notify_smartswitch_reconn <= USED 0
+;FILE app_hfp.o
+__asm___9_app_hfp_c_3ad3bb42____REV16 <= USED 0
+__asm___9_app_hfp_c_3ad3bb42____REVSH <= USED 0
+__asm___9_app_hfp_c_3ad3bb42____RRX <= USED 0
+app_hfp_only_set_active_idx <= USED 0
+app_hfp_sco_is_need <= USED 0
+app_hfp_set_vol_change_ongoing <= USED 0
+;FILE app_in_out_box.o
+__asm___16_app_in_out_box_c____REV16 <= USED 0
+__asm___16_app_in_out_box_c____REVSH <= USED 0
+__asm___16_app_in_out_box_c____RRX <= USED 0
+;FILE app_io_msg.o
+__asm___12_app_io_msg_c_2b171342____REV16 <= USED 0
+__asm___12_app_io_msg_c_2b171342____REVSH <= USED 0
+__asm___12_app_io_msg_c_2b171342____RRX <= USED 0
+;FILE app_ipc.o
+app_ipc_unsubscribe <= USED 0
+;FILE app_iphone_abs_vol_handle.o
+__asm___27_app_iphone_abs_vol_handle_c_42963e72____REV16 <= USED 0
+__asm___27_app_iphone_abs_vol_handle_c_42963e72____REVSH <= USED 0
+__asm___27_app_iphone_abs_vol_handle_c_42963e72____RRX <= USED 0
+;FILE app_key_gpio.o
+__asm___14_app_key_gpio_c_37c77255____REV16 <= USED 0
+__asm___14_app_key_gpio_c_37c77255____REVSH <= USED 0
+__asm___14_app_key_gpio_c_37c77255____RRX <= USED 0
+key_gpio_check_power_button_pressed <= USED 0
+;FILE app_key_process.o
+__asm___17_app_key_process_c_cff63b60____REV16 <= USED 0
+__asm___17_app_key_process_c_cff63b60____REVSH <= USED 0
+__asm___17_app_key_process_c_cff63b60____RRX <= USED 0
+app_key_hybrid_multi_clicks <= USED 0
+app_key_is_gpio_combinekey_power_on_off <= USED 0
+app_key_long_key_power_off_pressed_set <= USED 0
+app_key_power_onoff_combinekey_dlps_process <= USED 0
+;FILE app_lea_adv.o
+__asm___13_app_lea_adv_c_68feba07____REV16 <= USED 0
+__asm___13_app_lea_adv_c_68feba07____REVSH <= USED 0
+__asm___13_app_lea_adv_c_68feba07____RRX <= USED 0
+app_lea_adv_get_handle <= USED 0
+;FILE app_lea_ascs.o
+__asm___14_app_lea_ascs_c_7d9f5b3f____REV16 <= USED 0
+__asm___14_app_lea_ascs_c_7d9f5b3f____REVSH <= USED 0
+__asm___14_app_lea_ascs_c_7d9f5b3f____RRX <= USED 0
+;FILE app_lea_broadcast_audio.o
+__asm___25_app_lea_broadcast_audio_c_c20eab5b____REV16 <= USED 0
+__asm___25_app_lea_broadcast_audio_c_c20eab5b____REVSH <= USED 0
+__asm___25_app_lea_broadcast_audio_c_c20eab5b____RRX <= USED 0
+app_lea_bca_big_terminate <= USED 0
+app_lea_bca_bs_big_establish_dev_idex <= USED 0
+app_lea_bca_bs_find_device_by_index <= USED 0
+app_lea_bca_bs_get_active <= USED 0
+app_lea_bca_bs_pa_terminate <= USED 0
+app_lea_bca_bs_update_device_info <= USED 0
+app_lea_bca_ch_exist <= USED 0
+app_lea_bca_get_pa_info <= USED 0
+app_lea_bca_get_sd_sync_handle <= USED 0
+app_lea_bca_sd_get_active <= USED 0
+app_lea_bca_sink_pa_terminate <= USED 0
+;FILE app_lea_ccp.o
+__asm___13_app_lea_ccp_c_34d52627____REV16 <= USED 0
+__asm___13_app_lea_ccp_c_34d52627____REVSH <= USED 0
+__asm___13_app_lea_ccp_c_34d52627____RRX <= USED 0
+;FILE app_lea_mcp.o
+;FILE app_lea_mgr.o
+__asm___13_app_lea_mgr_c_f69d92e4____REV16 <= USED 0
+__asm___13_app_lea_mgr_c_f69d92e4____REVSH <= USED 0
+__asm___13_app_lea_mgr_c_f69d92e4____RRX <= USED 0
+;FILE app_lea_pacs.o
+app_lea_pacs_set_source_available_contexts <= USED 0
+;FILE app_lea_profile.o
+;FILE app_lea_scan.o
+;FILE app_lea_unicast_audio.o
+__asm___23_app_lea_unicast_audio_c_01affc3c____REV16 <= USED 0
+__asm___23_app_lea_unicast_audio_c_01affc3c____REVSH <= USED 0
+__asm___23_app_lea_unicast_audio_c_01affc3c____RRX <= USED 0
+app_lea_uca_get_mic_mute_state <= USED 0
+app_lea_uca_set_mic_mute_state <= USED 0
+app_lea_uca_sync_active_ds_state <= USED 0
+;FILE app_lea_vcs.o
+__asm___13_app_lea_vcs_c_acdf1b3c____REV16 <= USED 0
+__asm___13_app_lea_vcs_c_acdf1b3c____REVSH <= USED 0
+__asm___13_app_lea_vcs_c_acdf1b3c____RRX <= USED 0
+app_lea_vcs_find_vc_link <= USED 0
+;FILE app_lea_vol_policy.o
+__asm___20_app_lea_vol_policy_c_a91e3ea0____REV16 <= USED 0
+__asm___20_app_lea_vol_policy_c_a91e3ea0____REVSH <= USED 0
+__asm___20_app_lea_vol_policy_c_a91e3ea0____RRX <= USED 0
+app_lea_vol_sync_info <= USED 0
+;FILE app_led.o
+__asm___9_app_led_c_9e61ff3f____REV16 <= USED 0
+__asm___9_app_led_c_9e61ff3f____REVSH <= USED 0
+__asm___9_app_led_c_9e61ff3f____RRX <= USED 0
+app_led_is_all_keep_off <= USED 0
+;FILE app_line_in.o
+__asm___13_app_line_in_c____REV16 <= USED 0
+__asm___13_app_line_in_c____REVSH <= USED 0
+__asm___13_app_line_in_c____RRX <= USED 0
+;FILE app_link_util.o
+__asm___15_app_link_util_c_7d77990c____REV16 <= USED 0
+__asm___15_app_link_util_c_7d77990c____REVSH <= USED 0
+__asm___15_app_link_util_c_7d77990c____RRX <= USED 0
+app_link_check_dongle_link <= USED 0
+app_link_check_phone_link <= USED 0
+app_link_find_br_link_by_tts_handle <= USED 0
+app_link_find_le_link_by_tts_handle <= USED 0
+app_link_get_connected_phone_num <= USED 0
+app_link_get_le_encrypted_link_num <= USED 0
+app_link_get_misc_num <= USED 0
+app_link_is_b2s_link_num_full <= USED 0
+app_link_is_dongle_active_link <= USED 0
+app_link_set_b2s_link_num <= USED 0
+;FILE app_linkback.o
+;FILE app_listening_mode.o
+__asm___20_app_listening_mode_c____REV16 <= USED 0
+__asm___20_app_listening_mode_c____REVSH <= USED 0
+__asm___20_app_listening_mode_c____RRX <= USED 0
+;FILE app_loc_mgr.o
+__asm___13_app_loc_mgr_c____REV16 <= USED 0
+__asm___13_app_loc_mgr_c____REVSH <= USED 0
+__asm___13_app_loc_mgr_c____RRX <= USED 0
+;FILE app_main.o
+__asm___10_app_main_c_main____REV16 <= USED 0
+__asm___10_app_main_c_main____REVSH <= USED 0
+__asm___10_app_main_c_main____RRX <= USED 0
+;FILE app_mmi.o
+__asm___9_app_mmi_c_3f53dac7____REV16 <= USED 0
+__asm___9_app_mmi_c_3f53dac7____REVSH <= USED 0
+__asm___9_app_mmi_c_3f53dac7____RRX <= USED 0
+app_mmi_reboot_check_timer_started <= USED 0
+;FILE app_multilink.o
+__asm___15_app_multilink_c_b3da3591____REV16 <= USED 0
+__asm___15_app_multilink_c_b3da3591____REVSH <= USED 0
+__asm___15_app_multilink_c_b3da3591____RRX <= USED 0
+app_multi_active_link_check <= USED 0
+app_multi_get_acl_connect_num <= USED 0
+;FILE app_nrec.o
+app_nrec_roleswap <= USED 0
+;FILE app_ota.o
+__asm___9_app_ota_c_2dfdee57____REV16 <= USED 0
+__asm___9_app_ota_c_2dfdee57____REVSH <= USED 0
+__asm___9_app_ota_c_2dfdee57____RRX <= USED 0
+app_ota_ble_handle_cp_req <= USED 0
+app_ota_ble_handle_packet <= USED 0
+app_ota_cback_register <= USED 0
+app_ota_checksum <= USED 0
+app_ota_cmd_ack_handle <= USED 0
+app_ota_cmd_handle <= USED 0
+app_ota_dfu_is_busy <= USED 0
+app_ota_disc_b2s_profile <= USED 0
+app_ota_error_clear_local <= USED 0
+app_ota_get_active_bank <= USED 0
+app_ota_get_brief_img_version_for_dongle <= USED 0
+app_ota_get_device_info <= USED 0
+app_ota_handle_remote_msg <= USED 0
+app_ota_init <= USED 0
+app_ota_le_disconnect_cb <= USED 0
+app_ota_link_loss_stop <= USED 0
+app_ota_mode_check <= USED 0
+app_ota_reset_check <= USED 0
+app_ota_write_to_flash <= USED 0
+get_bank_size_by_img_id <= USED 0
+;FILE app_ota_tooling.o
+__asm___17_app_ota_tooling_c_3b6c90b1____REV16 <= USED 0
+__asm___17_app_ota_tooling_c_3b6c90b1____REVSH <= USED 0
+__asm___17_app_ota_tooling_c_3b6c90b1____RRX <= USED 0
+app_ota_tooling_adv_init <= USED 0
+app_ota_tooling_adv_start <= USED 0
+app_ota_tooling_adv_stop <= USED 0
+app_ota_tooling_nv_store <= USED 0
+;FILE app_qdec.o
+__asm___10_app_qdec_c____REV16 <= USED 0
+__asm___10_app_qdec_c____REVSH <= USED 0
+__asm___10_app_qdec_c____RRX <= USED 0
+;FILE app_relay.o
+__asm___11_app_relay_c_826f2403____REV16 <= USED 0
+__asm___11_app_relay_c_826f2403____REVSH <= USED 0
+__asm___11_app_relay_c_826f2403____RRX <= USED 0
+app_relay_async_add <= USED 0
+app_relay_async_build <= USED 0
+app_relay_async_send <= USED 0
+app_relay_cback_register <= USED 0
+app_relay_init <= USED 0
+app_relay_msg_pack <= USED 0
+;FILE app_report.o
+__asm___12_app_report_c_d33c175f____REV16 <= USED 0
+__asm___12_app_report_c_d33c175f____REVSH <= USED 0
+__asm___12_app_report_c_d33c175f____RRX <= USED 0
+app_report_gaming_mode_info <= USED 0
+app_report_raw_data <= USED 0
+app_report_rws_bud_side <= USED 0
+app_report_rws_state <= USED 0
+;FILE app_roleswap_control.o
+app_roleswap_ctrl_init <= USED 0
+;FILE app_sass_policy.o
+__asm___17_app_sass_policy_c_1158f10f____REV16 <= USED 0
+__asm___17_app_sass_policy_c_1158f10f____REVSH <= USED 0
+__asm___17_app_sass_policy_c_1158f10f____RRX <= USED 0
+app_sass_policy_sync_conn_bit_map <= USED 0
+;FILE app_sdp.o
+__asm___9_app_sdp_c_7d87e304____REV16 <= USED 0
+__asm___9_app_sdp_c_7d87e304____REVSH <= USED 0
+__asm___9_app_sdp_c_7d87e304____RRX <= USED 0
+;FILE app_sensor.o
+__asm___12_app_sensor_c_19e9044b____REV16 <= USED 0
+__asm___12_app_sensor_c_19e9044b____REVSH <= USED 0
+__asm___12_app_sensor_c_19e9044b____RRX <= USED 0
+app_sensor_cmd_handle <= USED 0
+;FILE app_sensor_i2c.o
+__asm___16_app_sensor_i2c_c_8aa75a84____REV16 <= USED 0
+__asm___16_app_sensor_i2c_c_8aa75a84____REVSH <= USED 0
+__asm___16_app_sensor_i2c_c_8aa75a84____RRX <= USED 0
+app_sensor_i2c_32_read_8 <= USED 0
+app_sensor_i2c_32_write_8 <= USED 0
+app_sensor_i2c_init <= USED 0
+app_sensor_i2c_read <= USED 0
+app_sensor_i2c_read_16 <= USED 0
+app_sensor_i2c_read_32 <= USED 0
+app_sensor_i2c_read_8 <= USED 0
+app_sensor_i2c_write <= USED 0
+app_sensor_i2c_write_16 <= USED 0
+app_sensor_i2c_write_32 <= USED 0
+app_sensor_i2c_write_8 <= USED 0
+;FILE app_sidetone.o
+;FILE app_sniff_mode.o
+__asm___16_app_sniff_mode_c_86f3d70f____REV16 <= USED 0
+__asm___16_app_sniff_mode_c_86f3d70f____REVSH <= USED 0
+__asm___16_app_sniff_mode_c_86f3d70f____RRX <= USED 0
+;FILE app_spp.o
+__asm___9_app_spp_c_f544972f____REV16 <= USED 0
+__asm___9_app_spp_c_f544972f____REVSH <= USED 0
+__asm___9_app_spp_c_f544972f____RRX <= USED 0
+;FILE app_test.o
+__asm___10_app_test_c____REV16 <= USED 0
+__asm___10_app_test_c____REVSH <= USED 0
+__asm___10_app_test_c____RRX <= USED 0
+;FILE app_third_party_srv.o
+__asm___21_app_third_party_srv_c_5eb1388a____REV16 <= USED 0
+__asm___21_app_third_party_srv_c_5eb1388a____REVSH <= USED 0
+__asm___21_app_third_party_srv_c_5eb1388a____RRX <= USED 0
+;FILE app_timer.o
+__asm___11_app_timer_c_f2898023____REV16 <= USED 0
+__asm___11_app_timer_c_f2898023____REVSH <= USED 0
+__asm___11_app_timer_c_f2898023____RRX <= USED 0
+app_timer_unregister_pm_excluded <= USED 0
+;FILE app_transfer.o
+__asm___14_app_transfer_c_ba051232____REV16 <= USED 0
+__asm___14_app_transfer_c_ba051232____REVSH <= USED 0
+__asm___14_app_transfer_c_ba051232____RRX <= USED 0
+app_transfer_check_active <= USED 0
+app_transfer_cmd_handle <= USED 0
+app_transfer_start_for_le <= USED 0
+;FILE app_util.o
+;FILE app_vendor.o
+;FILE ascs.o
+;FILE ascs_mgr.o
+ascs_action_cfg_codec <= USED 0
+ascs_action_disable <= USED 0
+ascs_action_rec_stop_ready <= USED 0
+ascs_action_update_metadata <= USED 0
+ascs_cis_request_cfm <= USED 0
+;FILE ase_handle_cp.o
+;FILE ase_sm.o
+ascs_get_ase_info <= USED 0
+ascs_get_codec_cfg <= USED 0
+ascs_get_qos_cfg <= USED 0
+;FILE audio_codec.o
+;FILE audio_effect.o
+;FILE audio_hal.o
+;FILE audio_hal_codec.o
+;FILE audio_hal_dsp.o
+__asm___15_audio_hal_dsp_c_327b046f____REV16 <= USED 0
+__asm___15_audio_hal_dsp_c_327b046f____REVSH <= USED 0
+__asm___15_audio_hal_dsp_c_327b046f____RRX <= USED 0
+;FILE audio_interval_eval.o
+audio_interval_evaluator_change_sensitivity <= USED 0
+audio_interval_get_stable_state <= USED 0
+;FILE audio_latency.o
+audio_latency_adjust_check <= USED 0
+audio_latency_handle_plc_event <= USED 0
+;FILE audio_mgr.o
+audio_mgr_cback_unregister <= USED 0
+audio_mgr_get_active_buffer <= USED 0
+audio_remote_join_set <= USED 0
+bt_clk_compare <= USED 0
+;FILE audio_pad.o
+__asm___11_audio_pad_c_5557f7bd____REV16 <= USED 0
+__asm___11_audio_pad_c_5557f7bd____REVSH <= USED 0
+__asm___11_audio_pad_c_5557f7bd____RRX <= USED 0
+;FILE audio_path.o
+audio_path_b2bmsg_interaction_timeout <= USED 0
+audio_path_cback_unregister <= USED 0
+audio_path_power_on <= USED 0
+vad_dsp_mgr_session_cb <= USED 0
+;FILE audio_pipe.o
+audio_pipe_create <= USED 0
+audio_pipe_deinit <= USED 0
+audio_pipe_demix <= USED 0
+audio_pipe_drain <= USED 0
+audio_pipe_fill <= USED 0
+audio_pipe_gain_get <= USED 0
+audio_pipe_gain_set <= USED 0
+audio_pipe_post_mix <= USED 0
+audio_pipe_pre_mix <= USED 0
+audio_pipe_release <= USED 0
+audio_pipe_start <= USED 0
+audio_pipe_stop <= USED 0
+;FILE audio_plugin.o
+audio_plugin_create <= USED 0
+audio_plugin_deinit <= USED 0
+audio_plugin_msg_send <= USED 0
+audio_plugin_release <= USED 0
+;FILE audio_probe.o
+audio_probe_dsp_cback_unregister <= USED 0
+audio_probe_dsp_evt_cback_unregister <= USED 0
+audio_probe_dsp_ipc_send_ha_param <= USED 0
+audio_probe_dsp_test_bin_set <= USED 0
+audio_probe_send_dsp_sdk_data <= USED 0
+audio_probe_send_sepc_info <= USED 0
+audio_probe_set_sepc_info <= USED 0
+dsp_ipc_send_sepc_channel_info <= USED 0
+dsp_ipc_send_sepc_info <= USED 0
+;FILE audio_route.o
+audio_route_category_path_register <= USED 0
+audio_route_category_path_unregister <= USED 0
+audio_route_gain_unregister <= USED 0
+;FILE audio_track.o
+audio_track_buffer_level_get <= USED 0
+audio_track_deinit <= USED 0
+audio_track_flush <= USED 0
+audio_track_format_info_get <= USED 0
+audio_track_latency_get <= USED 0
+audio_track_latency_max_get <= USED 0
+audio_track_latency_min_get <= USED 0
+audio_track_mode_get <= USED 0
+audio_track_pause <= USED 0
+audio_track_policy_set <= USED 0
+audio_track_signal_in_monitoring_start <= USED 0
+audio_track_signal_in_monitoring_stop <= USED 0
+audio_track_signal_out_monitoring_start <= USED 0
+audio_track_signal_out_monitoring_stop <= USED 0
+audio_track_threshold_set <= USED 0
+audio_track_usage_get <= USED 0
+audio_track_volume_in_get <= USED 0
+audio_track_volume_in_is_muted <= USED 0
+audio_track_volume_in_max_get <= USED 0
+audio_track_volume_in_min_get <= USED 0
+audio_track_volume_in_mute <= USED 0
+audio_track_volume_in_unmute <= USED 0
+audio_track_volume_out_is_muted <= USED 0
+audio_track_volume_out_max_get <= USED 0
+audio_track_volume_out_min_get <= USED 0
+;FILE audio_volume.o
+audio_volume_balance_get <= USED 0
+audio_volume_in_channel_set <= USED 0
+audio_volume_in_get <= USED 0
+audio_volume_in_max_get <= USED 0
+audio_volume_in_min_get <= USED 0
+audio_volume_out_is_muted <= USED 0
+;FILE avctp.o
+avctp_callback <= USED 0
+avctp_find_link_by_cid <= USED 0
+avctp_handle_l2c_data_ind <= USED 0
+;FILE avdtp.o
+avdtp_capability_check <= USED 0
+avdtp_cmd_bad_state_proc <= USED 0
+avdtp_cmd_error_check_proc <= USED 0
+avdtp_find_link_by_cid <= USED 0
+avdtp_handle_conn_cmpl <= USED 0
+avdtp_handle_conn_req <= USED 0
+avdtp_handle_conn_rsp <= USED 0
+avdtp_handle_data_ind <= USED 0
+avdtp_handle_data_rsp <= USED 0
+avdtp_handle_disconn_ind <= USED 0
+avdtp_handle_disconn_rsp <= USED 0
+avdtp_handle_signal_ind <= USED 0
+avdtp_l2c_cback <= USED 0
+avdtp_remote_capability_parse <= USED 0
+avdtp_rx_cmd_proc <= USED 0
+avdtp_rx_rsp_proc <= USED 0
+avdtp_signal_abort_req <= USED 0
+avdtp_signal_get_capability_req <= USED 0
+avdtp_signal_open_req <= USED 0
+avdtp_signal_proc <= USED 0
+avdtp_signal_set_cfg_req <= USED 0
+avdtp_signal_start_req <= USED 0
+avdtp_signal_suspend_req <= USED 0
+avdtp_tout_cback <= USED 0
+;FILE avrcp.o
+avrcp_callback <= USED 0
+avrcp_cover_art_disconnect <= USED 0
+avrcp_find_link_by_cid <= USED 0
+avrcp_get_element_attr <= USED 0
+avrcp_get_play_status <= USED 0
+avrcp_handle_cmd <= USED 0
+avrcp_handle_conn_cmpl_ind <= USED 0
+avrcp_handle_conn_fail <= USED 0
+avrcp_handle_conn_ind <= USED 0
+avrcp_handle_conn_rsp <= USED 0
+avrcp_handle_data_ind <= USED 0
+avrcp_handle_disconn_ind <= USED 0
+avrcp_handle_rsp <= USED 0
+avrcp_handle_vendor_BT_SIG_cmd <= USED 0
+avrcp_handle_vendor_BT_SIG_rsp <= USED 0
+avrcp_handle_vendor_cmd <= USED 0
+avrcp_handle_vendor_rsp <= USED 0
+avrcp_notify_play_status_change <= USED 0
+avrcp_play_status_change_register_rsp <= USED 0
+avrcp_send_unit_info <= USED 0
+avrcp_send_vendor_cmd <= USED 0
+avrcp_set_absolute_volume <= USED 0
+;FILE bap.o
+bap_check_link_int <= USED 0
+;FILE bas.o
+bas_battery_level_value_read_confirm <= USED 0
+;FILE base_data_parse.o
+base_data_get_bis_codec_cfg <= USED 0
+base_data_print <= USED 0
+;FILE bass_brs_mgr.o
+bass_cfg_big_sync_param <= USED 0
+bass_cfg_pa_sync_param <= USED 0
+;FILE bass_mgr.o
+bass_cfg_broadcast_code <= USED 0
+bass_get_brs_char_data <= USED 0
+bass_update_metadata <= USED 0
+;FILE bin_loader.o
+bin_loader_deinit <= USED 0
+bin_loader_msg_handler <= USED 0
+bin_loader_session_destory <= USED 0
+;FILE bin_loader_driver.o
+__asm___19_bin_loader_driver_c_0cef8426____REV16 <= USED 0
+__asm___19_bin_loader_driver_c_0cef8426____REVSH <= USED 0
+__asm___19_bin_loader_driver_c_0cef8426____RRX <= USED 0
+bin_loader_driver_skip_img_header <= USED 0
+;FILE ble_adv_data.o
+ble_adv_data_add <= USED 0
+;FILE ble_audio_bond.o
+;FILE ble_audio_dm.o
+ble_dm_cback_unregister <= USED 0
+;FILE ble_audio_mgr.o
+ble_audio_cback_unregister <= USED 0
+ble_audio_handle_msg <= USED 0
+ble_audio_handle_register <= USED 0
+ble_audio_reg_cap_cb <= USED 0
+ble_audio_send_msg_to_app <= USED 0
+;FILE ble_audio_sync.o
+ble_audio_bis_remove_data_path <= USED 0
+;FILE ble_audio_ual.o
+ble_audio_ual_check_addr <= USED 0
+ble_audio_ual_get_le_ltk <= USED 0
+;FILE ble_conn.o
+;FILE ble_ext_adv.o
+ble_ext_adv_is_ongoing <= USED 0
+ble_ext_adv_mgr_change_adv_event_prop <= USED 0
+ble_ext_adv_mgr_change_adv_tx_power <= USED 0
+ble_ext_adv_mgr_change_channel_map <= USED 0
+ble_ext_adv_mgr_change_filter_policy <= USED 0
+ble_ext_adv_mgr_change_peer_addr <= USED 0
+;FILE ble_link_util.o
+;FILE ble_mgr.o
+;FILE ble_scan.o
+ble_scan_get_cur_param <= USED 0
+ble_scan_get_param_by_hdl <= USED 0
+ble_scan_set_param_by_hdl <= USED 0
+;FILE bn.o
+bignum_and <= USED 0
+bignum_lshift <= USED 0
+bignum_rshift <= USED 0
+bignum_to_int <= USED 0
+bignum_xor <= USED 0
+;FILE bt_a2dp.o
+bt_a2dp_stream_abort_req <= USED 0
+bt_a2dp_stream_close_req <= USED 0
+bt_a2dp_stream_open_req <= USED 0
+bt_a2dp_stream_start_req <= USED 0
+bt_a2dp_stream_suspend_req <= USED 0
+;FILE bt_avrcp.o
+bt_avrcp_absolute_volume_set <= USED 0
+bt_avrcp_addressed_player_change_register_rsp <= USED 0
+bt_avrcp_addressed_player_change_req <= USED 0
+bt_avrcp_addressed_player_set <= USED 0
+bt_avrcp_addressed_player_set_rsp <= USED 0
+bt_avrcp_app_setting_attrs_list <= USED 0
+bt_avrcp_app_setting_value_get <= USED 0
+bt_avrcp_app_setting_value_set <= USED 0
+bt_avrcp_app_setting_values_list <= USED 0
+bt_avrcp_browsing_browsed_player_set <= USED 0
+bt_avrcp_browsing_connect_req <= USED 0
+bt_avrcp_browsing_disconnect_req <= USED 0
+bt_avrcp_browsing_folder_items_get <= USED 0
+bt_avrcp_browsing_folder_items_get_rsp <= USED 0
+bt_avrcp_browsing_item_attrs_get <= USED 0
+bt_avrcp_browsing_path_change <= USED 0
+bt_avrcp_browsing_search <= USED 0
+bt_avrcp_browsing_total_num_of_items_get_rsp <= USED 0
+bt_avrcp_continuing_rsp_abort <= USED 0
+bt_avrcp_continuing_rsp_req <= USED 0
+bt_avrcp_cover_art_connect_req <= USED 0
+bt_avrcp_cover_art_disconnect_req <= USED 0
+bt_avrcp_cover_art_get <= USED 0
+bt_avrcp_fast_forward_start <= USED 0
+bt_avrcp_fast_forward_stop <= USED 0
+bt_avrcp_get_element_attr_rsp <= USED 0
+bt_avrcp_get_play_status_req <= USED 0
+bt_avrcp_get_play_status_rsp <= USED 0
+bt_avrcp_group_navigate <= USED 0
+bt_avrcp_item_play <= USED 0
+bt_avrcp_mute <= USED 0
+bt_avrcp_play_status_change_register_rsp <= USED 0
+bt_avrcp_play_status_change_req <= USED 0
+bt_avrcp_power <= USED 0
+bt_avrcp_rewind_start <= USED 0
+bt_avrcp_rewind_stop <= USED 0
+bt_avrcp_track_change_register_rsp <= USED 0
+bt_avrcp_track_change_req <= USED 0
+bt_avrcp_vendor_cmd_send <= USED 0
+;FILE bt_bond.o
+bt_bond_key_init <= USED 0
+bt_max_bond_num_get <= USED 0
+;FILE bt_bond_api.o
+;FILE bt_bond_common.o
+bt_bond_register_bond_get_cb <= USED 0
+bt_bond_unregister_app_cb <= USED 0
+;FILE bt_bond_ftl.o
+;FILE bt_bond_gap.o
+;FILE bt_bond_le.o
+bt_le_clear_bond_state <= USED 0
+bt_le_dev_info_allocate <= USED 0
+bt_le_dev_info_clear <= USED 0
+bt_le_dev_info_cmp <= USED 0
+bt_le_dev_info_find <= USED 0
+bt_le_dev_info_get <= USED 0
+bt_le_dev_info_get_local_ltk <= USED 0
+bt_le_dev_info_pre_set <= USED 0
+bt_le_dev_info_remove <= USED 0
+bt_le_dev_info_set <= USED 0
+bt_le_dev_info_set_cccd <= USED 0
+bt_le_dev_info_set_high_priority <= USED 0
+bt_le_find_key_entry_by_priority <= USED 0
+bt_le_get_bond_dev_num <= USED 0
+bt_le_get_cccd_data <= USED 0
+bt_le_get_dev_irk <= USED 0
+bt_le_get_local_irk <= USED 0
+bt_le_set_dev_ltk <= USED 0
+;FILE bt_bond_legacy.o
+;FILE bt_bond_priority.o
+;FILE bt_ext_ftl.o
+bt_ext_ftl_deinit <= USED 0
+;FILE bt_gap.o
+bt_gap_cback <= USED 0
+bt_handle_acl_status_info <= USED 0
+bt_handle_sdp_discov_info <= USED 0
+bt_handle_vendor_evt_info <= USED 0
+;FILE bt_gatt_client.o
+gatt_client_find_char_cccd_handle <= USED 0
+gatt_client_find_char_descriptor_range <= USED 0
+gatt_client_find_primary_srv_by_include <= USED 0
+gatt_client_get_char_cccd <= USED 0
+gatt_client_get_char_num <= USED 0
+gatt_client_ind_confirm <= USED 0
+gatt_client_read_uuid <= USED 0
+;FILE bt_gatt_svc.o
+gatt_svc_find_char_index_by_uuid <= USED 0
+gatt_svc_find_char_index_by_uuid16 <= USED 0
+gatt_svc_write_confirm <= USED 0
+;FILE bt_gattc_storage.o
+gattc_storage_find_char <= USED 0
+gattc_storage_find_inc_srv_by_uuid <= USED 0
+;FILE bt_gfps.o
+bt_gfps_connect_req <= USED 0
+bt_gfps_disable_silence_mode <= USED 0
+bt_gfps_enable_silence_mode <= USED 0
+bt_gfps_get_sass_cap <= USED 0
+bt_gfps_send_eddystone_info <= USED 0
+bt_gfps_send_log_buf_full <= USED 0
+;FILE bt_hfp.o
+bt_hfp_call_hold_req <= USED 0
+bt_hfp_held_call_accept_req <= USED 0
+bt_hfp_held_call_release_req <= USED 0
+;FILE bt_iap.o
+bt_iap2_prep_param <= USED 0
+bt_iap_ack_send <= USED 0
+bt_iap_app_launch <= USED 0
+bt_iap_comm_update_start <= USED 0
+bt_iap_comp_info_send <= USED 0
+bt_iap_conn_update_start <= USED 0
+bt_iap_connect_cfm <= USED 0
+bt_iap_data_send <= USED 0
+bt_iap_eap_session_status_send <= USED 0
+bt_iap_hid_report_send <= USED 0
+bt_iap_hid_start <= USED 0
+bt_iap_hid_stop <= USED 0
+bt_iap_ident_info_send <= USED 0
+bt_iap_init <= USED 0
+bt_iap_mute_status_update <= USED 0
+bt_iap_param_set <= USED 0
+bt_iap_send_cmd <= USED 0
+;FILE bt_mgr.o
+bt_acl_link_policy_set <= USED 0
+bt_device_mode_get <= USED 0
+bt_free_br_link <= USED 0
+bt_gap_br_param_set <= USED 0
+bt_inquiry_start <= USED 0
+bt_inquiry_stop <= USED 0
+bt_link_default_policy_set <= USED 0
+bt_link_disconn_req <= USED 0
+bt_link_encryption_set <= USED 0
+bt_link_flush_tout_set <= USED 0
+bt_link_inquiry_scan_param_set <= USED 0
+bt_link_page_scan_param_set <= USED 0
+bt_link_per_report <= USED 0
+bt_link_policy_get <= USED 0
+bt_link_radio_mode_set <= USED 0
+bt_link_role_accept <= USED 0
+bt_link_rssi_report <= USED 0
+bt_link_sniff_mode_enter <= USED 0
+bt_link_sniff_mode_exit <= USED 0
+bt_mgr_cback_unregister <= USED 0
+bt_periodic_inquiry_start <= USED 0
+bt_sco_conn_cfm <= USED 0
+bt_sco_conn_req <= USED 0
+bt_sco_disconn_req <= USED 0
+bt_vendor_data_rate_set <= USED 0
+;FILE bt_pbap.o
+bt_pbap_init <= USED 0
+bt_pbap_phone_book_pull <= USED 0
+bt_pbap_phone_book_set <= USED 0
+bt_pbap_phone_book_size_get <= USED 0
+bt_pbap_pull_abort <= USED 0
+bt_pbap_pull_continue <= USED 0
+;FILE bt_pm.o
+bt_pm_state_get <= USED 0
+bt_sniff_mode_config <= USED 0
+;FILE bt_rdtp.o
+bt_rdtp_connect_req <= USED 0
+bt_rdtp_data_send <= USED 0
+bt_rdtp_init <= USED 0
+;FILE bt_rfc.o
+bt_rfc_conn_req <= USED 0
+bt_rfc_del_roleswap_info <= USED 0
+bt_rfc_find_profile_idx_by_server_chann <= USED 0
+bt_rfc_get_roleswap_info <= USED 0
+bt_rfc_set_roleswap_info <= USED 0
+;FILE bt_roleswap.o
+bt_roleswap_handle_acl_status <= USED 0
+bt_roleswap_handle_bt_avp_audio_conn <= USED 0
+bt_roleswap_handle_bt_avp_audio_disconn <= USED 0
+bt_roleswap_handle_bt_avp_control_conn <= USED 0
+bt_roleswap_handle_bt_avp_control_disconn <= USED 0
+bt_roleswap_handle_ctrl_conn <= USED 0
+bt_roleswap_init <= USED 0
+bt_roleswap_recv <= USED 0
+remote_roleswap_cfm <= USED 0
+remote_roleswap_start <= USED 0
+remote_roleswap_stop <= USED 0
+;FILE bt_sdp.o
+bt_did_discov_start <= USED 0
+bt_sdp_attr_find <= USED 0
+bt_sdp_discov_start <= USED 0
+bt_sdp_discov_stop <= USED 0
+bt_sdp_elem_access <= USED 0
+bt_sdp_elem_decode <= USED 0
+bt_sdp_record_delete <= USED 0
+bt_sdp_uuid_value_get <= USED 0
+bt_sdp_value_get <= USED 0
+;FILE bt_spp.o
+bt_spp_disconnect_req <= USED 0
+bt_spp_ertm_mode_set <= USED 0
+;FILE bt_syscall.o
+;FILE cache.o
+__asm___7_cache_c_67dcf3b0____REV16 <= USED 0
+__asm___7_cache_c_67dcf3b0____REVSH <= USED 0
+__asm___7_cache_c_67dcf3b0____RRX <= USED 0
+cache_disable <= USED 0
+cache_enable <= USED 0
+cache_hit_get <= USED 0
+cache_hit_init <= USED 0
+;FILE calculate_util.o
+;FILE cap.o
+;FILE cas.o
+;FILE ccp_client.o
+ccp_write_sig_rpt_interval <= USED 0
+;FILE charger_utils.o
+charger_utils_get_adapter_volt <= USED 0
+charger_utils_get_all_param <= USED 0
+charger_utils_get_batt_curr <= USED 0
+charger_utils_get_batt_temp <= USED 0
+charger_utils_get_batt_volt <= USED 0
+charger_utils_get_thermistor_enable_state <= USED 0
+charger_utils_set_all_param <= USED 0
+;FILE codec.o
+codec_cfg_gen <= USED 0
+;FILE codec_driver.o
+__asm___14_codec_driver_c_codec_db____REV16 <= USED 0
+__asm___14_codec_driver_c_codec_db____REVSH <= USED 0
+__asm___14_codec_driver_c_codec_db____RRX <= USED 0
+codec_drv_adc_analog_config <= USED 0
+codec_drv_adc_analog_parser <= USED 0
+codec_drv_adda_loopback_enable <= USED 0
+codec_drv_bias_config_clear <= USED 0
+codec_drv_check_fmode <= USED 0
+codec_drv_daad_loopback_enable <= USED 0
+codec_drv_dac_digital_config <= USED 0
+codec_drv_dac_digital_parser <= USED 0
+codec_drv_eq_adc_config <= USED 0
+codec_drv_eq_adc_parser <= USED 0
+codec_drv_eq_band_read <= USED 0
+codec_drv_eq_dac_config <= USED 0
+codec_drv_eq_dac_parser <= USED 0
+codec_drv_eq_reg_offset <= USED 0
+codec_drv_i2s_config_clear <= USED 0
+codec_drv_mbias_pow_enable <= USED 0
+codec_drv_micbias_pow_enable <= USED 0
+codec_drv_probe_dump_codec_regs <= USED 0
+codec_drv_record_digital_genernal_setting <= USED 0
+codec_drv_set_eq_clk <= USED 0
+;FILE codec_mgr.o
+__asm___11_codec_mgr_c_e75cdde6____REV16 <= USED 0
+__asm___11_codec_mgr_c_e75cdde6____REVSH <= USED 0
+__asm___11_codec_mgr_c_e75cdde6____RRX <= USED 0
+;FILE codec_qos.o
+codec_cap_get_cfg_bits <= USED 0
+codec_max_sdu_len_get <= USED 0
+qos_preferred_cfg_get <= USED 0
+;FILE debug_monitor.o
+__asm___15_debug_monitor_c_6bb1d518____REV16 <= USED 0
+__asm___15_debug_monitor_c_6bb1d518____REVSH <= USED 0
+__asm___15_debug_monitor_c_6bb1d518____RRX <= USED 0
+enable_debug_monitor <= USED 0
+watch_point_0_setting <= USED 0
+watch_point_1_setting <= USED 0
+;FILE dis.o
+;FILE dlps_util.o
+__asm___11_dlps_util_c_bfd42357____REV16 <= USED 0
+__asm___11_dlps_util_c_bfd42357____REVSH <= USED 0
+__asm___11_dlps_util_c_bfd42357____RRX <= USED 0
+dlps_util_cpu_sleep_monitor_start <= USED 0
+dlps_util_cpu_sleep_monitor_stop <= USED 0
+dlps_util_debug_init <= USED 0
+dlps_utils_print_wake_up_info <= USED 0
+;FILE dsp_driver.o
+__asm___12_dsp_driver_c_cd5b7d0a____REV16 <= USED 0
+__asm___12_dsp_driver_c_cd5b7d0a____REVSH <= USED 0
+__asm___12_dsp_driver_c_cd5b7d0a____RRX <= USED 0
+dsp_hal_deinit <= USED 0
+dsp_hal_retrieve_malleus_security_value <= USED 0
+dsp_hal_unregister_cback <= USED 0
+;FILE dsp_ipc.o
+dipc_codec_pipe_create <= USED 0
+dipc_codec_pipe_destroy <= USED 0
+dipc_codec_pipe_gain_set <= USED 0
+dipc_codec_pipe_mixer_remove <= USED 0
+dipc_codec_pipe_post_mixer_add <= USED 0
+dipc_codec_pipe_pre_mixer_add <= USED 0
+dipc_codec_pipe_start <= USED 0
+dipc_codec_pipe_stop <= USED 0
+dsp_ipc_apt_wdrc_set <= USED 0
+dsp_ipc_audio_wdrc_set <= USED 0
+dsp_ipc_cback_unregister <= USED 0
+dsp_ipc_send_h2d_param <= USED 0
+dsp_ipc_set_dsp2_config <= USED 0
+dsp_ipc_set_rws_seamless <= USED 0
+dsp_ipc_signal_in_monitoring_set <= USED 0
+dsp_ipc_signal_out_monitoring_set <= USED 0
+dsp_ipc_voice_wdrc_set <= USED 0
+;FILE dsp_loader.o
+__asm___12_dsp_loader_c_8431fb40____REV16 <= USED 0
+__asm___12_dsp_loader_c_8431fb40____REVSH <= USED 0
+__asm___12_dsp_loader_c_8431fb40____RRX <= USED 0
+dsp_load_is_busy <= USED 0
+dsp_load_set_scenario <= USED 0
+dsp_load_set_test_bin <= USED 0
+;FILE dsp_mgr.o
+__asm___9_dsp_mgr_c_b4b2db0c____REV16 <= USED 0
+__asm___9_dsp_mgr_c_b4b2db0c____REVSH <= USED 0
+__asm___9_dsp_mgr_c_b4b2db0c____RRX <= USED 0
+dsp_mgr_dsp2_ref_decrement <= USED 0
+dsp_mgr_dsp2_ref_increment <= USED 0
+dsp_mgr_unregister_cback <= USED 0
+dsp_rws_seamless <= USED 0
+dsp_rws_set_role <= USED 0
+dsp_vad_param_load <= USED 0
+dsp_vad_param_set <= USED 0
+;FILE dsp_shm.o
+__asm___9_dsp_shm_c_ff23e2c3____REV16 <= USED 0
+__asm___9_dsp_shm_c_ff23e2c3____REVSH <= USED 0
+__asm___9_dsp_shm_c_ff23e2c3____RRX <= USED 0
+d2h_data_recv2 <= USED 0
+h2d_data_send2 <= USED 0
+shm_clear_wdg_timer <= USED 0
+shm_deinit <= USED 0
+shm_run <= USED 0
+;FILE ecc_enhanced.o
+ecdh_enter_test_mode <= USED 0
+ecdh_exit_test_mode <= USED 0
+;FILE eq.o
+eq_disable <= USED 0
+;FILE eq_utils.o
+__asm___10_eq_utils_c_b9fc719c____REV16 <= USED 0
+__asm___10_eq_utils_c_b9fc719c____REVSH <= USED 0
+__asm___10_eq_utils_c_b9fc719c____RRX <= USED 0
+eq_utils_deinit <= USED 0
+eq_utils_param_get <= USED 0
+eq_utils_param_len_get <= USED 0
+eq_utils_stage_num_get <= USED 0
+;FILE flash_nor_adv_device.o
+__asm___22_flash_nor_adv_device_c_0ec4f692____REV16 <= USED 0
+__asm___22_flash_nor_adv_device_c_0ec4f692____REVSH <= USED 0
+__asm___22_flash_nor_adv_device_c_0ec4f692____RRX <= USED 0
+flash_nor_erase_otp_locked <= USED 0
+flash_nor_get_otp_locked <= USED 0
+flash_nor_get_uuid_locked <= USED 0
+flash_nor_read_otp_locked <= USED 0
+flash_nor_set_otp_locked <= USED 0
+flash_nor_set_tb_bit_locked <= USED 0
+flash_nor_write_otp_locked <= USED 0
+;FILE flash_nor_adv_driver.o
+__asm___22_flash_nor_adv_driver_c_a3ba5c81____REV16 <= USED 0
+__asm___22_flash_nor_adv_driver_c_a3ba5c81____REVSH <= USED 0
+__asm___22_flash_nor_adv_driver_c_a3ba5c81____RRX <= USED 0
+flash_nor_erase_otp <= USED 0
+flash_nor_get_four_byte_addr <= USED 0
+flash_nor_get_otp <= USED 0
+flash_nor_get_uuid <= USED 0
+flash_nor_otp_init <= USED 0
+flash_nor_otp_init_gd <= USED 0
+flash_nor_otp_init_micron <= USED 0
+flash_nor_otp_init_puya <= USED 0
+flash_nor_otp_init_winbond <= USED 0
+flash_nor_otp_init_xtx <= USED 0
+flash_nor_otp_init_zbit <= USED 0
+flash_nor_read_otp <= USED 0
+flash_nor_set_otp <= USED 0
+flash_nor_write_otp <= USED 0
+;FILE fmc_api.o
+__asm___9_fmc_api_c_83f0ccfc____REV16 <= USED 0
+__asm___9_fmc_api_c_83f0ccfc____REVSH <= USED 0
+__asm___9_fmc_api_c_83f0ccfc____RRX <= USED 0
+flash_partition_size_get <= USED 0
+fmc_flash_nor_clock_switch <= USED 0
+fmc_psram_ap_memory_opi_init <= USED 0
+fmc_psram_ap_memory_qpi_init <= USED 0
+fmc_psram_clock_switch <= USED 0
+fmc_psram_winbond_opi_init <= USED 0
+;FILE ftl.o
+__asm___5_ftl_c_cf784422____REV16 <= USED 0
+__asm___5_ftl_c_cf784422____REVSH <= USED 0
+__asm___5_ftl_c_cf784422____RRX <= USED 0
+ftl_cache_is_enable <= USED 0
+ftl_page_garbage_collect_imp <= USED 0
+ftl_v1_find_latest_page <= USED 0
+ftl_v1_module_info <= USED 0
+;FILE gap_lib.o
+;FILE gap_lib_br.o
+gap_br_access_sdp_elem <= USED 0
+gap_br_cfg_acl_disconn_tout <= USED 0
+gap_br_cfg_acl_link_flush_tout <= USED 0
+gap_br_cfg_acl_link_supv_tout <= USED 0
+gap_br_cfg_default_link_policy <= USED 0
+gap_br_cfg_inquiry_scan_param <= USED 0
+gap_br_cfg_page_scan_param <= USED 0
+gap_br_cfg_ssp_debug_mode <= USED 0
+gap_br_del_sdp_record <= USED 0
+gap_br_find_sdp_attr <= USED 0
+gap_br_get_param <= USED 0
+gap_br_get_sdp_uuid_value <= USED 0
+gap_br_get_sdp_value <= USED 0
+gap_br_init_radio_mode <= USED 0
+gap_br_input_passkey <= USED 0
+gap_br_input_remote_oob <= USED 0
+gap_br_link_preferred_data_rate_set <= USED 0
+gap_br_local_oob_extended_data_read <= USED 0
+gap_br_local_oob_read <= USED 0
+gap_br_periodic_traffic_set <= USED 0
+gap_br_read_rssi <= USED 0
+gap_br_reg_fix_chann <= USED 0
+gap_br_reg_fix_chann_cb <= USED 0
+gap_br_register_cb <= USED 0
+gap_br_remote_oob_extended_data_req_reply <= USED 0
+gap_br_send_fix_chann_data <= USED 0
+gap_br_send_sco_disconn_cfm <= USED 0
+gap_br_send_sco_param_change_req <= USED 0
+gap_br_set_conn_encryption <= USED 0
+gap_br_set_dev_cod <= USED 0
+gap_br_set_did_eir <= USED 0
+gap_br_set_ext_eir <= USED 0
+gap_br_set_idle_zone <= USED 0
+gap_br_set_page_with_scan <= USED 0
+gap_br_start_inquiry <= USED 0
+gap_br_start_periodic_inquiry <= USED 0
+gap_br_stop_inquiry <= USED 0
+gap_br_vendor_cont_tx_begin <= USED 0
+gap_br_vendor_cont_tx_stop <= USED 0
+gap_br_vendor_htpoll_set <= USED 0
+gap_br_vendor_set_monitor <= USED 0
+;FILE gap_lib_common.o
+gap_vendor_dump_tx_gain_idx <= USED 0
+is_mp_test_mode <= USED 0
+set_mp_mode_flag <= USED 0
+;FILE gap_lib_le.o
+client_send_exchange_mtu_req <= USED 0
+gap_vendor_ext_adv_handle_priority_set <= USED 0
+le_bond_get_local_irk <= USED 0
+le_vendor_check_priority_level <= USED 0
+le_vendor_set_priority <= USED 0
+;FILE gap_lib_le_patch.o
+le_bond_get_pair_procedure_type <= USED 0
+le_set_local_ltk <= USED 0
+;FILE gaps_gatt_client.o
+gaps_client_write_appearance <= USED 0
+gaps_client_write_device_name <= USED 0
+;FILE gatt_service_client.o
+gatt_client_cfg_client_supported_feature <= USED 0
+;FILE gattc_tbl_storage.o
+gattc_tbl_storage_deinit <= USED 0
+;FILE gfps.o
+gfps_psm_rsp_data_get <= USED 0
+gfps_send_additional_passkey_response <= USED 0
+gfps_set_additional_passkey_info <= USED 0
+;FILE gfps_crypto.o
+;FILE gfps_find_my_device.o
+;FILE gfps_sass_conn_status.o
+;FILE hal_adp.o
+__asm___9_hal_adp_c_a6d604a8____REV16 <= USED 0
+__asm___9_hal_adp_c_a6d604a8____REVSH <= USED 0
+__asm___9_hal_adp_c_a6d604a8____RRX <= USED 0
+adp_close <= USED 0
+adp_get_debounce_time <= USED 0
+adp_open <= USED 0
+adp_set_debounce_time <= USED 0
+adp_unregister_state_change_cb <= USED 0
+adp_wake_up_disable <= USED 0
+;FILE hal_debug.o
+__asm___11_hal_debug_c_60be8115____REV16 <= USED 0
+__asm___11_hal_debug_c_60be8115____REVSH <= USED 0
+__asm___11_hal_debug_c_60be8115____RRX <= USED 0
+hal_debug_cache_hit_count_init <= USED 0
+hal_debug_cache_printf_and_reset <= USED 0
+hal_debug_hw_isr_tim_callback <= USED 0
+hal_debug_hw_timer_irq_init <= USED 0
+hal_debug_init <= USED 0
+hal_debug_msg_queue_usage_monitor <= USED 0
+hal_debug_pc_sampling_init <= USED 0
+hal_debug_pc_sampling_tim_callback <= USED 0
+hal_debug_print_pc_sampling <= USED 0
+hal_debug_print_queue_usage <= USED 0
+hal_debug_print_task_info <= USED 0
+hal_debug_task_schedule_init <= USED 0
+;FILE hal_gpio.o
+__asm___10_hal_gpio_c_bb535378____REV16 <= USED 0
+__asm___10_hal_gpio_c_bb535378____REVSH <= USED 0
+__asm___10_hal_gpio_c_bb535378____RRX <= USED 0
+hal_gpio_change_direction <= USED 0
+hal_gpio_deinit <= USED 0
+hal_gpio_set_level <= USED 0
+hal_gpio_set_pull_value <= USED 0
+;FILE hal_gpio_int.o
+__asm___14_hal_gpio_int_c_1d902ce6____REV16 <= USED 0
+__asm___14_hal_gpio_int_c_1d902ce6____REVSH <= USED 0
+__asm___14_hal_gpio_int_c_1d902ce6____RRX <= USED 0
+;FILE hfp.o
+hfp_3way_call_control_with_index <= USED 0
+hfp_bac_cmd_assemble <= USED 0
+hfp_get_indicator_type_by_name <= USED 0
+hfp_get_rfc_profile_idx <= USED 0
+hfp_handle_at_rsp <= USED 0
+hfp_handle_bcs <= USED 0
+hfp_handle_bind <= USED 0
+hfp_handle_brsf <= USED 0
+hfp_handle_bsir <= USED 0
+hfp_handle_bvra <= USED 0
+hfp_handle_ccwa <= USED 0
+hfp_handle_ciev <= USED 0
+hfp_handle_cind <= USED 0
+hfp_handle_clcc <= USED 0
+hfp_handle_clip <= USED 0
+hfp_handle_cme_error <= USED 0
+hfp_handle_cnum <= USED 0
+hfp_handle_cops <= USED 0
+hfp_handle_error <= USED 0
+hfp_handle_ok <= USED 0
+hfp_handle_rfc_conn_cmpl <= USED 0
+hfp_handle_rfc_data_ind <= USED 0
+hfp_handle_rfc_msg <= USED 0
+hfp_handle_ring <= USED 0
+hfp_handle_vgm <= USED 0
+hfp_handle_vgs <= USED 0
+hfp_srv_level_continue <= USED 0
+hfp_srv_level_established <= USED 0
+hfp_srv_level_start <= USED 0
+hfp_srv_level_step <= USED 0
+hfp_tout_callback <= USED 0
+hfp_update_ag_indicator_status <= USED 0
+;FILE hmac.o
+hmac_sha256_free <= USED 0
+hmac_sha256_reset <= USED 0
+hmac_sha256_setup <= USED 0
+;FILE hw_tim.o
+__asm___8_hw_tim_c_0f6e4857____REV16 <= USED 0
+__asm___8_hw_tim_c_0f6e4857____REVSH <= USED 0
+__asm___8_hw_tim_c_0f6e4857____RRX <= USED 0
+hw_timer_create_dma_mode <= USED 0
+hw_timer_get_current_count <= USED 0
+hw_timer_get_dma_handshake <= USED 0
+hw_timer_get_free_timer_number <= USED 0
+hw_timer_get_id <= USED 0
+hw_timer_get_name <= USED 0
+hw_timer_get_period <= USED 0
+hw_timer_lpm_set <= USED 0
+hw_timer_print_all_users <= USED 0
+hw_timer_print_debug_info <= USED 0
+pwm_change_duty_and_frequency <= USED 0
+pwm_config <= USED 0
+pwm_create <= USED 0
+pwm_delete <= USED 0
+pwm_is_active <= USED 0
+pwm_pin_config <= USED 0
+pwm_register_timeout_callback <= USED 0
+pwm_start <= USED 0
+pwm_stop <= USED 0
+;FILE hw_tim_internal.o
+__asm___17_hw_tim_internal_c_57f9a5ed____REV16 <= USED 0
+__asm___17_hw_tim_internal_c_57f9a5ed____REVSH <= USED 0
+__asm___17_hw_tim_internal_c_57f9a5ed____RRX <= USED 0
+pwm_src_div_mapping <= USED 0
+;FILE image_header.o
+get_combination_header_by_stream <= USED 0
+get_file_num_by_file_indicator <= USED 0
+get_merged_header_by_stream <= USED 0
+get_sub_img_header_by_stream <= USED 0
+;FILE img_ctrl_ext.o
+;FILE io_dlps.o
+__asm___9_io_dlps_c_e20f7a52____REV16 <= USED 0
+__asm___9_io_dlps_c_e20f7a52____REVSH <= USED 0
+__asm___9_io_dlps_c_e20f7a52____RRX <= USED 0
+uart1_need_restore <= USED 0
+;FILE jitter_buffer.o
+jitter_buffer_asrc_pid_block <= USED 0
+jitter_buffer_asrc_pid_unblock <= USED 0
+jitter_buffer_low_latency_asrc_restore <= USED 0
+jitter_buffer_low_latency_keeper <= USED 0
+jitter_buffer_unregister <= USED 0
+;FILE led_module.o
+__asm___12_led_module_c_9d0323af____REV16 <= USED 0
+__asm___12_led_module_c_9d0323af____REVSH <= USED 0
+__asm___12_led_module_c_9d0323af____RRX <= USED 0
+;FILE ltv_util.o
+;FILE mcp_client.o
+mcs_read_relevant_tk_obj_id <= USED 0
+mcs_send_scp_op <= USED 0
+mcs_set_abs_track_pos <= USED 0
+mcs_set_cur_gp_obj_id <= USED 0
+mcs_set_cur_tk_obj_id <= USED 0
+mcs_set_next_tk_obj_id <= USED 0
+mcs_set_playback_speed <= USED 0
+mcs_set_playing_order <= USED 0
+;FILE media_buffer.o
+media_buffer_find_buffer_by_id <= USED 0
+media_buffer_get_downstream_info <= USED 0
+media_buffer_get_ds_watermark <= USED 0
+media_buffer_get_format_type <= USED 0
+media_buffer_get_stream_type <= USED 0
+media_buffer_get_us_watermark <= USED 0
+media_buffer_latency_get <= USED 0
+media_buffer_set_downstream_info <= USED 0
+media_buffer_threshold_set <= USED 0
+media_buffer_us_frame_cnt <= USED 0
+;FILE media_pool.o
+media_pool_destory <= USED 0
+media_pool_dump <= USED 0
+media_pool_reset <= USED 0
+;FILE metadata.o
+;FILE mfb_api.o
+__asm___9_mfb_api_c_dc569c1f____REV16 <= USED 0
+__asm___9_mfb_api_c_dc569c1f____REVSH <= USED 0
+__asm___9_mfb_api_c_dc569c1f____RRX <= USED 0
+mfb_irq_disable <= USED 0
+;FILE multitopology_ctrl.o
+__asm___20_multitopology_ctrl_c_67b40bfb____REV16 <= USED 0
+__asm___20_multitopology_ctrl_c_67b40bfb____REVSH <= USED 0
+__asm___20_multitopology_ctrl_c_67b40bfb____RRX <= USED 0
+mtc_align_pri_info <= USED 0
+mtc_audio_policy_cback <= USED 0
+mtc_cback_unregister <= USED 0
+mtc_check_stream_priority <= USED 0
+mtc_disconnect_cis_link_and_stop_cis_adv <= USED 0
+mtc_get_budstatus <= USED 0
+mtc_lea_get_pending <= USED 0
+mtc_set_active_bt_mode <= USED 0
+mtc_set_pending <= USED 0
+;FILE notification.o
+notification_ack_abort <= USED 0
+notification_get_pending_elem_num <= USED 0
+notification_get_state <= USED 0
+notification_lock <= USED 0
+notification_mode_set <= USED 0
+notification_poll_abort <= USED 0
+notification_relay_cback <= USED 0
+notification_set_relay_type <= USED 0
+notification_set_state <= USED 0
+notification_set_sync_dsp_para <= USED 0
+notification_sync_lost <= USED 0
+notification_unlock <= USED 0
+notification_volume_balance_get <= USED 0
+notification_volume_balance_set <= USED 0
+notification_volume_max_get <= USED 0
+notification_volume_min_get <= USED 0
+notification_volume_mute <= USED 0
+notification_volume_unmute <= USED 0
+;FILE notification_buffer.o
+notification_buffer_push <= USED 0
+notification_msg_handler <= USED 0
+;FILE nrec.o
+nrec_level_set <= USED 0
+nrec_mode_set <= USED 0
+;FILE os_ext.o
+__asm___8_os_ext_c_e5f79ad9____REV16 <= USED 0
+__asm___8_os_ext_c_e5f79ad9____REVSH <= USED 0
+__asm___8_os_ext_c_e5f79ad9____RRX <= USED 0
+os_msg_send_to_front <= USED 0
+os_portyield_from_isr <= USED 0
+;FILE ota_ext.o
+__asm___9_ota_ext_c_3341169a____REV16 <= USED 0
+__asm___9_ota_ext_c_3341169a____REVSH <= USED 0
+__asm___9_ota_ext_c_3341169a____RRX <= USED 0
+aes256_decrypt_16byte <= USED 0
+app_change_seq_appdata_dspdata <= USED 0
+app_get_active_bank_addr <= USED 0
+app_get_inactive_bank_addr <= USED 0
+app_ota_check_section_size <= USED 0
+app_ota_clear_notready_flag <= USED 0
+app_ota_get_img_version <= USED 0
+app_ota_get_section_size <= USED 0
+app_ota_set_ready <= USED 0
+check_image_id <= USED 0
+check_image_sum <= USED 0
+dfu_checkbufcrc <= USED 0
+dfu_erase_img_flash_area <= USED 0
+dfu_flash_erase <= USED 0
+ota_flash_dma_write <= USED 0
+ota_flash_dma_write_cb <= USED 0
+ota_flash_dma_write_init <= USED 0
+;FILE ota_service.o
+__asm___13_ota_service_c_d5588feb____REV16 <= USED 0
+__asm___13_ota_service_c_d5588feb____REVSH <= USED 0
+__asm___13_ota_service_c_d5588feb____RRX <= USED 0
+ota_add_service <= USED 0
+ota_service_send_notification <= USED 0
+ota_service_write_post_callback <= USED 0
+;FILE pac_mgr.o
+pac_update <= USED 0
+pacs_check_codec_cfg <= USED 0
+;FILE pacs.o
+;FILE pacs_mgr.o
+pacs_pac_update <= USED 0
+pacs_update_sink_audio_locations <= USED 0
+pacs_update_source_audio_locations <= USED 0
+pacs_update_supported_contexts <= USED 0
+;FILE platform_ext.o
+__asm___14_platform_ext_c_e2bd1b89____REV16 <= USED 0
+__asm___14_platform_ext_c_e2bd1b89____REVSH <= USED 0
+__asm___14_platform_ext_c_e2bd1b89____RRX <= USED 0
+aon_wdg_set <= USED 0
+aon_wdg_start <= USED 0
+debug_monitor_disable <= USED 0
+debug_monitor_enable <= USED 0
+debug_monitor_point_set <= USED 0
+dma_dsp_channel_set <= USED 0
+dma_fixed_channel_set <= USED 0
+get_temperature <= USED 0
+ldo_aux2_power_control <= USED 0
+memory_monitor_start <= USED 0
+memory_monitor_start_unlimited_addr_and_size <= USED 0
+memory_monitor_stop <= USED 0
+;FILE platform_uecc.o
+;FILE pm.o
+__asm___4_pm_c_33278574____REV16 <= USED 0
+__asm___4_pm_c_33278574____REVSH <= USED 0
+__asm___4_pm_c_33278574____RRX <= USED 0
+bt_power_mode_get <= USED 0
+pm_cpu_max_freq_get <= USED 0
+pm_cpu_set_auto_slow_enable <= USED 0
+pm_cpu_slow_freq_set <= USED 0
+pm_dsp1_freq_get <= USED 0
+pm_dvfs_register_check_func <= USED 0
+pm_dvfs_set_by_clock <= USED 0
+pm_dvfs_set_supreme <= USED 0
+power_dlps_mode_get <= USED 0
+power_dlps_mode_select <= USED 0
+power_mode_pause <= USED 0
+power_mode_resume <= USED 0
+power_register_excluded_handle <= USED 0
+;FILE psram_driver.o
+PSRAM_Handler <= USED 0
+__asm___14_psram_driver_c_87f288fd____REV16 <= USED 0
+__asm___14_psram_driver_c_87f288fd____REVSH <= USED 0
+__asm___14_psram_driver_c_87f288fd____RRX <= USED 0
+psram_hyperbus_calibration <= USED 0
+psram_hyperbus_dly_line_cfg <= USED 0
+psram_hyperbus_dpin_fill_ca_array <= USED 0
+psram_hyperbus_dpin_read <= USED 0
+psram_hyperbus_dpin_read_data <= USED 0
+psram_hyperbus_dpin_read_register <= USED 0
+psram_hyperbus_dpin_write <= USED 0
+psram_hyperbus_dpin_write_data <= USED 0
+psram_hyperbus_dpin_write_register <= USED 0
+psram_hyperbus_init <= USED 0
+psram_hyperbus_switch_to_mem_access_mode <= USED 0
+psram_spi_ap_get_mode_reg <= USED 0
+psram_spi_ap_opi_dp_ctrl <= USED 0
+psram_spi_ap_qpi_dp_ctrl <= USED 0
+psram_spi_ap_slow_refresh_ctrl <= USED 0
+psram_spi_cal_dly_cyc <= USED 0
+psram_spi_calibration <= USED 0
+psram_spi_cmd_rx <= USED 0
+psram_spi_cmd_tx <= USED 0
+psram_spi_config_spic <= USED 0
+psram_spi_controller_func_disable <= USED 0
+psram_spi_deinit <= USED 0
+psram_spi_dp_ctrl <= USED 0
+psram_spi_enter_lpm <= USED 0
+psram_spi_exit_lpm <= USED 0
+psram_spi_global_reset <= USED 0
+psram_spi_init <= USED 0
+psram_spi_load_init_cmd <= USED 0
+psram_spi_mode_switch <= USED 0
+psram_spi_read_id_to_get_eid <= USED 0
+psram_spi_set_access_cfg <= USED 0
+psram_spi_set_auto_mode <= USED 0
+psram_spi_set_bit_mode <= USED 0
+psram_spi_set_dly_cyc <= USED 0
+psram_spi_set_initial_latency <= USED 0
+psram_spi_set_pad_config_for_psram_power_off <= USED 0
+psram_spi_set_physical_cyc <= USED 0
+psram_spi_set_psram_configuration <= USED 0
+psram_spi_set_read_latency <= USED 0
+psram_spi_set_seq_trans <= USED 0
+psram_spi_set_write_latency <= USED 0
+psram_spi_sw_reset <= USED 0
+psram_spi_wb_dp_ctrl <= USED 0
+psram_spi_wb_read_cfg <= USED 0
+psram_spi_wb_set_partial_refresh <= USED 0
+psram_spi_wb_write_cfg <= USED 0
+psram_spic_init_without_clock_setting <= USED 0
+;FILE psramc.o
+__asm___8_psramc_c_fb7ca823____REV16 <= USED 0
+__asm___8_psramc_c_fb7ca823____REVSH <= USED 0
+__asm___8_psramc_c_fb7ca823____RRX <= USED 0
+psramc_dpin_trigger <= USED 0
+psramc_enable_cal_interrupt <= USED 0
+psramc_enable_hw_auto_cal <= USED 0
+psramc_ext_indir_read <= USED 0
+psramc_ext_indir_write <= USED 0
+psramc_flush_fifo <= USED 0
+psramc_get_dpin_dr_data <= USED 0
+psramc_init_rom <= USED 0
+psramc_init_trigger <= USED 0
+psramc_set_access_mode <= USED 0
+psramc_set_dpin_mode <= USED 0
+psramc_set_dpin_write_enable_mask <= USED 0
+psramc_set_idle_mode <= USED 0
+psramc_set_interface_rom <= USED 0
+psramc_set_max_retry <= USED 0
+psramc_trigger_cr_update <= USED 0
+psramc_update_dpin_reg <= USED 0
+;FILE rfc.o
+crc8EtsCheck <= USED 0
+rfc_change_ctrl_chann <= USED 0
+rfc_check_l2c_collision <= USED 0
+rfc_close_data_chann <= USED 0
+rfc_decode_pn <= USED 0
+rfc_del_ctrl_roleswap_info <= USED 0
+rfc_del_data_roleswap_info <= USED 0
+rfc_find_chann_by_dlci <= USED 0
+rfc_find_chann_by_idx <= USED 0
+rfc_flow_ctrl_req <= USED 0
+rfc_get_cid <= USED 0
+rfc_get_roleswap_info <= USED 0
+rfc_handle_authen_rsp <= USED 0
+rfc_handle_author_ind <= USED 0
+rfc_handle_disc <= USED 0
+rfc_handle_dm <= USED 0
+rfc_handle_l2c_conn_cmpl <= USED 0
+rfc_handle_l2c_conn_ind <= USED 0
+rfc_handle_l2c_conn_rsp <= USED 0
+rfc_handle_l2c_data_ind <= USED 0
+rfc_handle_l2c_data_rsp <= USED 0
+rfc_handle_l2c_disconn_ind <= USED 0
+rfc_handle_l2c_disconn_rsp <= USED 0
+rfc_handle_l2c_msg <= USED 0
+rfc_handle_msc <= USED 0
+rfc_handle_pn <= USED 0
+rfc_handle_rls <= USED 0
+rfc_handle_rpn <= USED 0
+rfc_handle_sabm <= USED 0
+rfc_handle_sec_reg_rsp <= USED 0
+rfc_handle_ua <= USED 0
+rfc_handle_uih <= USED 0
+rfc_reg_sec <= USED 0
+rfc_send_dm <= USED 0
+rfc_send_msc <= USED 0
+rfc_send_rls <= USED 0
+rfc_send_ua <= USED 0
+rfc_set_ctrl_roleswap_info <= USED 0
+rfc_set_data_roleswap_info <= USED 0
+rfc_set_ertm_mode <= USED 0
+rfc_wait_msc_timeout <= USED 0
+rfc_wait_rsp_timeout <= USED 0
+;FILE ringtone.o
+ringtone_mode_get <= USED 0
+ringtone_mode_set <= USED 0
+ringtone_volume_balance_get <= USED 0
+ringtone_volume_balance_set <= USED 0
+ringtone_volume_max_get <= USED 0
+ringtone_volume_min_get <= USED 0
+ringtone_volume_mute <= USED 0
+ringtone_volume_unmute <= USED 0
+;FILE rtk_charger.o
+__asm___13_rtk_charger_c_98d07ca0____REV16 <= USED 0
+__asm___13_rtk_charger_c_98d07ca0____REVSH <= USED 0
+__asm___13_rtk_charger_c_98d07ca0____RRX <= USED 0
+rtk_charger_get_bat_curr <= USED 0
+rtk_charger_get_bat_vol <= USED 0
+;FILE rtl876x_gpio.o
+GPIOx_DeInit <= USED 0
+__asm___14_rtl876x_gpio_c_a755f9e1____REV16 <= USED 0
+__asm___14_rtl876x_gpio_c_a755f9e1____REVSH <= USED 0
+__asm___14_rtl876x_gpio_c_a755f9e1____RRX <= USED 0
+;FILE rtl876x_i2c.o
+I2C_CheckAbortStatus <= USED 0
+I2C_ClearINTPendingBit <= USED 0
+I2C_Cmd <= USED 0
+I2C_DeInit <= USED 0
+I2C_INTConfig <= USED 0
+I2C_Init <= USED 0
+I2C_MasterRead <= USED 0
+I2C_MasterWrite <= USED 0
+I2C_RepeatRead <= USED 0
+I2C_StructInit <= USED 0
+__asm___13_rtl876x_i2c_c_2a40cfbb____REV16 <= USED 0
+__asm___13_rtl876x_i2c_c_2a40cfbb____REVSH <= USED 0
+__asm___13_rtl876x_i2c_c_2a40cfbb____RRX <= USED 0
+;FILE rtl876x_pinmux.o
+Pad_AnalogMode <= USED 0
+Pad_DrivingCurrentControl <= USED 0
+Pad_GetAnalogMode <= USED 0
+Pad_GetConfig <= USED 0
+Pad_GetPinName <= USED 0
+Pad_SetPinDrivingCurrent <= USED 0
+Pad_WakeUpDisable <= USED 0
+Pinmux_GetConfig <= USED 0
+System_DisableAdpWakeUpFunction <= USED 0
+__asm___16_rtl876x_pinmux_c_68a996fc____REV16 <= USED 0
+__asm___16_rtl876x_pinmux_c_68a996fc____REVSH <= USED 0
+__asm___16_rtl876x_pinmux_c_68a996fc____RRX <= USED 0
+;FILE rtl876x_rtc.o
+RTC_INTEnableConfig <= USED 0
+RTC_MaskINTConfig <= USED 0
+RTC_TickINTConfig <= USED 0
+__asm___13_rtl876x_rtc_c_14b52be8____REV16 <= USED 0
+__asm___13_rtl876x_rtc_c_14b52be8____REVSH <= USED 0
+__asm___13_rtl876x_rtc_c_14b52be8____RRX <= USED 0
+;FILE rtl876x_sleep_led.o
+SleepLed_RegisterRead <= USED 0
+SleepLed_SetIdleMode <= USED 0
+__asm___19_rtl876x_sleep_led_c_452110d2____REV16 <= USED 0
+__asm___19_rtl876x_sleep_led_c_452110d2____REVSH <= USED 0
+__asm___19_rtl876x_sleep_led_c_452110d2____RRX <= USED 0
+;FILE rtl876x_tim.o
+TIM_PWMChangeFreqAndDuty <= USED 0
+TIM_PWMClockConfig <= USED 0
+__asm___13_rtl876x_tim_c_574d06e9____REV16 <= USED 0
+__asm___13_rtl876x_tim_c_574d06e9____REVSH <= USED 0
+__asm___13_rtl876x_tim_c_574d06e9____RRX <= USED 0
+;FILE sha256hkdf.o
+mbedtls_sha256 <= USED 0
+mbedtls_sha256_clone <= USED 0
+mbedtls_sha256_free <= USED 0
+mbedtls_sha256_init <= USED 0
+mbedtls_sha256_process <= USED 0
+mbedtls_sha256_ret <= USED 0
+;FILE sidetone.o
+;FILE single_tone.o
+__asm___13_single_tone_c_6bbffd04____REV16 <= USED 0
+__asm___13_single_tone_c_6bbffd04____REVSH <= USED 0
+__asm___13_single_tone_c_6bbffd04____RRX <= USED 0
+;FILE sport_driver.o
+__asm___14_sport_driver_c_03642931____REV16 <= USED 0
+__asm___14_sport_driver_c_03642931____REVSH <= USED 0
+__asm___14_sport_driver_c_03642931____RRX <= USED 0
+sport_drv_data_sel_config_default <= USED 0
+sport_drv_data_sel_config_set <= USED 0
+sport_drv_direct_set_sample_rate <= USED 0
+sport_drv_dsp_ctrl_mode <= USED 0
+sport_drv_get_fifo_data <= USED 0
+sport_drv_mcu_rx_int_ctrl <= USED 0
+sport_drv_trx_start_ctrl <= USED 0
+;FILE sport_mgr.o
+__asm___11_sport_mgr_c_9baedfc3____REV16 <= USED 0
+__asm___11_sport_mgr_c_9baedfc3____REVSH <= USED 0
+__asm___11_sport_mgr_c_9baedfc3____RRX <= USED 0
+sport_mgr_deinit <= USED 0
+;FILE spp.o
+spp_del_roleswap_info <= USED 0
+spp_find_link_by_dlci <= USED 0
+spp_get_rfc_profile_idx <= USED 0
+spp_get_roleswap_info <= USED 0
+spp_handle_conn_cmpl <= USED 0
+spp_handle_conn_ind <= USED 0
+spp_handle_credit_info <= USED 0
+spp_handle_data_ind <= USED 0
+spp_handle_data_rsp <= USED 0
+spp_handle_disconn_cmpl <= USED 0
+spp_handle_rfc_dlci_change <= USED 0
+spp_handle_rfc_msg <= USED 0
+spp_set_ertm_mode <= USED 0
+spp_set_roleswap_info <= USED 0
+spp_update_credit <= USED 0
+;FILE startup_rtl87x3e.o
+;FILE stdlib_wrapper.o
+memset_s <= USED 0
+;FILE storage.o
+partition_deinit <= USED 0
+storage_erase <= USED 0
+storage_partition_deinit <= USED 0
+storage_read <= USED 0
+storage_write <= USED 0
+;FILE syncclk_driver.o
+__asm___16_syncclk_driver_c_cc014658____REV16 <= USED 0
+__asm___16_syncclk_driver_c_cc014658____REVSH <= USED 0
+__asm___16_syncclk_driver_c_cc014658____RRX <= USED 0
+syncclk_drv_enable_h2d_d2h <= USED 0
+syncclk_drv_init <= USED 0
+;FILE sys_cfg.o
+;FILE sys_event.o
+sys_event_deinit <= USED 0
+;FILE sys_ipc.o
+sys_ipc_unsubscribe <= USED 0
+;FILE sys_mgr.o
+;FILE sys_timer.o
+;FILE system_rtl87x3.o
+__asm___16_system_rtl87x3_c_b35718a1____REV16 <= USED 0
+__asm___16_system_rtl87x3_c_b35718a1____REVSH <= USED 0
+__asm___16_system_rtl87x3_c_b35718a1____RRX <= USED 0
+;FILE system_status_api.o
+__asm___19_system_status_api_c_7d15d0ee____REV16 <= USED 0
+__asm___19_system_status_api_c_7d15d0ee____REVSH <= USED 0
+__asm___19_system_status_api_c_7d15d0ee____RRX <= USED 0
+sys_hall_adp_read_adp_level <= USED 0
+sys_hall_auto_sleep_in_idle <= USED 0
+sys_hall_btaon_fast_read_safe <= USED 0
+sys_hall_btaon_fast_write_safe <= USED 0
+sys_hall_get_power_down_info <= USED 0
+sys_hall_get_secure_state <= USED 0
+sys_hall_read_rom_version <= USED 0
+sys_hall_set_dsp_share_memory_80k <= USED 0
+sys_hall_set_rglx_auxadc <= USED 0
+;FILE tbs_client.o
+;FILE tmas_mgr.o
+;FILE transmit_service.o
+transmit_battery_level_value_read_confirm <= USED 0
+;FILE tts.o
+tts_create <= USED 0
+tts_destroy <= USED 0
+tts_play <= USED 0
+tts_start <= USED 0
+tts_stop <= USED 0
+tts_volume_balance_get <= USED 0
+tts_volume_balance_set <= USED 0
+tts_volume_get <= USED 0
+tts_volume_max_get <= USED 0
+tts_volume_max_set <= USED 0
+tts_volume_min_get <= USED 0
+tts_volume_min_set <= USED 0
+tts_volume_mute <= USED 0
+tts_volume_set <= USED 0
+tts_volume_unmute <= USED 0
+;FILE uecc.o
+__asm___6_uECC_c_7b58652d____REV16 <= USED 0
+__asm___6_uECC_c_7b58652d____REVSH <= USED 0
+__asm___6_uECC_c_7b58652d____RRX <= USED 0
+uECC_curve_private_key_size <= USED 0
+uECC_curve_public_key_size <= USED 0
+uECC_vli_bytesToNative <= USED 0
+uECC_vli_mmod <= USED 0
+uECC_vli_modMult <= USED 0
+uECC_vli_modSquare <= USED 0
+uECC_vli_nativeToBytes <= USED 0
+uECC_vli_square <= USED 0
+;FILE vcs.o
+;FILE vcs_mgr.o
+;FILE vector_table_ext.o
+__asm___18_vector_table_ext_c_22cb89fd____REV16 <= USED 0
+__asm___18_vector_table_ext_c_22cb89fd____REVSH <= USED 0
+__asm___18_vector_table_ext_c_22cb89fd____RRX <= USED 0
+;FILE voice_prompt.o
+voice_prompt_language_get <= USED 0
+voice_prompt_language_roll <= USED 0
+voice_prompt_mode_get <= USED 0
+voice_prompt_mode_set <= USED 0
+voice_prompt_volume_balance_get <= USED 0
+voice_prompt_volume_balance_set <= USED 0
+voice_prompt_volume_max_get <= USED 0
+voice_prompt_volume_min_get <= USED 0
+voice_prompt_volume_mute <= USED 0
+voice_prompt_volume_unmute <= USED 0
+;FILE wdg.o
+__asm___5_wdg_c_e81116d2____REV16 <= USED 0
+__asm___5_wdg_c_e81116d2____REVSH <= USED 0
+__asm___5_wdg_c_e81116d2____RRX <= USED 0
+wdg_change_mode <= USED 0
+wdg_change_timeout_period <= USED 0
+wdg_get_default_mode <= USED 0
+wdg_get_default_timeout_ms <= USED 0
+wdg_get_mode <= USED 0
+wdg_get_timeout_ms <= USED 0
+wdg_is_enable <= USED 0

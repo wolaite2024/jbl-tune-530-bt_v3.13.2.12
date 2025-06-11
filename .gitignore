@@ -1,0 +1,12 @@
+pro.si4project/
+pro.si4project/*
+board/evb/rws/objects/
+board/evb/rws/objects/*
+board/evb/rws/listings/
+board/evb/rws/listings/*
+board/evb/rws/bin/
+board/evb/rws/bin/*
+board/evb/rws/rtl87x3e_rws.uvguix.User
+board/evb/rws/rtl87x3e_rws.uvprojx
+board/evb/rws/rtl87x3e_rws.uvoptx
+board/evb/rws/target/general/*

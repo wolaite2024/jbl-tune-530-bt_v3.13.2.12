@@ -1,0 +1,161 @@
+/**
+*****************************************************************************************
+*     Copyright(c) 2017, Realtek Semiconductor Corporation. All rights reserved.
+*****************************************************************************************
+   * @file      ota_service.h
+   * @brief     Head file for using OTA service
+   * @author    calvin
+   * @date      2017-06-07
+   * @version   v1.0
+   **************************************************************************************
+   * @attention
+   * <h2><center>&copy; COPYRIGHT 2017 Realtek Semiconductor Corporation</center></h2>
+   **************************************************************************************
+  */
+
+/*============================================================================*
+ *                      Define to prevent recursive inclusion
+ *============================================================================*/
+#ifndef _OTA_SERVICE_H_
+#define _OTA_SERVICE_H_
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/*============================================================================*
+ *                              Header Files
+ *============================================================================*/
+#if F_APP_GATT_SERVER_EXT_API_SUPPORT
+#include <profile_server_ext.h>
+#else
+#include <profile_server.h>
+#endif
+#include "app_msg.h"
+
+/** @defgroup  OTA_SERVICE OTA Service
+    * @brief LE Service to implement OTA feature
+    * @{
+    */
+
+/*============================================================================*
+ *                              Types
+ *============================================================================*/
+/** @defgroup OTA_SERVICE_Exported_Types OTA Service Exported Types
+    * @brief
+    * @{
+    */
+
+/** @brief  OTA write message */
+typedef struct
+{
+    uint8_t opcode;
+    uint8_t value;
+} T_OTA_WRITE_MSG;
+
+/** @brief  OTA upstream message data */
+typedef union
+{
+    uint8_t notification_indification_index;
+    uint8_t read_value_index;
+    T_OTA_WRITE_MSG write;
+} T_OTA_UPSTREAM_MSG_DATA;
+
+
+/** @brief  OTA service callback data to inform application */
+typedef struct
+{
+    T_SERVICE_CALLBACK_TYPE     msg_type;                   /**<  @brief EventId defined upper */
+#if F_APP_GATT_SERVER_EXT_API_SUPPORT
+    uint16_t                    conn_handle;
+    uint16_t                    cid;
+#endif
+    uint8_t                     conn_id;
+    T_OTA_UPSTREAM_MSG_DATA     msg_data;
+} T_OTA_CALLBACK_DATA;
+
+/** End of OTA_SERVICE_Exported_Types
+    * @}
+    */
+
+/*============================================================================*
+ *                              Macros
+ *============================================================================*/
+/** @defgroup OTA_SERVICE_Exported_Macros OTA service Exported Macros
+    * @brief
+    * @{
+    */
+
+/** @brief  Demo Profile service related UUIDs. */
+#define GATT_UUID_CHAR_OTA                          0xFFD1
+#define GATT_UUID_CHAR_MAC                          0xFFD2
+#define GATT_UUID_CHAR_PATCH_VERSION                0xFFD3
+#define GATT_UUID_CHAR_APP_VERSION                  0xFFD4
+#define GATT_UUID_CHAR_DEVICE_INFO                  0xFFF1
+#define GATT_UUID_CHAR_IMAGE_VERSION_FIRST          0xFFE0
+#define GATT_UUID_CHAR_IMAGE_VERSION_SECOND         0xFFE1
+#define GATT_UUID_CHAR_PROTOCOL_INFO                0xFFF3
+#define GATT_UUID_CHAR_SECTION_SIZE_FIRST           0xFFF4
+#define GATT_UUID_CHAR_SECTION_SIZE_SECOND          0xFFF5
+
+/** @brief  Index of each characteristic in Demo Profile service database. */
+#define BLE_SERVICE_CHAR_OTA_INDEX                  0x02
+#define BLE_SERVICE_CHAR_MAC_ADDRESS_INDEX          0x04
+#define BLE_SERVICE_CHAR_PATCH_INDEX                0x06
+#define BLE_SERVICE_CHAR_APP_VERSION_INDEX          0x08
+#define BLE_SERVICE_CHAR_DEVICE_INFO_INDEX          0x0a
+#define BLE_SERVICE_CHAR_IMAGE_VERSION_FIRST_INDEX      0x0c
+#define BLE_SERVICE_CHAR_IMAGE_VERSION_SECOND_INDEX     0x0e
+#define BLE_SERVICE_CHAR_PROTOCOL_INFO_INDEX        0x10
+#define BLE_SERVICE_CHAR_SECTION_SIZE_FIRST_INDEX   0x12
+#define BLE_SERVICE_CHAR_SECTION_SIZE_SECOND_INDEX  0x14
+#define BLE_SERVICE_CHAR_DFU_PACKET_INDEX           0x17
+#define BLE_SERVICE_CHAR_DFU_CONTROL_POINT_INDEX    0x19
+
+/** @brief  OTA Write callback data type definition. */
+#define OTA_WRITE_CHAR_VAL  0x01
+#define OTA_VALUE_ENTER     0x01
+
+#define FIVE_WORD_LENGTH   20
+#define TWO_WORD_LENGTH    8
+/** End of OTA_SERVICE_Exported_Macros
+    * @}
+    */
+
+/*============================================================================*
+ *                              Functions
+ *============================================================================*/
+/** @defgroup OTA_SERVICE_Exported_Functions OTA service Exported Functions
+    * @brief
+    * @{
+    */
+
+/**
+    * @brief    Add OTA BLE service to application
+    * @param    p_func  Pointer of APP callback function called by profile
+    * @return   Service ID auto generated by profile layer
+    * @retval   A T_SERVER_ID type value
+    */
+T_SERVER_ID ota_add_service(void *p_func);
+
+/**
+    * @brief    Send notification to peer side
+    * @param    conn_id  PID to identify the connection
+    * @param    p_data  value to be send to peer
+    * @param    data_len  data length of the value to be send
+    * @return   void
+    */
+void ota_service_send_notification(uint8_t conn_id, uint8_t *p_data, uint16_t data_len);
+
+/** End of OTA_SERVICE_Exported_Functions
+    * @}
+    */
+
+/** End of OTA_SERVICE
+    * @}
+    */
+#ifdef __cplusplus
+}
+#endif
+
+#endif

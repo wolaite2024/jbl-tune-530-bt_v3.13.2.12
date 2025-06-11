@@ -1,0 +1,13 @@
+.\objects\image_header.o: ..\..\..\src\sample\rws\image_header.c
+.\objects\image_header.o: ..\..\..\inc\bluetooth\leaudio\ble_audio_flags.h
+.\objects\image_header.o: ..\..\..\src\sample\rws\app_flags.h
+.\objects\image_header.o: ..\..\..\src\sample\rws\lea\app_lea_flags.h
+.\objects\image_header.o: ..\..\..\src\sample\rws\image_header.h
+.\objects\image_header.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\image_header.o: ..\..\..\inc\rtl87x3e\platform\patch_header_check.h
+.\objects\image_header.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\image_header.o: ..\..\..\inc\bluetooth\gap\gap.h
+.\objects\image_header.o: ..\..\..\inc\bluetooth\gap\bt_types.h
+.\objects\image_header.o: ..\..\..\inc\bluetooth\gap\gap_chann.h
+.\objects\image_header.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\image_header.o: ..\..\..\inc\rtl87x3e\platform\trace.h

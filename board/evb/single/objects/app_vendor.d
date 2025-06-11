@@ -1,0 +1,13 @@
+.\objects\app_vendor.o: ..\..\..\src\sample\rws\app_vendor.c
+.\objects\app_vendor.o: ..\..\..\inc\bluetooth\leaudio\ble_audio_flags.h
+.\objects\app_vendor.o: ..\..\..\src\sample\rws\app_flags.h
+.\objects\app_vendor.o: ..\..\..\src\sample\rws\lea\app_lea_flags.h
+.\objects\app_vendor.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\app_vendor.o: ..\..\..\inc\bluetooth\gap\gap.h
+.\objects\app_vendor.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\app_vendor.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\app_vendor.o: ..\..\..\inc\bluetooth\gap\bt_types.h
+.\objects\app_vendor.o: ..\..\..\inc\bluetooth\gap\gap_chann.h
+.\objects\app_vendor.o: ..\..\..\inc\rtl87x3e\platform\trace.h
+.\objects\app_vendor.o: ..\..\..\inc\bluetooth\gap\gap_vendor.h
+.\objects\app_vendor.o: ..\..\..\src\sample\rws\app_vendor.h

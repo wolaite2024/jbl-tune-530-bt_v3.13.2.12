@@ -1,0 +1,280 @@
+RTL87X3E-MCU-SDK-Harman-v3.13.2.12_0606
+
+New Feature:
+1.  Add Max volume Limiter in LEA mode
+2.  Disable rtc wakeup after 7 days
+
+DSP： 
+1. Update algo libv00.05
+2. Fix mcps issue
+3. Fix crackling noise in the downlink of the call 
+
+MCU Config Tool:   No update
+
+Lowerstack:  No update
+
+MCU：
+1. Fix some multi-point issues
+2. GFPS initial pair should public address because CTKD enabled 
+3. Modify Max Point Num to 2 that will disconnect inactive link when enter pairing mode
+4. Fix JBL APP connection issue when LEA enable
+5. Disable Heartbeat when OTA, but OTA still fail sometimes
+
+
+SDK: Git History
+0d3dc6847dc App-rws: Fix disconnect issue when switch mode
+f705871e3a0  App-rws: Fix disconnect active link issue
+675378dc28c App-rws: resume audio after call end
+4ee4a9f6b55  App-rws: Add le audio side tone for JBL apk FEATURE_SIDETONE
+bccb8cfe11e  App-rws: Fix ble read name length error issue
+5503eab3c4a App-rws: modify max point num to 2
+efad94b029e App-rws: fix ota fail
+c4f2a8971c4  App-rws: Modify harman JBL APP ADV data
+72ae56cdf3e  App-rws: disable rtc wakeup after 7 days
+21e10c6c9d5 APP-rws: Modify BT NAME CRC according to HM spec
+be59dae0fba  APP-rws: Not play power on VP after OTA done
+46d65be41ed App-rws: Fix voice prompt version error
+87e6103a9ec  App-rws: Add LEA max volume limit
+291c681b422 APP-rws: GFPS initial pair use public address
+
+========================
+
+RTL87X3E-MCU-SDK-Harman-v3.13.2.11_0529
+
+New Feature:
+1.  Add BLE battery service for lea
+2.  Add le audio LR balance for JBL apk
+
+DSP： 
+1. update BiquadEqNs_Pro
+2. fix latency report error
+3. Revise bypass SPK Algo flow
+
+MCU Config Tool:   No update
+
+Lowerstack:  No update
+
+MCU：
+1. Exit pairing mode when le link connected
+2. Fix APP cannot be reconnected after opening LE audio
+3. Not do roleswitch when sco link changed
+4. Gfps enter pair mode when b2s already exist
+5. Fix hard fault because of memory leak
+6. Add error code to JBL APP when OTA
+7. Modify linkback flow for LEA
+8. Check lea device for harman_le_common_disc
+9. Fix lea eq set fail
+10. Modifiy le link interval
+
+
+SDK: Git History
+3e04dfc6a0a  App-rws: Exit pairing mode when le link connected
+d9015f14826 App-rws: fix APP cannot be reconnected after opening LE audio
+c7f86c2f798  App-rws: not do roleswitch when sco link changed
+8a790a67083 App-rws: gfps enter pair mode when b2s already exist
+f451b8ac518  App-rws: Add le audio LR balance for JBL apk
+3af7fd1aa9c  APP-rws: Fix hard fault because of memory leak
+10f0817d1e5 APP-rws: Add error code to JBL APP when OTA
+bc284e83ba9 App-rws: Modify linkback flow for LEA
+40755e058e9 App-rws: Check lea device for harman_le_common_disc
+b039a4527c8 APP-rws: fix lea eq set fail
+1274d0fe541 App-rws: Add battery service for lea
+
+========================
+RTL87X3E-MCU-SDK-Harman-v3.13.2.10_0522
+
+DSP： 
+1. update algo lib v00.04
+2. increase mcps for eq update
+
+MCU Config Tool:   No update
+
+Lowerstack:  No update
+
+SDK:  Git History:
+d44feb467d6  App-rws: gfps optimization code
+61200644c72  App-rws: enter pairing mode when acl link disconnect
+3575c8b226d App-rws: Fix not disconnect inactive link when full connected
+47a57e4f856  App-rws: req device name for JBL app
+fac6f77f1f5     App-rws: connect tone issue
+0ae011742ef  App-rws: enable resume audio after call
+67ec36317e9 App-rws: fix not enter pair mode after linkback timeout
+55adafcede6  App-rws: Remove sass condition for edr link allocate
+8ca1c703204  APP-rws: Fix cannot connect JBL APP
+1e1939c7174  App-rws: linkback when connection timeout
+cda45e4a7a9  APP-rws: Not play power on VP after OTA VP only done
+95d4aaccf8f    APP-rws: play Water Ejection vp 4 times
+
+=======================
+
+RTL87X3E-MCU-SDK-Harman-v3.13.2.9_0517
+
+New Feature:
+1. Add heartbeat to check jbl app is alive
+2. Enable Link key to LTK Conversation by SC
+3. Add ble Secure status notification (JBL APP)
+
+DSP： No update
+
+MCU Config Tool：
+1. Enable/Disable SASS  in "Third Party"： “Enable Smart Audio Source Switch”
+2. Enlarge CCCD count:   80,   40
+3. Enable call end resume media in “LE Audio” Page
+
+Lowerstack：  No update
+
+SDK: Git History
+d53883666e3 APP-rws: gfps fix issue
+e522e4ca9c3 APP-rws: Add heartbeat to check jbl app is alive
+0eb10b3679f APP-rws: Add ble paired status notify
+8c80f5c248f APP-rws: fix low battery power off issue
+4d13cb2600d App-rws: enable SC link key to LTK
+c4965a801bd APP-rws: adjust gfps pair in force enter pairing
+6ca760801ee App-rws: linkback last mode
+57b9882ad81 App-rws: Fix lea linkback issue
+bb1a9022122 App-rws: Remove lea name when exit pairing mode
+29b1e225fd0 App-rws: Fix lea sass issues
+75892c95417 APP-rws: Fix exceptional call gap timer stop
+e97d9c5c567 APP-rws: Fix connect two JBL APP issue
+4e2a1721172 App-rws: Fix problem of unexpected gfps key delete
+38c51b8026d App-rws: add jbl lea button feature
+
+Known Issues:
+1.  JBLT530BT-464   Red Cybersecurity requirement for Tune 530BT
+
+
+=======================
+
+RTL87X3E-MCU-SDK-Harman-v3.13.2.8_0509
+
+DSP：
+1. fix mic switch issue
+2. remove audio effect limiter
+3. remove plc mcps requirements
+4. Optimize the process for AAC + 17 stage EQ in 40 MCPS
+
+MCU Config Tool： 
+1. Should set LE CIS Number to 4 !!!
+
+Lowerstack： 
+1. Fix LE Link Num Limitation
+2. Fix no LE adv issue in SCO + LE Adv scenario
+
+SDK:  Git History
+d30a9049971 APP-rws: Fix Legacy SASS issue
+3b2f72829fa APP-rws: add lea sass feature
+35f18841afc APP-rws: gfps modify api for LEA sass
+3021103b034 APP-rws: add lea flag to legacy bond list
+7fb2f39f2bc APP-rws: Fix finder process influence power vp issue
+0d2552c552f APP-rws: disconn active a2dp when inactive is OTA
+09746121c09 APP-rws: Fix only OTA VP issue
+e87c67ef4ae APP-rws: Fix BLE pair no Pop-ups issue
+e76d97105bd APP-rws: add Water Ejection vp stop
+5ded16d23af APP-rws: Add Water ejection for Pace JBL app
+91b08f625c7 App-rws: Close non exclude timer
+114032585a5 APP-rws: Add req remote device name feature
+c54335def19 App-rws: Not disconnect LE Link when auth fail
+c47d147a703 APP-rws: Add req remote device name feature
+22290b20035 App-rws: fix sass related issue
+5933254bee4 APP-rws: Add req remote device name feature
+a3a53c19760 App-rws: add reset unsaved eq
+2a2c9d26a3d APP-rws: Fix low bat VP and low bat LED issue
+c911eb8c140 APP-rws: finder ble disconnect enter power down
+a9dcf12e968 APP-rws: delay low battery power off
+7db408f33fb APP-rws: Adjust hfp batt level cmd of ios
+4d738c7b889 APP-rws: Fix not enter power down by RTC wake-up
+c38ddaa4a3c APP-rws: Update battery volume when boot up
+1e5ffd2717d App-rws: fix sidetone not create by harman cmd
+8a546a276b9 APP-rws: Fix linkback sequence error
+069b84c9b6d APP-rws: Fix breakpoint OTA issue
+583d763b546 APP-rws: Modify usb connector hiccup check time
+4d78bf2f3a8 APP-rws: Modify ext charger flow for Run3 and Pace
+1a43ac2dfc2 APP-rws: Add new feature for Pace
+
+=======================
+RTL87X3E-MCU-SDK-Harman-v3.13.2.7_0424
+
+1. fix GFPS/Finder bugs
+2. fix wakeup from RTC issue
+3. Modify battery display accuracy to 1%
+4. Increase BREDR Link Num to allow 3 links co-exist
+5. Set CCCD security to Encryt Level
+6. Not Allow A2DP Preemption, same as Pace
+7. Fix voice track cannot start when two link connected
+
+SDK Git History:
+a2aeeae0c24 App-rws: fix sass related issue
+8b2cf82173d App-rws: fix finder no le adv after rtc wakeup
+a7fad5b5462 APP-rws: charger level display accuracy set to 1%
+f1348a58d50 Framework: modify voice start play frame num
+a408f1f78dc Platform: add debug monitor cb register
+1110beaf7b0 APP-rws: Modify CCCD security level
+606976fc8e6 App-rws: lea mode switch
+625eaa29b1c APP-rws: pause second link audio play
+1ec6cc97077 App-rws: increase one BREDR link
+407b6daa595 App-rws: Fix harman adapted build err
+ab20811d332 APP-rws: gfps fix bug
+84544cfd38a APP-rws: Fix battery status report error
+302eb4b9005 APP-rws: Fix GFPS SASS issue
+8900c691da6 Framework: add avcc flow for hybird IO
+372d753432c APP-rws: store mic on/off status to ftl
+4986653ad37 APP-rws: Fix LE adv data error issue
+8bd4819fc85 APP-rws: Clear breakpoint NV if ota package ver fail
+3cbc2c60621 App-rws: Add protection for ccp state
+7ea604e187b App-rws: Reject same device LE link create
+20275b98b8b App-rws: Add lea mode enable nv
+
+=======================
+RTL87X3E-MCU-SDK-Harman-v3.13.2.6_0417
+
+1. add lea_mode_enable flag to enable or disable lea fuction, default is disable.
+2. Fix Reboot issue when enter DLPS after Secure Enable
+3. Fix abnormal reboot when turn on EQ
+4. Optimize Dynamic latency for Audio drop
+5. Fix breakpoint OTA issue
+6. Disalbe autoplc when LEA
+7. DSP: Upate Harman algo lib  v00.03
+8. DSP: increase mcps to avoid eq exception
+
+======================
+
+RTL87X3E-MCU-SDK-Harman-v3.13.2.4_0409
+
+1. Enable SW & HW Secirty  
+2. add gfps license id
+3. Support Multi-point with LEA
+4. OTA optimize that use temp area for VP
+5. add rssi monitor and log2flash (defalut disable)
+6. change Play Params for A2DP SBC
+7. Optimize GFPS/Finder flow
+8. Update Prodcut ID in rcfg 
+9. Add harman Battery ID Verify (Disabled)
+10. Update Harman lib
+
+Note： 
+1. OTA does not support resume from breakpoint
+
+======================
+
+RTL87X3E-MCU-SDK-Harman-v3.13.2.3
+
+1. Fix le adv issue
+2. Fix issue that MMI MCP play not work  when lea link connected
+3. Update Public Key for SW and HW Verify
+4. Support DSP License
+5. Support BAS and DIS for LEA
+6. Update DSP to fix DSP exceptions
+7. Fix GFPS & Finder Bugs
+8. Update BT Version from 5.4 to 6.0
+
+
+======================
+RTL87X3E-MCU-SDK-Harman-v3.13.2.2
+
+1. Fix DSP exception caused by incorrect parameter passing
+2. Update DSP Tool to support "switch to external Parameters"
+3. Fix HardFault error caused by high CPU loading
+4. Update harman security lib for HW verify
+5. Fix gfps error when update le adv interval
+6. Fix HFP terminate when CCP calling for the same device
+7. Fix pairing fail issue by GFPS
