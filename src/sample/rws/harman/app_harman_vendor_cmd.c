@@ -709,17 +709,17 @@ void harman_sidetone_set_dsp(void)
         if (app_cfg_nv.sidetone_level == SIDETOME_LEVEL_L)
         {
             //L -18db
-            sidetone_gain_set(p_link->sidetone_instance, (-5 * 128));
+            sidetone_gain_set(p_link->sidetone_instance, (-2.25 * 128));
         }
         else if (app_cfg_nv.sidetone_level == SIDETOME_LEVEL_M)
         {
             //M -15.375db
-            sidetone_gain_set(p_link->sidetone_instance, (-0 * 128));
+            sidetone_gain_set(p_link->sidetone_instance, (1.875 * 128));
         }
         else if (app_cfg_nv.sidetone_level == SIDETOME_LEVEL_H)
         {
             //H -13.125db
-            sidetone_gain_set(p_link->sidetone_instance, (5 * 128));
+            sidetone_gain_set(p_link->sidetone_instance, (5.65 * 128));
         }
     }
 //ysc end	
@@ -1856,17 +1856,17 @@ static void app_harman_devinfo_set(uint16_t feature_id, uint16_t value_size, uin
                                 if (app_cfg_nv.sidetone_level == SIDETOME_LEVEL_L)
                                 {
                                     //L -18db
-                                    sidetone_gain_set(p_ase_entry->sidetone_instance, (-18 * 128));
+                                    sidetone_gain_set(p_ase_entry->sidetone_instance, (-2.25 * 128));
                                 }
                                 else if (app_cfg_nv.sidetone_level == SIDETOME_LEVEL_M)
                                 {
                                     //M -15.375db
-                                    sidetone_gain_set(p_ase_entry->sidetone_instance, (-15.375 * 128));
+                                    sidetone_gain_set(p_ase_entry->sidetone_instance, (-1.875 * 128));
                                 }
                                 else if (app_cfg_nv.sidetone_level == SIDETOME_LEVEL_H)
                                 {
                                     //H -13.125db
-                                    sidetone_gain_set(p_ase_entry->sidetone_instance, (-13.125 * 128));
+                                    sidetone_gain_set(p_ase_entry->sidetone_instance, (5.65 * 128));
                                 }
                             }
 
