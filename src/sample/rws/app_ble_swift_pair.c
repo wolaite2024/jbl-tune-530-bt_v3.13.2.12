@@ -8,8 +8,7 @@
 #include "app_cfg.h"
 #include "app_main.h"
 
-#define HARMAN_SWIFT_PAIR_TX_POWER_SET          1
-
+//ysc start
 #if F_APP_BLE_SWIFT_PAIR_SUPPORT
 #include "string.h"
 #include "bt_types.h"
@@ -21,19 +20,13 @@ uint8_t swift_pair_adv_handle = 0xff;
 static T_BLE_EXT_ADV_MGR_STATE swift_pair_adv_state = BLE_EXT_ADV_MGR_ADV_DISABLED;
 static uint32_t appearance_major = MAJOR_DEVICE_CLASS_AUDIO;
 static uint32_t appearance_minor = MINOR_DEVICE_CLASS_HEADSET;
-static uint8_t swift_pair_verdon_section_length = 7;
-static uint8_t swift_pair_tx_power_section_length = 3;
+static uint8_t swift_pair_adv_len = 7;
 static uint8_t app_ble_swift_pair_timer_id = 0;
 static uint8_t timer_idx_swift_pair_change_adv_data = 0;
 
 static uint8_t swift_pair_adv_data[31] =
 {
-    /* TX Power Level */
-    0x02,/* length */
-    GAP_ADTYPE_POWER_LEVEL,
-    0xfa,
-
-    /* verdon section */
+    /* Flags */
     0x00,       /* length, when get all data, count length */
     GAP_ADTYPE_MANUFACTURER_SPECIFIC,
     0x06,/*mocrosoftVendor ID*/
@@ -146,52 +139,36 @@ void app_swift_pair_adv_init(void)
 
     /* set adv data*/
     /* put bd_addr in adv data*/
-    memcpy(&swift_pair_adv_data[swift_pair_tx_power_section_length + swift_pair_verdon_section_length],
-           app_cfg_nv.bud_local_addr, 6);
-    swift_pair_verdon_section_length += 6;
+    //for (uint8_t i = 0; i<6;i++)
+    //{
+    //   swift_pair_adv_data[7+i] = app_cfg_nv.bud_local_addr[5-i];
+    //}
+    memcpy(&swift_pair_adv_data[7], app_cfg_nv.bud_local_addr, 6);
+    swift_pair_adv_len += 6;
 
     /* put appearance in adv data*/
-    memcpy(&swift_pair_adv_data[swift_pair_tx_power_section_length + swift_pair_verdon_section_length],
-           &icon, 3);
-    swift_pair_verdon_section_length += 3;
-
-#if HARMAN_SWIFT_PAIR_TX_POWER_SET
-#if 0
-    int8_t swift_pair_tx_power = extend_app_cfg_const.gfps_tx_power;
-#else
-    int8_t swift_pair_tx_power = -4;
-#endif
-
-    swift_pair_adv_data[2] = (uint8_t)swift_pair_tx_power;
-
-    APP_PRINT_TRACE2("swift_pair_adv_init: swift_pair_adv_data[2]: 0x%x, 0x%x", swift_pair_adv_data[2],
-                     extend_app_cfg_const.gfps_tx_power);
+    memcpy(&swift_pair_adv_data[13], &icon, 3);
+    swift_pair_adv_len += 3;
 
     /* put device legacy name in adv data*/
     name_len = strlen((const char *)app_cfg_nv.device_name_legacy);
-    if (name_len > (31 - swift_pair_tx_power_section_length - swift_pair_verdon_section_length))
+    if (name_len > 15)
     {
-        name_len = 31 - swift_pair_tx_power_section_length - swift_pair_verdon_section_length;
+        name_len = 15;
     }
 
-    memcpy(&swift_pair_adv_data[swift_pair_tx_power_section_length + swift_pair_verdon_section_length],
-           app_cfg_nv.device_name_legacy, name_len);
-    swift_pair_verdon_section_length += name_len;
-#endif
-    swift_pair_adv_data[swift_pair_tx_power_section_length] = swift_pair_verdon_section_length - 1;
+    memcpy(&swift_pair_adv_data[16], app_cfg_nv.device_name_legacy, name_len);
+    swift_pair_adv_len += name_len;
+    swift_pair_adv_data[0] = swift_pair_adv_len - 1;
     /* modify length field of adv data*/
 
     uint8_t random_addr[6] = {0};
     app_ble_rand_addr_get(random_addr);
 
-    APP_PRINT_TRACE2("swift_pair_adv_init: swift_pair_adv_data %b, le_random_addr %s",
-                     TRACE_BINARY(sizeof(swift_pair_adv_data), swift_pair_adv_data), TRACE_BDADDR(random_addr));
-
     /* build new adv*/
     ble_ext_adv_mgr_init_adv_params(&swift_pair_adv_handle, adv_event_prop, adv_interval_min,
                                     adv_interval_max, own_address_type, peer_address_type, peer_address,
-                                    filter_policy, swift_pair_verdon_section_length + swift_pair_tx_power_section_length,
-                                    swift_pair_adv_data,
+                                    filter_policy, swift_pair_adv_len, swift_pair_adv_data,
                                     0, NULL, random_addr);
 
     /* set adv event handle callback*/
@@ -246,3 +223,4 @@ void app_swift_pair_init(void)
 
 #endif
 
+//ysc end

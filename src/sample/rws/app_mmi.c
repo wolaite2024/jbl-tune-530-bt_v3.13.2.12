@@ -239,7 +239,13 @@
 #include "app_harman_adc.h"
 #endif
 
+//ysc start
+#ifdef HARMAN_CUSTOMIZED_BUTTON_CONTROL
 #define A2DP_MUTE_WHEN_PAUSE_TIMER_MS  2000
+#endif
+
+#define APP_HARMAN_EQ_NUM_MAX       4
+//ysc end
 
 static uint8_t app_mmi_timer_id = 0;
 static uint8_t timer_idx_reboot_check = 0;
@@ -674,16 +680,18 @@ static void app_mmi_voice_recognition(uint8_t app_idx)
 
         app_audio_tone_type_play(TONE_HF_CALL_VOICE_DIAL, false, true);
     }
-    else
-    {
-        uint8_t bd_addr[6];
+	//ysc start
+    // else
+    // {
+    //     uint8_t bd_addr[6];
 
-        if (app_bond_b2s_addr_get(1, bd_addr) == true)
-        {
-            app_bt_policy_default_connect(bd_addr,
-                                          HSP_PROFILE_MASK | HFP_PROFILE_MASK, true);
-        }
-    }
+    //     if (app_bond_b2s_addr_get(1, bd_addr) == true)
+    //     {
+    //         app_bt_policy_default_connect(bd_addr,
+    //                                       HSP_PROFILE_MASK | HFP_PROFILE_MASK, true);
+    //     }
+    // }
+	//ysc end
 #endif
 }
 
@@ -2957,19 +2965,21 @@ void app_mmi_handle_action(uint8_t action)
             }
 #endif
 
+//ysc start
 #if F_APP_SINGLE_MUTLILINK_SCENERIO_1
             if (app_teams_multilink_get_voice_status() != APP_CALL_IDLE)
 #else
 #if F_APP_HARMAN_FEATURE_SUPPORT
             if ((app_bt_policy_get_state() == BP_STATE_PAIRING_MODE)
 #if HARMAN_NOT_ALLOW_ENTER_PAIR_MODE_ON_CALLING_SUPPORT
-                || (app_hfp_get_call_status() != BT_HFP_CALL_IDLE)
+                || (app_bt_policy_get_call_status() != BT_HFP_CALL_IDLE)
 #endif
                )
 #else
             if (app_hfp_get_call_status() != BT_HFP_CALL_IDLE)
 #endif
 #endif
+//ysc end
             {
                 //Not allow to enter pairing mode when calling
                 break;
@@ -3369,12 +3379,25 @@ void app_mmi_handle_action(uint8_t action)
             if (eq_num != 0)
             {
                 app_cfg_nv.eq_idx++;
-
+//ysc start				
+#if HARMAN_CUSTOMIZED_BUTTON_CONTROL
+                if (app_cfg_nv.eq_idx >= eq_num - 1)
+#else
                 if (app_cfg_nv.eq_idx >= eq_num)
+#endif
+//ysc end
                 {
                     app_cfg_nv.eq_idx = 0;
                 }
 
+// //ysc start            
+//     #if HARMAN_CUSTOMIZED_BUTTON_CONTROL
+//             if(app_harman_get_eq_state() == false)
+//             {
+//                 app_cfg_nv.eq_idx = eq_num -1;
+//             }
+//     #endif
+// //ysc end	
                 app_eq_sync_idx_accord_eq_mode(app_db.spk_eq_mode, app_cfg_nv.eq_idx);
 
                 if (app_cfg_nv.bud_role == REMOTE_SESSION_ROLE_PRIMARY ||

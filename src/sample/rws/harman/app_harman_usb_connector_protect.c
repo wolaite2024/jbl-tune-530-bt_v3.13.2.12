@@ -13,6 +13,9 @@
 #include "app_harman_usb_connector_protect.h"
 #include "hal_adp.h"
 #include "app_timer.h"
+//ysc start
+#include "pm.h"
+//ysc end
 
 static uint8_t app_harman_usb_adc_timer_id = 0;
 static uint8_t timer_idx_usb_ntc_period_check = 0;
@@ -39,7 +42,9 @@ static bool usb_is_plug_in = false;
 
 bool app_harman_usb_hiccup_check_timer_started(void)
 {
-    return (timer_idx_usb_hiccup_check != NULL);
+//ysc start
+    return (timer_idx_usb_hiccup_check != 0 );
+//ysc end
 }
 
 static void app_harman_usb_hiccup_check_timer_stop(void)
@@ -48,6 +53,7 @@ static void app_harman_usb_hiccup_check_timer_stop(void)
 
     {
         app_stop_timer(&timer_idx_usb_hiccup_check);
+
     }
 }
 
@@ -347,10 +353,14 @@ void app_harman_usb_connector_adp_out_handle(void)
     }
 }
 
+//ysc start
+bool usb_connector_flag = false;
 void app_harman_usb_connector_protect_init(void)
 {
     app_timer_reg_cb(app_harman_usb_adc_timeout_cb, &app_harman_usb_adc_timer_id);
     hal_gpio_init_pin(HARMAN_USB_CONNECTOR_HICCUP_PIN, GPIO_TYPE_AUTO, GPIO_DIR_INPUT, GPIO_PULL_UP);
     app_harman_usb_connector_mosfet_close();
+     usb_connector_flag = true;
 }
+//ysc end
 #endif

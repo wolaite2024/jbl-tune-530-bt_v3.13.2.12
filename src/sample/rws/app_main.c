@@ -1184,6 +1184,10 @@ static void app_wakeup_reason_check(void)
                pm_wakeup_reason, app_db.wake_up_reason);
 }
 
+//ysc start
+bool dut_flag = false;
+//ysc end
+
 int main(void)
 {
     uint32_t time_entry_app;
@@ -1311,10 +1315,15 @@ int main(void)
 
     app_mmi_init();
 
+
     if (is_single_tone_test_mode()) //DUT test mode
     {
+	//ysc start
+        dut_flag = true;
         reset_single_tone_test_mode();
         mp_hci_test_init(MP_HCI_TEST_DUT_MODE);
+        DBG_DIRECT("dut_flag: %d, is_single_tone_test_mode: %d", dut_flag, is_single_tone_test_mode());
+	//ysc end	
     }
     else //Normal mode
     {

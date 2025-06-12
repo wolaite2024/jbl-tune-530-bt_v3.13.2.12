@@ -22,37 +22,49 @@ static uint8_t DEVICE_CRC2[2] = {0x00, 0x00};
 static uint8_t BT_MAC_CRC[2] = {0x00, 0x00};
 
 /* Note:
-    two SRC connected         => need set SrcName1 CRC and SrcName2 CRC
-    set bit15/bit14/bit13/bit12 in byte 6-7,
-    byte 8      indicate color id,
-    byte 9-10  indicate SrcName1 CRC,
-    byte 11-12  indicate SrcName2 CRC,
-    byte 13-14  indicate BT MAC Address CRC,
+    1. byte 7 / byte 13-14 / byte15 / byte 16-17 / byte 18-19 / byte 20-21 are all dynamic
+    2. no legacy link connected  => no need to advertise
+       set bit15/bit12 in byte 13-14,
+       byte15      indicate color id,
+       byte 16-17  indicate BT MAC Address CRC,
+    3. one SRC connected         => need set SrcName1 CRC
+       set bit15/bit14/bit12 in byte 13-14,
+       byte15      indicate color id,
+       byte 16-17  indicate SrcName1 CRC,
+       byte 18-19  indicate BT MAC Address CRC,
+    4. two SRC connected         => need set SrcName1 CRC and SrcName2 CRC
+       set bit15/bit14/bit13/bit12 in byte 13-14,
+       byte15      indicate color id,
+       byte 16-17  indicate SrcName1 CRC,
+       byte 18-19  indicate SrcName2 CRC,
+       byte 20-21  indicate BT MAC Address CRC,
 */
-static uint8_t harman_adv_data[15] =
+static uint8_t harman_adv_data[22] =
 {
-    /* 0, The length of the Type + Value fields */
+    /* 0-6 */
+    0x02, 0x0a, 0x00, 0x03, 0x16, 0x03, 0xfe,
+    /* 7, The length of the Type + Value fields */
     0x0E,
-    /* 1, Service Data AD Type */
+    /* 8, Service Data AD Type */
     0x16,
-    /* 2-3, Service Data UUID */
+    /* 9-10, Service Data UUID */
     0xDF, 0xFD,
-    /* 4-5, product id */
+    /* 11-12, product id */
     0x35, 0x21,
-    /* 6-7, supported data status
+    /* 13-14, supported data status
               15th bit: Color ID support
               14th bit: SrcName1 CRC support
               13th bit: SrcName2 CRC support
               12th bit: BT MAC Address CRC support
     */
     0x00, 0xF0,
-    /* 8, color id */
+    /* 15, color id */
     0x02,
-    /* 9-10, SrcName1 CRC: The CRC16 of a connected host name. */
+    /* 16-17, SrcName1 CRC: The CRC16 of a connected host name. */
     0x00, 0x00,
-    /* 11-12, SrcName2 CRC: The CRC16 of the other connected host name. */
+    /* 18-19, SrcName2 CRC: The CRC16 of the other connected host name. */
     0x00, 0x00,
-    /* 13-14, BT MAC Address CRC: The CRC16 of Earbuds/Headset BT MAC Address. */
+    /* 20-21, BT MAC Address CRC: The CRC16 of Earbuds/Headset BT MAC Address. */
     0x00, 0x00
 };
 
@@ -138,20 +150,23 @@ void app_harman_le_common_adv_update(void)
     APP_PRINT_TRACE1("app_harman_le_common_adv_update: before: %b",
                      TRACE_BINARY(sizeof(harman_adv_data), harman_adv_data));
 
-    memcpy(&harman_adv_data[4], (uint8_t *)&pid, 2);
-    harman_adv_data[6] = 0x00;
-    harman_adv_data[7] = 0xF0;
-    harman_adv_data[8] = cid;
+    memcpy(&harman_adv_data[11], (uint8_t *)&pid, 2);
+    harman_adv_data[15] = cid;
+    memset(&harman_adv_data[16], 0, 4);
 
-    memset(&harman_adv_data[9], 0, 4);
-    memcpy(&harman_adv_data[9], &DEVICE_CRC1[0], sizeof(DEVICE_CRC1));
-    memcpy(&harman_adv_data[11], &DEVICE_CRC2[0], sizeof(DEVICE_CRC2));
+    harman_adv_data[13] = 0x00;
+    harman_adv_data[14] = 0xF0;
 
-    memcpy(&harman_adv_data[13], &BT_MAC_CRC[0], sizeof(BT_MAC_CRC));
+    harman_adv_data[13] = 0x00;
+    harman_adv_data[14] = 0xF0;
 
-    harman_adv_data[0] = 0x0E;
+    memcpy(&harman_adv_data[16], &DEVICE_CRC1[0], sizeof(DEVICE_CRC1));
+    memcpy(&harman_adv_data[18], &DEVICE_CRC2[0], sizeof(DEVICE_CRC2));
+    memcpy(&harman_adv_data[20], &BT_MAC_CRC[0], sizeof(BT_MAC_CRC));
 
-    adv_data_len = harman_adv_data[0] + 8;
+    harman_adv_data[7] = 0x0E;
+
+    adv_data_len = harman_adv_data[7] + 8;
     app_harman_adv_data_update(harman_adv_data, adv_data_len);
 
     APP_PRINT_TRACE1("app_harman_le_common_adv_update:  after: %b",

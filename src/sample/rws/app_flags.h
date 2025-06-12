@@ -192,6 +192,11 @@
 
 #define F_APP_PERIODIC_WAKEUP                       1
 
+//ysc start
+#define HARMAN_SPECAIL_ULTRA_LONG_KEY_TIME                  0
+#define HARMAN_CUSTOMIZED_BUTTON_CONTROL                    0
+#define  HARMAN_SUPPORT_CONNECT_VP_IN_HFP                   0
+//ysc end
 #if TARGET_RTL8763EKH
 #define IC_NAME                                     "RTL8763EKH"
 
@@ -201,16 +206,22 @@
 #define HARMAN_LOW_BAT_WARNING_TIME                         900
 
 #define HARMAN_ENTER_STANDBY_MODE_AFTER_PAIRING_TIMEOUT     1
-#define HARMAN_DETECT_BATTERY_STATUS_LED_SUPPORT            0 // 5S continues
+//ysc start
+#define HARMAN_DETECT_BATTERY_STATUS_LED_SUPPORT            1 // 5S continues
+//ysc end
 #define HARMAN_ONLY_CONN_ONE_DEVICE_WHEN_PAIRING            0
 #define HARMAN_LED_BREATH_SUPPORT                           1
 #define HARMAN_VP_DATA_HEADER_GET_SUPPORT                   1
+//ysc start
 #define HARMAN_ADJUST_LINKBACK_RETRY_TIME_SUPPORT           1
+//ysc end
 #define HARMAN_FIND_MY_BUDS_TONE_SUPPORT                    1
 #define HARMAN_SPP_CMD_SUPPORT                              1
 #define HARMAN_ADJUST_MAX_MIN_VOLUME_FROM_PHONE_SUPPORT     0
 
-#define HARMAN_DISABLE_STANDBY_LED_FLASH_WHEN_LOW_BATTERY   0
+//ysc start
+#define HARMAN_DISABLE_STANDBY_LED_FLASH_WHEN_LOW_BATTERY   1
+//ysc end
 #define HARMAN_ADD_GFPS_FINDER_STOP_ADV_TONE                1
 
 #define HARMAN_VP_LR_BALANCE_SUPPORT                        0
@@ -219,8 +230,9 @@
 #define HARMAN_AUTO_ACCEPT_SECOND_CALL_SUPPORT              0
 
 #define HARMAN_ALLOW_POWER_OFF_ON_CALL_ACTIVE_SUPPORT       1
-#define HARMAN_NOT_ALLOW_ENTER_PAIR_MODE_ON_CALLING_SUPPORT 0
-
+//ysc start
+#define HARMAN_NOT_ALLOW_ENTER_PAIR_MODE_ON_CALLING_SUPPORT 1
+//ysc end
 #define HARMAN_POWER_DISPLAY_ACCURACY_1_PERCENTAGE_SUPPORT  1
 
 #define HARMAN_BLE_ENCRYPTED_CONNECT_SUPPORT                1
@@ -253,7 +265,9 @@
 #define HARMAN_EXTERNAL_CHARGER_DZ581_SUPPORT               0
 #define HARMAN_EXTERNAL_CHARGER_DZ582_SUPPORT               0
 #define HARMAN_SECOND_NTC_DETECT_PROTECT                    0
-#define HARMAN_USB_CONNECTOR_PROTECT                        0
+//ysc start
+#define HARMAN_USB_CONNECTOR_PROTECT                        1
+//ysc end
 
 #if HARMAN_T135_SUPPORT
 
@@ -303,7 +317,16 @@
 
 #elif HARMAN_T530_SUPPORT
 
+//ysc start
 #define HARMAN_BATTERY_ID_VERIFICATION                      0
+//ysc end
+
+//ysc start
+#define JBL_APP_LEA_BUTTON                                  1
+#undef  HARMAN_SUPPORT_CONNECT_VP_IN_HFP
+#define HARMAN_SUPPORT_CONNECT_VP_IN_HFP                    1
+
+//ysc end
 
 #undef HARMAN_EXTERNAL_CHARGER_DZ581_SUPPORT
 #define HARMAN_EXTERNAL_CHARGER_DZ581_SUPPORT               1
@@ -311,8 +334,10 @@
 #define HARMAN_SECOND_NTC_DETECT_PROTECT                    0
 #undef HARMAN_USB_CONNECTOR_PROTECT
 #define HARMAN_USB_CONNECTOR_PROTECT                        1
+//ysc start
 #undef  HARMAN_SECURITY_CHECK
-#define HARMAN_SECURITY_CHECK                               0
+#define HARMAN_SECURITY_CHECK                               1
+//ysc end
 #undef F_APP_SPP_CAPTURE_DSP_DATA
 #define F_APP_SPP_CAPTURE_DSP_DATA                          0
 #undef  HARMAN_DSP_LICENSE_SUPPORT
@@ -321,6 +346,12 @@
 #define F_APP_ENABLE_PAUSE_SECOND_LINK                      1
 #undef  HARMAN_DISCONN_ACTIVE_A2DP_WHEN_OTA
 #define HARMAN_DISCONN_ACTIVE_A2DP_WHEN_OTA                 1
+//ysc start 
+#undef  HARMAN_SPECAIL_ULTRA_LONG_KEY_TIME
+#define HARMAN_SPECAIL_ULTRA_LONG_KEY_TIME                  1
+#undef  HARMAN_CUSTOMIZED_BUTTON_CONTROL
+#define HARMAN_CUSTOMIZED_BUTTON_CONTROL                    1
+//ysc end
 #endif
 
 #endif /* F_APP_HARMAN_FEATURE_SUPPORT */

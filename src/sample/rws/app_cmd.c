@@ -1958,7 +1958,10 @@ void app_cmd_bt_cmd_handle(uint8_t *cmd_ptr, uint16_t cmd_len, uint8_t cmd_path,
         {
             uint8_t temp_buff[6];
             memcpy(&temp_buff[0], app_cfg_nv.bud_local_addr, 6);
-            app_report_event(cmd_path, EVENT_ACK, app_idx, ack_pkt, 3);
+			//ysc start
+            //app_report_event(cmd_path, EVENT_ACK, app_idx, ack_pkt, 3);
+            app_report_event(cmd_path, EVENT_ACK, app_idx, temp_buff, sizeof(temp_buff));
+			//ysc end
             app_report_event(CMD_PATH_UART, EVENT_LOCAL_ADDR, 0, temp_buff, sizeof(temp_buff));
         }
         break;
@@ -3091,8 +3094,9 @@ static void app_cmd_general_cmd_handle(uint8_t *cmd_ptr, uint16_t cmd_len, uint8
             default:
                 break;
             }
-
-            app_report_event(cmd_path, EVENT_ACK, app_idx, ack_pkt, 3);
+//ysc start
+            //app_report_event(cmd_path, EVENT_ACK, app_idx, ack_pkt, 3);
+//ysc end			
             app_report_event(cmd_path, EVENT_REPORT_STATUS, app_idx, buf, report_len);
         }
         break;
@@ -3172,8 +3176,9 @@ static void app_cmd_general_cmd_handle(uint8_t *cmd_ptr, uint16_t cmd_len, uint8
             uint8_t report_data[2];
             report_data[0] = cmd_path;
             report_data[1] = app_idx;
-
-            app_report_event(cmd_path, EVENT_ACK, app_idx, ack_pkt, 3);
+//ysc start
+            //app_report_event(cmd_path, EVENT_ACK, app_idx, ack_pkt, 3);
+//ysc end			
 
             switch (cmd_ptr[2])
             {
@@ -3861,7 +3866,7 @@ static void app_cmd_other_cmd_handle(uint8_t *cmd_ptr, uint16_t cmd_len, uint8_t
         break;
 #endif
 
-#if 0
+
     case CMD_LED_TEST:
         {
             uint8_t led_index = cmd_ptr[2];
@@ -3887,7 +3892,8 @@ static void app_cmd_other_cmd_handle(uint8_t *cmd_ptr, uint16_t cmd_len, uint8_t
             app_report_event(cmd_path, EVENT_LED_TEST, app_idx, &event_buff, 1);
         }
         break;
-
+//ysc start        
+#if 0
     case CMD_SWITCH_TO_HCI_DOWNLOAD_MODE:
         {
             //if uart tx shares the same pin with 3pin gpio, set uart tx pin when receive cmd
@@ -3908,6 +3914,7 @@ static void app_cmd_other_cmd_handle(uint8_t *cmd_ptr, uint16_t cmd_len, uint8_t
         }
         break;
 #endif
+//ysc end
 
 #if F_APP_ADC_SUPPORT
     case CMD_GET_PAD_VOLTAGE:

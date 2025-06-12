@@ -79,9 +79,12 @@
 #include "app_sass_policy.h"
 #endif
 
+//ysc start
 #if F_APP_HARMAN_FEATURE_SUPPORT
 #include "app_harman_ble.h"
+#include "app_led.h"
 #endif
+//ysc end
 
 #if F_APP_TMAP_CT_SUPPORT || F_APP_TMAP_UMR_SUPPORT || F_APP_TMAP_BMR_SUPPORT
 #define CIS_PERMIT_MIN_PD_LOW_LATENCY   4500
@@ -2602,15 +2605,19 @@ static void app_lea_uca_link_idle(T_APP_LE_LINK *p_link, uint8_t event, void *p_
             {
                 if (app_bt_point_link_tone_get(p_link->bd_addr) == false)
                 {
+					//ysc start
                     app_bt_point_link_tone_set(p_link->bd_addr, true);
                     if (app_db.remote_session_state == REMOTE_SESSION_STATE_DISCONNECTED)
                     {
+						app_led_change_mode(LED_MODE_PAIRING_COMPLETE, true, false);
                         app_audio_tone_type_play(TONE_LINK_CONNECTED, false, false);
                     }
                     else if (app_cfg_nv.bud_role == REMOTE_SESSION_ROLE_PRIMARY)
                     {
+						app_led_change_mode(LED_MODE_PAIRING_COMPLETE, true, false);
                         app_audio_tone_type_play(TONE_LINK_CONNECTED, false, true);
                     }
+					//ysc end
                 }
             }
 
@@ -2639,6 +2646,8 @@ static void app_lea_uca_link_idle(T_APP_LE_LINK *p_link, uint8_t event, void *p_
             else
             {
                 app_lea_adv_update_interval(APP_LEA_ADV_INTERVAL_SLOW);
+                app_gfps_adv_update_adv_interval(400);
+                APP_PRINT_TRACE0("------------  app_lea_uca_link_idle, app_gfps_adv_update_adv_interval (400) -------------");  
             }
 
 #if F_APP_GAMING_DONGLE_SUPPORT

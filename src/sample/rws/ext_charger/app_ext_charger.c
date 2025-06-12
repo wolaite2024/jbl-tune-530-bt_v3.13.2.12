@@ -83,15 +83,17 @@ static void app_ext_charger_cfg_load(void)
     charger_utils_get_low_temp_error_voltage(&ext_charger_cfg.bat_low_temp_error_voltage);
     charger_utils_get_bat_temp_hysteresis_voltage(&ext_charger_cfg.bat_temp_hysteresis_voltage);
 
+//ysc start
     // Add hysteresis voltage protect, to avoid charging status changed frequently
     ext_charger_cfg.bat_high_temp_warn_recovery_vol = ext_charger_cfg.bat_high_temp_warn_voltage +
                                                       ext_charger_cfg.bat_temp_hysteresis_voltage;
     ext_charger_cfg.bat_low_temp_warn_recovery_vol = ext_charger_cfg.bat_low_temp_warn_voltage -
-                                                     ext_charger_cfg.bat_temp_hysteresis_voltage;
+                                                     (ext_charger_cfg.bat_temp_hysteresis_voltage);
     ext_charger_cfg.bat_high_temp_error_recovery_vol = ext_charger_cfg.bat_high_temp_error_voltage +
-                                                       ext_charger_cfg.bat_temp_hysteresis_voltage;
+                                                       (ext_charger_cfg.bat_temp_hysteresis_voltage );
     ext_charger_cfg.bat_low_temp_error_recovery_vol = ext_charger_cfg.bat_low_temp_error_voltage -
                                                       ext_charger_cfg.bat_temp_hysteresis_voltage;
+//ysc end
 
     charger_utils_thermistor_enable(&ext_charger_cfg.thermistor_1_enable);
     ext_charger_cfg.thermistor_1_adc_channel = 0xFF;
@@ -158,7 +160,9 @@ static void app_ext_charger_enable_ctrl_gpio_set(void)
     }
 #else
 #endif
-    Pad_PullConfigValue(ext_charger_mgr.enable_ctrl_pin, PAD_STRONG_PULL);
+//ysc start
+    //Pad_PullConfigValue(ext_charger_mgr.enable_ctrl_pin, PAD_STRONG_PULL);
+//ysc end
 }
 
 static void app_ext_charger_current_speed_set(APP_EXT_CHARGER_CURRENT_SPEED speed)
@@ -203,8 +207,10 @@ static void app_ext_charger_current_speed_set(APP_EXT_CHARGER_CURRENT_SPEED spee
     }
     else if (speed == CURRENT_SPEED_0_5_C)
     {
+//ysc start		
         Pad_Config(ext_charger_mgr.current_ctrl_pin1,
-                   PAD_SW_MODE, PAD_IS_PWRON, PAD_PULL_UP, PAD_OUT_ENABLE, PAD_OUT_HIGH);
+                    PAD_SW_MODE, PAD_SHUTDOWN, PAD_PULL_NONE, PAD_OUT_DISABLE, PAD_OUT_LOW);
+//ysc end
         Pad_Config(ext_charger_mgr.current_ctrl_pin2,
                    PAD_SW_MODE, PAD_IS_PWRON, PAD_PULL_DOWN, PAD_OUT_ENABLE, PAD_OUT_LOW);
     }
@@ -327,8 +333,10 @@ static void app_ext_charger_status_det_gpio_init(uint8_t pin_index)
 
     ext_charger_mgr.status_det_pin = pin_index;
 
-    hal_gpio_init_pin(pin_index, GPIO_TYPE_AUTO, GPIO_DIR_INPUT, GPIO_PULL_DOWN);
-    hal_gpio_set_up_irq(pin_index, GPIO_IRQ_EDGE, GPIO_IRQ_ACTIVE_HIGH, true);
+//ysc start
+    hal_gpio_init_pin(pin_index, GPIO_TYPE_AUTO, GPIO_DIR_INPUT, GPIO_PULL_UP);
+    hal_gpio_set_up_irq(pin_index, GPIO_IRQ_EDGE, GPIO_IRQ_ACTIVE_LOW, true);
+//ysc end	
     hal_gpio_register_isr_callback(pin_index, app_ext_charger_status_det_gpio_intr_handler,
                                    (uint32_t)pin_index);
     // wakeup polarity
@@ -414,6 +422,10 @@ static void app_ext_charger_delay_adp_out_timer_start(uint32_t time)
 }
 #endif
 
+//ysc start
+uint32_t ntc_charging_count = 0;
+uint16_t vol_before_adp_in = 0;
+//ysc end
 static T_APP_CHARGER_STATE app_ext_charger_handle_adp_in(void)
 {
     T_APP_CHARGER_STATE new_state = APP_CHARGER_STATE_NO_CHARGE;
@@ -447,9 +459,12 @@ static T_APP_CHARGER_STATE app_ext_charger_handle_adp_in(void)
             APP_PRINT_INFO1("app_ext_charger_handle_adp_in: Battery_ID_Verification ret = %d", ret);
         }
 #endif
-
+//ysc start
+        ntc_charging_count = 0;
+        vol_before_adp_in= app_harman_adc_voltage_battery_get(); 
+        APP_PRINT_INFO2("ntc_charging_count: %d, vol_before_adp_in: %d", ntc_charging_count, vol_before_adp_in);
+//ysc end		
     }
-
     return new_state;
 }
 
@@ -476,6 +491,112 @@ static void app_ext_charger_handle_adp_out(void)
     }
 }
 
+//ysc start
+#if HARMAN_NTC_DETECT_PROTECT
+
+#if 0
+const int voltage_data[] = {
+    3598, 3661, 3699, 3710, 3715, 3725, 3730, 3738, 3746, 3754, 
+    3764, 3773, 3781, 3789, 3797, 3804, 3810, 3815, 3820, 3825, 
+    3829, 3832, 3835, 3839, 3842, 3845, 3849, 3853, 3857, 3861, 
+    3864, 3869, 3873, 3877, 3882, 3886, 3891, 3897, 3902, 3909, 
+    3915, 3921, 3927, 3934, 3941, 3949, 3957, 3966, 3974, 3983, 
+    3993, 4003, 4015, 4025, 4036, 4048, 4060, 4075, 4084, 4088, 
+    4092, 4096, 4100, 4104, 4108, 4111, 4115, 4119, 4122, 4125, 
+    4128, 4131, 4134, 4137, 4140, 4142, 4145, 4146, 4149, 4151, 
+    4153, 4155, 4157, 4161, 4162, 4164, 4165, 4167, 4168, 4170, 
+    4171, 4172, 4173, 4175, 4176, 4177, 4178, 4180, 4181, 4182, 
+    4183, 4184, 4184, 4185, 4186, 4187, 4188, 4188, 4189, 4190, 
+    4191
+};
+
+const int ntc_cali[] = {
+    40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+    40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+    40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+    40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+    40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+    40, 40, 40, 40, 40, 40, 39, 39, 39, 37,
+    35, 34, 32, 30, 29, 27, 26, 25, 23, 22,
+    21, 20, 18, 17, 16, 15, 14, 13, 12, 12,
+    11, 10,  9,  9,  8,  7,  7,  6,  5,  5,
+     4,  4,  3,  3,  2,  2,  1,  1,  1,  0,
+     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+     0
+};
+
+static uint16_t get_ntc_cali_1_C_by_ADC_and_time()
+{
+    uint8_t index = 0;
+    for(int i = 0; i< 111; i++)
+    {
+        if(vol_before_adp_in <= voltage_data[i])
+        {
+            index = i;
+            break;
+        }
+    }
+    uint16_t minutes = ntc_charging_count / 60;   
+    index += minutes;
+    if(index >= 111)
+    {
+        APP_PRINT_TRACE0("get_ntc_cali_1_C_by_ADC_and_time, 0");
+        return 0;
+    }
+    else
+    {
+        APP_PRINT_TRACE4("1C, minutes: %d, vol_before_adp_in: %d, index: %d, cali_value: %d", minutes, vol_before_adp_in, index, ntc_cali[index]);    
+        return ntc_cali[index];
+    }
+}
+#endif
+
+
+static uint16_t get_ntc_cali_1_C()
+{
+    return 38;
+#if 0   
+    uint16_t vol_table[14] = {4000, 4080, 4087, 4100, 4109, 4120, 4134, 4146, 4157, 4169, 4180, 4192, 4200, 9999};
+    uint16_t cali_value[14] = {40, 38, 36, 34, 32, 29, 24, 21, 17, 13, 10, 6, 0, 0};     
+    uint8_t index = 0;
+    uint16_t vol = app_harman_adc_voltage_battery_get(); 
+    for(int i = 0; i< 14; i++)
+    {
+        if(vol <= vol_table[i])
+        {
+            index = i;
+            break;
+        }
+    }
+    APP_PRINT_TRACE3("1C, vol: %d, index: %d, cali_value: %d", vol, index, cali_value[index]);
+    return cali_value[index];
+#endif    
+}
+
+
+static uint16_t get_ntc_cali_0_5_C()
+{
+    return 6;
+#if 0    
+    uint16_t vol_table[5] = {4169, 4180, 4192, 4200, 9999};
+    uint16_t cali_value[5] = {13, 10, 6, 0, 0};     
+    uint8_t index = 0;
+    uint16_t vol = app_harman_adc_voltage_battery_get();  
+    for(int i = 0; i< 5; i++)
+    {
+        if(vol <= vol_table[i])
+        {
+            index = i;
+            break;
+        }
+    }
+    APP_PRINT_TRACE3("0.5C, vol: %d, index: %d, cali_value: %d", vol, index, cali_value[index]);    
+    return cali_value[index];
+#endif    
+}
+#endif
+//ysc end
+
 #if HARMAN_NTC_DETECT_PROTECT
 static T_APP_CHARGER_STATE app_ext_charger_check_ntc_threshold(void)
 {
@@ -485,6 +606,61 @@ static T_APP_CHARGER_STATE app_ext_charger_check_ntc_threshold(void)
     APP_EXT_CHARGER_CURRENT_SPEED current_speed = ext_charger_mgr.current_speed;
     T_ADP_STATE adp_5v_state = adp_get_current_state(ADP_DETECT_5V);
 
+#if 1
+    static uint8_t ntc_adc_count = 0;
+    ntc_adc_count++;
+    if(ntc_adc_count < 50)
+    {
+            if(ext_charger_mgr.enable)
+            {
+                new_state = APP_CHARGER_STATE_CHARGING;
+            }
+            else
+            {
+                new_state = APP_CHARGER_STATE_ERROR;
+            }
+            return new_state;
+    }
+    else
+    {
+        ntc_adc_count = 0;
+    }
+#endif  
+
+    ntc_charging_count++;
+
+//ysc start
+#if 0
+    static bool charge_status_changed = false;
+    static uint8_t count = 0;
+
+
+    if(charge_status_changed)
+    {
+        APP_PRINT_TRACE0("charge_status_changed");
+        count++;
+        if(count < 50)
+        {
+            if(ext_charger_mgr.enable)
+            {
+                new_state = APP_CHARGER_STATE_CHARGING;
+            }
+            else
+            {
+                new_state = APP_CHARGER_STATE_ERROR;
+            }
+            return new_state;
+        }
+        else
+        {
+            charge_status_changed = false;
+            count = 0;
+        }
+        APP_PRINT_TRACE3("charge_status_changed: %d, count:%d: new_state: %d", charge_status_changed, count, new_state);        
+    }
+#endif
+//ysc end
+
 #if HARMAN_USB_CONNECTOR_PROTECT
     if (!app_harman_usb_connector_detect_is_normal())
     {
@@ -492,12 +668,13 @@ static T_APP_CHARGER_STATE app_ext_charger_check_ntc_threshold(void)
         goto EXT_CHARGING_ERROR;
     }
 #endif
-    APP_PRINT_TRACE4("app_ext_charger_check_ntc_threshold: new_state: %d, vbat_is_normal: %d, "
-                     " current_speed: %d, adp_5v_state: %d",
+    APP_PRINT_TRACE5("app_ext_charger_check_ntc_threshold: new_state: %d, vbat_is_normal: %d, "
+                     " current_speed: %d, adp_5v_state: %d, ntc_charging_count:%d",
                      ext_charger_mgr.state,
                      ext_charger_mgr.vbat_is_normal,
                      ext_charger_mgr.current_speed,
-                     adp_5v_state);
+                     adp_5v_state,
+                     ntc_charging_count);
 
     app_harman_adc_update_cur_ntc_value(&ntc_value);
 
@@ -509,14 +686,16 @@ static T_APP_CHARGER_STATE app_ext_charger_check_ntc_threshold(void)
     if (new_state != APP_CHARGER_STATE_ERROR)
     {
 #if HARMAN_EXTERNAL_CHARGER_DZ581_SUPPORT
+//ysc start
         if (current_speed == CURRENT_SPEED_1_C)
         {
-            ntc_value = (ntc_value - 15);
+            ntc_value = (ntc_value - get_ntc_cali_1_C());
         }
         else if (current_speed == CURRENT_SPEED_0_5_C)
         {
-            ntc_value = (ntc_value - 8);
+            ntc_value = (ntc_value - get_ntc_cali_0_5_C());
         }
+//ysc end		
 #elif HARMAN_EXTERNAL_CHARGER_DZ582_SUPPORT
         if (current_speed == CURRENT_SPEED_3_C)
         {
@@ -614,6 +793,7 @@ static T_APP_CHARGER_STATE app_ext_charger_check_ntc_threshold(void)
                     app_ext_charger_current_speed_set(CURRENT_SPEED_2_C);
 #else
                     app_ext_charger_current_speed_set(CURRENT_SPEED_1_C);
+                    //charge_status_changed = true;
 #endif
                 }
 #elif HARMAN_EXTERNAL_CHARGER_DZ582_SUPPORT
@@ -651,26 +831,33 @@ static T_APP_CHARGER_STATE app_ext_charger_check_ntc_threshold(void)
 #endif
                 (error_code == 8))
             {
+
 #if HARMAN_EXTERNAL_CHARGER_DZ581_SUPPORT
-                app_ext_charger_current_speed_set(CURRENT_SPEED_1_C);
-#elif HARMAN_EXTERNAL_CHARGER_DZ582_SUPPORT
-                if (app_harman_adc_voltage_battery_get() < CHARGING_VBAT_LOW_VOLTAGE_CHECK)
-                {
-                    app_ext_charger_current_speed_set(CURRENT_SPEED_0_5_C);
-                }
-                else if ((app_harman_adc_voltage_battery_get() >= CHARGING_VBAT_LOW_VOLTAGE_CHECK) &&
-                         (app_harman_adc_voltage_battery_get() < CHARGING_VBAT_HIGH_VOLTAGE_CHECK))
-                {
-                    app_ext_charger_current_speed_set(CURRENT_SPEED_3_C);
-                }
-                else if (app_harman_adc_voltage_battery_get() >= CHARGING_VBAT_HIGH_VOLTAGE_CHECK)
-                {
                     app_ext_charger_current_speed_set(CURRENT_SPEED_1_C);
-                }
+#elif HARMAN_EXTERNAL_CHARGER_DZ582_SUPPORT
+                    if (app_harman_adc_voltage_battery_get() < CHARGING_VBAT_LOW_VOLTAGE_CHECK)
+                    {
+                        app_ext_charger_current_speed_set(CURRENT_SPEED_0_5_C);
+                    }
+                    else if ((app_harman_adc_voltage_battery_get() >= CHARGING_VBAT_LOW_VOLTAGE_CHECK) &&
+                            (app_harman_adc_voltage_battery_get() < CHARGING_VBAT_HIGH_VOLTAGE_CHECK))
+                    {
+                        app_ext_charger_current_speed_set(CURRENT_SPEED_3_C);
+                    }
+                    else if (app_harman_adc_voltage_battery_get() >= CHARGING_VBAT_HIGH_VOLTAGE_CHECK)
+                    {
+                        app_ext_charger_current_speed_set(CURRENT_SPEED_1_C);
+                    }
+
 #else
 #endif
                 app_ext_charger_enable();
                 new_state = APP_CHARGER_STATE_CHARGING;
+				//ysc start
+                //charge_status_changed = true;
+				//ysc end
+                //}
+
             }
         }
     }
@@ -707,6 +894,7 @@ EXT_CHARGING_WARN:
             app_ext_charger_current_speed_set(CURRENT_SPEED_1_C);
 #else
             app_ext_charger_current_speed_set(CURRENT_SPEED_0_5_C);
+            //charge_status_changed = true;
 #endif
 #elif HARMAN_EXTERNAL_CHARGER_DZ582_SUPPORT
             app_ext_charger_current_speed_set(CURRENT_SPEED_0_5_C);
@@ -745,7 +933,10 @@ EXT_CHARGING_ERROR:
     if (ext_charger_mgr.enable)
     {
         app_ext_charger_disable();
-        new_state = APP_CHARGER_STATE_ERROR;
+        new_state = APP_CHARGER_STATE_ERROR;  
+		//ysc start    
+        //charge_status_changed = true;
+		//ysc end
     }
     return new_state;
 }
@@ -827,6 +1018,7 @@ T_APP_CHARGER_STATE app_ext_charger_charging_handler(APP_EXT_CHARGER_EVENT_TYPE 
     {
     case APP_EXT_CHARGER_EVENT_ADP_IN:
         {
+            APP_PRINT_TRACE0("------------------------ APP_EXT_CHARGER_EVENT_ADP_IN -------------------------");
 #if HARMAN_DELAY_HANDLE_ADP_OUT_SUPPORT
             if (timer_idx_delay_adp_out != 0)
             {
@@ -1092,6 +1284,9 @@ static void app_ext_charger_timeout_cb(uint8_t timer_id, uint16_t timer_chann)
     }
 }
 
+//ysc start
+extern bool usb_connector_flag;
+//ysc end
 static void app_ext_charger_plug_status_cb(T_ADP_PLUG_EVENT plug_event, void *user_data)
 {
     APP_PRINT_TRACE1("app_ext_charger_plug_status_cb: plug_event %d", plug_event);
@@ -1101,6 +1296,15 @@ static void app_ext_charger_plug_status_cb(T_ADP_PLUG_EVENT plug_event, void *us
 
     if (plug_event == ADP_EVENT_PLUG_IN)
     {
+//ysc start
+        #if HARMAN_USB_CONNECTOR_PROTECT
+            if(usb_connector_flag == false)
+            {
+                APP_PRINT_INFO0("+++++++++++++  app_ext_charger_plug_status_cb ++++++++++++++");
+                app_harman_usb_connector_protect_init();
+            }
+        #endif	
+//ysc end		
         app_ext_charger_state_machine(APP_EXT_CHARGER_EVENT_ADP_IN, NULL);
         app_dlps_enable(APP_DLPS_ENTER_CHECK_ADAPTOR);
     }
@@ -1285,7 +1489,9 @@ void app_ext_charger_init(void)
 #endif
 
 #if HARMAN_USB_CONNECTOR_PROTECT
-        app_harman_usb_connector_protect_init();
+//ysc start
+        //app_harman_usb_connector_protect_init();
+//ysc end
 #endif
     }
 }

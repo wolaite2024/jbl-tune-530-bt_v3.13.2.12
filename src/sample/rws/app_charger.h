@@ -186,6 +186,10 @@ void app_charger_update(void);
 void app_charger_soc_cb(uint8_t soc);
 void app_charger_state_cb(T_CHARGER_STATE rtk_charger_state);
 
+//ysc start
+void cali_vbat_percent_by_adc(uint8_t );
+//ysc end
+
 #if F_APP_TEAMS_CUSTOMIZED_CMD_SUPPORT
 int32_t app_charger_get_bat_curr(void);
 
@@ -196,6 +200,12 @@ uint32_t app_charger_get_bat_vol(void);
 void app_charger_harman_low_bat_warning_vp(uint8_t state_of_charge, const char *func_name,
                                            const uint32_t line_no);
 #endif
+
+//ysc start
+#if HARMAN_DISABLE_STANDBY_LED_FLASH_WHEN_LOW_BATTERY
+    bool app_charger_get_low_bat_state(void);
+#endif
+//ysc end
 
 /** @} */ /* End of group APP_CHARGER_Exported_Functions */
 /** End of APP_CHARGER

@@ -1770,10 +1770,10 @@ static void app_bt_policy_enter_state(T_STATE state, T_BT_DEVICE_MODE mode)
         }
 
         event_param.is_ignore = true;
-        if (STATE_AFE_PAIRING_MODE == cur_state)
-        {
-            event_param.is_ignore = false;
-        }
+         if (STATE_AFE_PAIRING_MODE == cur_state)
+         {
+             event_param.is_ignore = false;
+		 }
 
         app_bt_policy_event_ind(BP_EVENT_STATE_CHANGED, &event_param);
 
@@ -3031,7 +3031,6 @@ static void app_bt_policy_state_shutdown_step_event_handle(T_EVENT event)
     }
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #if F_APP_ERWS_SUPPORT
 static void app_bt_policy_legacy_set_page_scan_param(uint16_t interval, uint16_t window)
 {
@@ -3042,6 +3041,8 @@ static void app_bt_policy_legacy_set_page_scan_param(uint16_t interval, uint16_t
 
     gap_br_cfg_page_scan_param(GAP_PAGE_SCAN_TYPE_INTERLACED, interval, window);
 }
+
+
 
 
 static void app_bt_policy_primary_page_scan_param_adjust(void)
@@ -6688,7 +6689,9 @@ void app_bt_policy_update_pair_idx_mapping(void)
     //                  pair_idx[6], pair_idx[7]);
 }
 
-
+//ysc start
+bool bt_connected_flag = false;
+//ysc end
 
 static void app_bt_policy_cback(T_BT_EVENT event_type, void *event_buf, uint16_t buf_len)
 {
@@ -6719,6 +6722,7 @@ static void app_bt_policy_cback(T_BT_EVENT event_type, void *event_buf, uint16_t
 #endif
             {
                 bt_param.is_b2b = false;
+                //app_bt_policy_legacy_set_page_scan_param(NORMAL_PAGESCAN_INTERVAL*2, NORMAL_PAGESCAN_WINDOW);
 
                 if (app_cfg_const.enable_align_default_volume_from_bud_to_phone)
                 {
@@ -6765,6 +6769,10 @@ static void app_bt_policy_cback(T_BT_EVENT event_type, void *event_buf, uint16_t
 #endif
             }
         }
+
+        //app_gfps_adv_update_adv_interval(400);
+        //ENGAGE_PRINT_TRACE0("------------  app_bt_policy_cback app_gfps_adv_update_adv_interval (400) -------------");        
+        
         break;
 
     case BT_EVENT_ACL_CONN_FAIL:
@@ -6876,6 +6884,9 @@ static void app_bt_policy_cback(T_BT_EVENT event_type, void *event_buf, uint16_t
 
     case BT_EVENT_ACL_CONN_DISCONN:
         {
+            //ysc start
+            bt_connected_flag = false;
+            //ysc end
             bt_param.bd_addr = param->acl_conn_disconn.bd_addr;
 
 #if F_APP_ERWS_SUPPORT
@@ -7113,6 +7124,9 @@ static void app_bt_policy_cback(T_BT_EVENT event_type, void *event_buf, uint16_t
 
     case BT_EVENT_ACL_CONN_IND:
         {
+            //ysc start
+            bt_connected_flag = true;
+            //ysc end
             APP_PRINT_TRACE1("app_bt_policy_cback: conn ind device cod 0x%08x", param->acl_conn_ind.cod);
 
             p_link = app_link_find_br_link(param->acl_conn_ind.bd_addr);

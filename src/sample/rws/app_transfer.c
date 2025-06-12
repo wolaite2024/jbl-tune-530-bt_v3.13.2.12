@@ -795,6 +795,7 @@ bool app_transfer_check_active(uint8_t cmd_path)
     }
 }
 
+//ysc start
 #if F_APP_CONSOLE_SUPPORT
 void app_transfer_handle_msg(T_IO_MSG *io_driver_msg_recv)
 {
@@ -804,14 +805,15 @@ void app_transfer_handle_msg(T_IO_MSG *io_driver_msg_recv)
                     app_transfer_timer_id, APP_TIMER_UART_WAKE_UP, 0, false,
                     active_time);
 }
-
+#endif
 
 static void app_transfer_timeout_cb(uint8_t timer_evt, uint16_t param)
 {
-    APP_PRINT_TRACE2("app_transfer_timeout_cb: timer_id %d, timer_chann %d", timer_evt, param);
+    APP_PRINT_TRACE4("app_transfer_timeout_cb: timer_id %d, timer_chann %d, dt_resend_count: %d, dt_resend_num: %d", timer_evt, param, dt_queue_ctrl.dt_resend_count, app_cfg_const.dt_resend_num);
 
     switch (timer_evt)
     {
+#if F_APP_CONSOLE_SUPPORT        
     case APP_TIMER_UART_ACK:
         app_stop_timer(&timer_idx_uart_ack);
 #if F_APP_ONE_WIRE_UART_SUPPORT
@@ -842,6 +844,7 @@ static void app_transfer_timeout_cb(uint8_t timer_evt, uint16_t param)
         app_transfer_pop_data_queue(CMD_PATH_UART, false);
         break;
 
+#endif
     case APP_TIMER_DATA_TRANSFER:
         app_stop_timer(&timer_idx_data_transfer);
         dt_queue_ctrl.dt_status = DT_STATUS_IDLE;
@@ -849,7 +852,8 @@ static void app_transfer_timeout_cb(uint8_t timer_evt, uint16_t param)
         {
             dt_queue_ctrl.dt_resend_count++;
             //dt_queue_ctrl.dt_status = DT_STATUS_IDLE;
-            if (dt_queue_ctrl.dt_resend_count >= app_cfg_const.dt_resend_num)
+            //if (dt_queue_ctrl.dt_resend_count >= app_cfg_const.dt_resend_num)
+            if (dt_queue_ctrl.dt_resend_count >= 1)
             {
                 app_transfer_pop_data_queue(dt_queue[dt_queue_ctrl.dt_queue_r_idx].active, true);
             }
@@ -868,15 +872,13 @@ static void app_transfer_timeout_cb(uint8_t timer_evt, uint16_t param)
         break;
     }
 }
-#endif
+//ysc end
 
 void app_transfer_init(void)
 {
     app_db.external_mcu_mtu = 256;
 
-#if F_APP_CONSOLE_SUPPORT
     app_timer_reg_cb(app_transfer_timeout_cb, &app_transfer_timer_id);
-#endif
 }
 
 #if F_APP_CONSOLE_SUPPORT

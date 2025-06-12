@@ -19,6 +19,7 @@
 #include "app_main.h"
 #include "trace.h"
 
+
 #include "cli_power.h"
 #if F_APP_CLI_CFG_SUPPORT
 #include "cli_cfg.h"

@@ -77,8 +77,9 @@
 #define HARMAN_SBC_MAX_BIT_POOL_46              46
 #define HARMAN_LATENCY_150_MS                   150
 #define HARMAN_LATENCY_120_MS                   120
-#define HARMAN_SECOND_LATENCY_230_MS            230
-
+//ysc start
+#define HARMAN_SECOND_LATENCY_230_MS            65535//230
+//ysc end
 #if HARMAN_FIND_MY_BUDS_TONE_SUPPORT
 #define HARMAN_FIND_MY_BUDS_RING_TIME_INTERVAL          1500
 #define HARMAN_FIND_MY_BUDS_RING_VOLUME_STATGE          3
@@ -168,6 +169,9 @@ typedef struct _t_app_harman_vp_data_header_
     uint8_t   rsved[4];
 } __attribute__((packed)) T_APP_HARMAN_VP_DATA_HEADER;
 
+//ysc start
+static void app_harman_devinfo_set(uint16_t feature_id, uint16_t value_size, uint8_t *p_value,uint16_t app_idx); 
+//ysc end
 void app_harman_vp_data_header_get(void)
 {
     uint8_t table_index = 0;
@@ -225,6 +229,94 @@ void app_harman_vp_data_header_get(void)
 }
 #endif
 
+//ysc start
+#if HARMAN_CUSTOMIZED_BUTTON_CONTROL
+    uint8_t app_harman_get_short_function(void)
+    {
+        return app_cfg_nv.app_mfb_short_press;
+    }
+
+    uint8_t app_harman_get_long_function(void)
+    {
+        return app_cfg_nv.app_mfb_long_press;
+    }
+
+    uint8_t app_harman_get_double_function(void)
+    {
+        return app_cfg_nv.app_mfb_double_press;
+    }
+
+    uint8_t app_harman_get_triple_function(void)
+    {
+        return app_cfg_nv.app_mfb_triple_press;
+    }
+
+
+    void app_harman_set_short_gesture(uint8_t action)
+    {
+        if (app_cfg_nv.app_mfb_short_press != action)
+        {
+            app_cfg_nv.app_mfb_short_press = action;
+            app_cfg_store(&app_cfg_nv.app_mfb_short_press, 1);
+        }
+        APP_PRINT_TRACE1("app_mfb_short_press: enable: %d", action);
+    }
+
+    void app_harman_set_long_gesture(uint8_t action)
+    {
+        if (app_cfg_nv.app_mfb_long_press != action)
+        {
+            app_cfg_nv.app_mfb_long_press = action;
+            app_cfg_store(&app_cfg_nv.app_mfb_long_press, 1);
+        }
+        APP_PRINT_TRACE1("app_mfb_long_press: enable: %d", action);
+    }
+
+    void app_harman_set_double_gesture(uint8_t action)
+    {
+        if (app_cfg_nv.app_mfb_double_press != action)
+        {
+            app_cfg_nv.app_mfb_double_press = action;
+            app_cfg_store(&app_cfg_nv.app_mfb_double_press, 1);
+        }
+        APP_PRINT_TRACE1("app_mfb_double_press: enable: %d", action);
+    }
+
+    void app_harman_set_triple_gesture(uint8_t action)
+    {
+        if (app_cfg_nv.app_mfb_triple_press != action)
+        {
+            app_cfg_nv.app_mfb_triple_press = action;
+            app_cfg_store(&app_cfg_nv.app_mfb_triple_press, 1);
+        }
+        APP_PRINT_TRACE1("app_mfb_triple_press: enable: %d", action);
+    }
+
+    void app_harman_set_sidetone(uint8_t sidetone_switch)
+    {
+        uint8_t mobile_app_idx = MAX_BR_LINK_NUM;
+        mobile_app_idx = app_ble_common_adv_get_conn_id();
+        app_harman_devinfo_set(FEATURE_SIDETONE, sizeof(app_cfg_nv.harman_sidetone),
+            (uint8_t *)&sidetone_switch,mobile_app_idx);
+    }
+    void app_eq_status(void)
+    {
+        uint8_t eq_index = 0;
+        uint8_t mobile_app_idx = MAX_BR_LINK_NUM;
+        mobile_app_idx = app_ble_common_adv_get_conn_id();
+        if(app_cfg_nv.harman_category_id)
+        {
+            app_harman_devinfo_set(FEATURE_EQ_INFO,149,eq_switch_info[6],mobile_app_idx);
+        }
+        else
+        {
+            app_harman_devinfo_set(FEATURE_EQ_INFO,149,eq_switch_info[1],mobile_app_idx);
+        } 
+        APP_PRINT_TRACE1("app_eq_status  app_cfg_nv.harman_category_id 0x%x",app_cfg_nv.harman_category_id);     
+    }
+
+#endif
+//ysc end
 void app_harman_set_lea_mode(bool enable)
 {
     if (app_cfg_nv.lea_mode_enable != enable)
@@ -286,7 +378,16 @@ void app_harman_cfg_reset(void)
 #if HARMAN_OPEN_LR_FEATURE
     app_cfg_nv.harman_LR_balance = HARMAN_LR_BALANCE_MID_VOL_LEVEL; // default off
 #endif
-    app_cfg_nv.lea_mode_enable = 0;
+    //app_cfg_nv.lea_mode_enable = 0;
+
+//ysc start
+#if HARMAN_CUSTOMIZED_BUTTON_CONTROL
+    app_cfg_nv.app_mfb_short_press = 0x08;
+    app_cfg_nv.app_mfb_long_press = 0xA1;
+    app_cfg_nv.app_mfb_double_press = 0xc8;
+    app_cfg_nv.app_mfb_triple_press = 0xB5;
+#endif   
+//end
 }
 
 uint8_t harman_get_active_mobile_cmd_link(uint8_t *idx)
@@ -602,24 +703,26 @@ void harman_sidetone_set_dsp(void)
         }
     }
 
+//ysc start
     if (app_cfg_nv.sidetone_switch == SIDETONE_SWTCH_ENABLE)
     {
         if (app_cfg_nv.sidetone_level == SIDETOME_LEVEL_L)
         {
             //L -18db
-            sidetone_gain_set(p_link->sidetone_instance, (-18 * 128));
+            sidetone_gain_set(p_link->sidetone_instance, (-5 * 128));
         }
         else if (app_cfg_nv.sidetone_level == SIDETOME_LEVEL_M)
         {
             //M -15.375db
-            sidetone_gain_set(p_link->sidetone_instance, (-15.375 * 128));
+            sidetone_gain_set(p_link->sidetone_instance, (-0 * 128));
         }
         else if (app_cfg_nv.sidetone_level == SIDETOME_LEVEL_H)
         {
             //H -13.125db
-            sidetone_gain_set(p_link->sidetone_instance, (-13.125 * 128));
+            sidetone_gain_set(p_link->sidetone_instance, (5 * 128));
         }
     }
+//ysc end	
 
     APP_PRINT_INFO2("harman_sidetone_set_dsp %d,%d", app_cfg_nv.sidetone_switch,
                     app_cfg_nv.sidetone_level);
@@ -635,11 +738,16 @@ void app_harman_devinfo_notify(uint8_t le_idx)
     uint16_t product_id = app_harman_license_pid_get();
     uint8_t color_id = app_harman_license_cid_get();
     uint8_t battery_status = app_harman_get_battery_status();
-
-    payloadlen = 2 + 4 * 8 + sizeof(app_cfg_nv.device_name_legacy) + sizeof(product_id) +
-                 sizeof(color_id) + BD_ADDR_SIZE + sizeof(firmware_version) +
-                 sizeof(battery_status) + sizeof(current_vol) + sizeof(tws_connectiong_status);
+//ysc start	
+    uint8_t lea_state = (app_cfg_nv.lea_mode_enable << 7);
+    APP_PRINT_TRACE1(" app_harman_devinfo_notify lea_state 0x%x",lea_state);
+    payloadlen = 2 + 4 * 12 + sizeof(app_cfg_nv.device_name_legacy) + sizeof(product_id) +
+                sizeof(color_id) + BD_ADDR_SIZE + sizeof(firmware_version) +sizeof(lea_state)+
+                sizeof(battery_status) + sizeof(current_vol) + sizeof(tws_connectiong_status)+
+                sizeof(app_cfg_nv.harman_auto_power_off) + sizeof(app_cfg_nv.harman_language_status)+
+                sizeof(app_cfg_const.voice_prompt_language);
     retdevinfo_rsp = malloc(payloadlen);
+//ysc end	
 
     if (retdevinfo_rsp != NULL)
     {
@@ -679,6 +787,23 @@ void app_harman_devinfo_notify(uint8_t le_idx)
         app_harman_devinfo_feature_pack(retdevinfo_rsp + len_temp, FEATURE_TWS_INFO,
                                         sizeof(tws_connectiong_status), (uint8_t *)&tws_connectiong_status);
         len_temp += (4 + sizeof(tws_connectiong_status));
+//ysc start		
+        app_harman_devinfo_feature_pack(retdevinfo_rsp + len_temp, FEATURE_LE_AUDIO_UNICAST_STATUS,
+            sizeof(lea_state), (uint8_t *)&lea_state);
+        len_temp += (4 + sizeof(lea_state));
+
+        app_harman_devinfo_feature_pack(retdevinfo_rsp + len_temp, FEATURE_AUTO_POWER_OFF, 
+            sizeof(app_cfg_nv.harman_auto_power_off),(uint8_t *)&app_cfg_nv.harman_auto_power_off);
+        len_temp += (4 + sizeof(app_cfg_nv.harman_auto_power_off));
+
+        app_harman_devinfo_feature_pack(retdevinfo_rsp + len_temp, FEATURE_VOICE_PROMPT_LANGUAGE, 
+            sizeof(app_cfg_const.voice_prompt_language),(uint8_t *)&app_cfg_const.voice_prompt_language);
+        len_temp += (4 + sizeof(app_cfg_const.voice_prompt_language));
+
+        app_harman_devinfo_feature_pack(retdevinfo_rsp + len_temp, FEATURE_VOICE_PROMPT_STATUS, 
+            sizeof(app_cfg_nv.harman_language_status),&app_cfg_nv.harman_language_status);    
+        len_temp += (4 + sizeof(app_cfg_nv.harman_language_status));
+//ysc end		
 
         APP_PRINT_INFO2("app_harman_devinfo_notify: payloadlen: 0x%02X, product_id: 0x%04x",
                         payloadlen, product_id);
@@ -1426,6 +1551,47 @@ static void app_harman_devinfo_get(uint8_t *p_cmd_rsp, uint16_t feature_id, uint
         break;
 #endif
 
+//ysc start
+#if HARMAN_CUSTOMIZED_BUTTON_CONTROL
+    case FEATURE_SHORT_PRESS:  
+    {
+        uint8_t Gesture_type;
+        Gesture_type = app_harman_get_short_function();
+        APP_PRINT_TRACE1("FEATURE_SHORT_PRESS SEND SUCCESS %x",Gesture_type);
+        app_harman_devinfo_feature_pack(p_cmd_rsp, feature_id, payloadlen,
+        (uint8_t *)&Gesture_type);
+    }   
+    break;                   
+    case FEATURE_LONG_SHORT_PRESS:  
+    {
+        uint8_t Gesture_type;
+        Gesture_type = app_harman_get_long_function();
+        APP_PRINT_TRACE1("FEATURE_LONG_SHORT_PRESS SEND SUCCESS %x",Gesture_type);
+        app_harman_devinfo_feature_pack(p_cmd_rsp, feature_id, payloadlen,
+        (uint8_t *)&Gesture_type);
+    }   
+    break;                  
+    case FEATURE_DOUBLE_SHORT_PRESS:
+    {
+        uint8_t Gesture_type;
+        Gesture_type = app_harman_get_double_function();
+        APP_PRINT_TRACE1("FEATURE_DOUBLE_SHORT_PRESS SEND SUCCESS %x",Gesture_type);
+        app_harman_devinfo_feature_pack(p_cmd_rsp, feature_id, payloadlen,
+        (uint8_t *)&Gesture_type);
+    }   
+    break;                  
+    case FEATURE_TRIPLE_SHORT_PRESS:
+    {
+        uint8_t Gesture_type;
+        Gesture_type = app_harman_get_triple_function();
+        APP_PRINT_TRACE1("FEATURE_TRIPLE_SHORT_PRESS SEND SUCCESS %x",Gesture_type);
+        app_harman_devinfo_feature_pack(p_cmd_rsp, feature_id, payloadlen,
+        (uint8_t *)&Gesture_type);
+    }   
+    break; 
+#endif
+//ysc end
+
     default:
         break;
     }
@@ -1719,6 +1885,11 @@ static void app_harman_devinfo_set(uint16_t feature_id, uint16_t value_size, uin
                     }
                 }
             }
+            rsp_len = 2 + 4 + sizeof(app_cfg_nv.harman_sidetone);
+            p_cmd_rsp = malloc(rsp_len);
+            p_cmd_rsp[0] = 0;
+            p_cmd_rsp[1] = 0;
+            app_harman_devinfo_feature_pack(&p_cmd_rsp[2], FEATURE_SIDETONE, sizeof(app_cfg_nv.harman_sidetone), (uint8_t *)&p_value[0]);
         }
         break;
 
@@ -1916,6 +2087,58 @@ static void app_harman_devinfo_set(uint16_t feature_id, uint16_t value_size, uin
             app_harman_heartbeat_check_times_set(0);
         }
         break;
+//ysc start		
+#if HARMAN_CUSTOMIZED_BUTTON_CONTROL
+    case FEATURE_SHORT_PRESS:  
+    {
+        uint8_t Gesture_type =p_value[0];
+        app_harman_set_short_gesture(Gesture_type);
+        rsp_len = 2 + 4 + sizeof(app_cfg_nv.app_mfb_short_press);
+        p_cmd_rsp = malloc(rsp_len);
+        p_cmd_rsp[0] = 0;
+        p_cmd_rsp[1] = 0;
+        app_harman_devinfo_feature_pack(&p_cmd_rsp[2], FEATURE_SHORT_PRESS, sizeof(app_cfg_nv.app_mfb_short_press), (uint8_t *)&Gesture_type);
+        APP_PRINT_TRACE1(" FEATURE_SHORT_PRESS SET p_value[0] %x",p_value[0]);
+    }   
+        break;                   
+    case FEATURE_LONG_SHORT_PRESS:  
+    {
+        uint8_t Gesture_type =p_value[0];
+        app_harman_set_long_gesture(Gesture_type);
+        rsp_len = 2 + 4 + sizeof(app_cfg_nv.app_mfb_long_press);
+        p_cmd_rsp = malloc(rsp_len);
+        p_cmd_rsp[0] = 0;
+        p_cmd_rsp[1] = 0;
+        app_harman_devinfo_feature_pack(&p_cmd_rsp[2], FEATURE_LONG_SHORT_PRESS, sizeof(app_cfg_nv.app_mfb_long_press), (uint8_t *)&Gesture_type);
+        APP_PRINT_TRACE1(" FEATURE_LONG_SHORT_PRESS SET p_value[0] %x",p_value[0]);
+    }   
+        break;                  
+    case FEATURE_DOUBLE_SHORT_PRESS:
+    {
+        uint8_t Gesture_type =p_value[0];
+        app_harman_set_double_gesture(Gesture_type);
+        rsp_len = 2 + 4 + sizeof(app_cfg_nv.app_mfb_double_press);
+        p_cmd_rsp = malloc(rsp_len);
+        p_cmd_rsp[0] = 0;
+        p_cmd_rsp[1] = 0;
+        app_harman_devinfo_feature_pack(&p_cmd_rsp[2], FEATURE_DOUBLE_SHORT_PRESS, sizeof(app_cfg_nv.app_mfb_double_press), (uint8_t *)&Gesture_type);
+        APP_PRINT_TRACE1(" FEATURE_DOUBLE_SHORT_PRESS SET p_value[0] %x",p_value[0]);
+    }   
+        break;                  
+    case FEATURE_TRIPLE_SHORT_PRESS:
+    {
+        uint8_t Gesture_type =p_value[0];
+        app_harman_set_triple_gesture(Gesture_type);
+        rsp_len = 2 + 4 + sizeof(app_cfg_nv.app_mfb_triple_press);
+        p_cmd_rsp = malloc(rsp_len);
+        p_cmd_rsp[0] = 0;
+        p_cmd_rsp[1] = 0;
+        app_harman_devinfo_feature_pack(&p_cmd_rsp[2], FEATURE_TRIPLE_SHORT_PRESS, sizeof(app_cfg_nv.app_mfb_triple_press), (uint8_t *)&Gesture_type);
+        APP_PRINT_TRACE1(" FEATURE_TRIPLE_SHORT_PRESS SET p_value[0] %x",p_value[0]);
+    }   
+        break; 
+#endif
+//ysc end
 
     default:
         break;
@@ -2012,6 +2235,14 @@ void app_harman_vendor_cmd_process(uint8_t *cmd_ptr, uint16_t cmd_len, uint8_t c
                 case FEATURE_FIND_MY_BUDS_STATUS:
                 case FEATURE_SIDETONE:
                 case FEATURE_CALL_STATUS:
+//ysc start
+#if HARMAN_CUSTOMIZED_BUTTON_CONTROL     
+								case FEATURE_SHORT_PRESS: 
+                case FEATURE_LONG_SHORT_PRESS:                    
+                case FEATURE_DOUBLE_SHORT_PRESS:                  
+                case FEATURE_TRIPLE_SHORT_PRESS:
+#endif  
+//ysc end
                     {
                         size_temp = FEATURE_VALUE_SIZE_1B;
                     }
@@ -2182,6 +2413,14 @@ void app_harman_vendor_cmd_process(uint8_t *cmd_ptr, uint16_t cmd_len, uint8_t c
 #if HARMAN_SUPPORT_WATER_EJECTION
                     (item.feature_id == FEATURE_WATER_EJECTION) ||
 #endif
+//ysc start
+#if HARMAN_CUSTOMIZED_BUTTON_CONTROL
+                    (item.feature_id == FEATURE_SHORT_PRESS) ||
+                    (item.feature_id == FEATURE_LONG_SHORT_PRESS) ||
+                    (item.feature_id == FEATURE_DOUBLE_SHORT_PRESS) ||
+                    (item.feature_id == FEATURE_TRIPLE_SHORT_PRESS)	||     
+#endif
+//ysc end
                     (item.feature_id == FEATURE_VOICE_PROMPT_STATUS) ||
                     (item.feature_id == FEATURE_HEARTBEAT))
                 {

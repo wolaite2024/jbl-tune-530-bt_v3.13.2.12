@@ -640,13 +640,17 @@ static void app_charger_handle_soc(uint8_t state_of_charge, uint8_t first_power_
 
         if (app_charger_state != APP_CHARGER_STATE_ERROR)
         {
+            //ysc start
+#if 0            
             //Reset to 10% base
             if ((state_of_charge > 0) && (state_of_charge <= app_cfg_const.battery_warning_percent))
             {
-                state_of_charge = ((state_of_charge + 10) / 10 * 10);
-                ori_state_of_charge = ((state_of_charge + 10) / 10 * 10);
+                state_of_charge = ((state_of_charge + app_cfg_const.battery_warning_percent) / 10 * 10);
+                ori_state_of_charge = ((state_of_charge + app_cfg_const.battery_warning_percent) / 10 * 10);
             }
             else
+#endif 
+            //ysc end
             {
                 state_of_charge     = MULTIPLE_OF_TEN(state_of_charge);
                 ori_state_of_charge = MULTIPLE_OF_TEN(ori_state_of_charge);
@@ -786,10 +790,15 @@ static void app_charger_handle_soc(uint8_t state_of_charge, uint8_t first_power_
 
 void app_charger_update(void)
 {
+//ysc start
+#if 0
     uint8_t state_of_charge;
 
     state_of_charge = app_charger_get_soc();
     app_charger_handle_soc(state_of_charge, 1);
+#endif
+    cali_vbat_percent_by_adc(1);
+//ysc end
 }
 
 bool app_charger_remote_battery_status_is_low(void)
@@ -1142,11 +1151,86 @@ void app_charger_init(void)
     {
         sys_mgr_cback_register(app_charger_dm_cback);
     }
+
+//ysc start
+    app_cfg_const.battery_warning_percent = 1;
+    DBG_DIRECT("after app_cfg_const.battery_warning_percent: %d", app_cfg_const.battery_warning_percent);   
+//ysc end
+    
 #if F_APP_ERWS_SUPPORT
     app_relay_cback_register(app_charger_relay_cback, app_charger_parse_cback,
                              APP_MODULE_TYPE_CHARGER, APP_CHARGER_MSG_TOTAL);
 #endif
 }
+
+
+//ysc start
+
+uint8_t get_vbat_percent_from_table(uint16_t vbat)
+{
+    uint8_t percent = 100;
+    uint16_t vol_table[101] = {3200, 3280, 3327, 3372, 3405, 3422, 3432, 3440, 3447, 3454,          // 0% ~ 9%, 1% is 3271mV,??for 30min~50min music,change to 3280
+                               3461, 3469, 3478, 3486, 3494, 3502, 3511, 3519, 3527, 3533,          // 10% ~ 19%
+                               3540, 3546, 3552, 3558, 3564, 3569, 3575, 3580, 3585, 3589,          // 20% ~ 29%
+                               3593, 3597, 3600, 3603, 3606, 3609, 3611, 3614, 3617, 3620,          // 30% ~ 39%
+                               3622, 3625, 3628, 3631, 3634, 3637, 3640, 3643, 3647, 3650,          // 40% ~ 49%
+                               3654, 3659, 3663, 3668, 3675, 3682, 3690, 3700, 3709, 3717,          // 50% ~ 59%
+                               3725, 3733, 3741, 3749, 3757, 3765, 3773, 3782, 3790, 3800,          // 60% ~ 69%
+                               3809, 3818, 3828, 3838, 3848, 3858, 3869, 3879, 3890, 3900,          // 70% ~ 79%
+                               3911, 3922, 3933, 3944, 3956, 3967, 3979, 3990, 4002, 4014,          // 80% ~ 89%
+                               4025, 4037, 4049, 4062, 4074, 4087, 4100, 4113, 4127, 4142, 4158,    // 90% ~ 100%
+                            };  
+
+    for(int i = 0; i< 101; i++)
+    {
+        if(vbat < vol_table[i])
+        {
+            percent = i;
+            break;
+        }
+    }
+    return percent;
+}
+
+void cali_vbat_percent_by_adc(uint8_t first_power_on)
+{
+    uint8_t new_vol;
+    T_APP_SMOOTH_BAT_VOL result;
+    uint16_t vbat = app_harman_adc_voltage_battery_get();
+    uint8_t percent = get_vbat_percent_from_table(vbat);
+    result = app_charger_smooth_bat_discharge(percent, &new_vol);   
+    
+    APP_PRINT_TRACE4("vbat: %d, percent: %d, new_vol: %d, result: %d ", vbat, percent, new_vol, result);
+    DBG_DIRECT("vbat: %d, percent: %d, report_to_app: %d, smooth_or_Not: %d,", vbat, percent, app_db.local_batt_level , result);
+
+    if (result == APP_SMOOTH_BAT_VOL_DISALLOW)
+    {
+        APP_PRINT_TRACE0("result == APP_SMOOTH_BAT_VOL_DISALLOW");
+    }
+    else if (result == APP_SMOOTH_BAT_VOL_CHANGE)
+    {
+        percent = new_vol;
+    }
+
+    if(percent == 0)
+    {
+        APP_PRINT_TRACE0("MMI_DEV_POWER_OFF cause percent == 0");
+        app_mmi_handle_action(MMI_DEV_POWER_OFF);
+    }
+    
+    if(first_power_on)
+    {
+        app_charger_handle_soc(percent, first_power_on);
+    }
+}
+
+extern bool dut_flag;
+//ysc end
+
+
+
+
+
 
 void app_charger_handle_msg(T_IO_MSG *io_driver_msg_recv)
 {
@@ -1180,14 +1264,34 @@ void app_charger_handle_msg(T_IO_MSG *io_driver_msg_recv)
             {
                 break;
             }
-
+#if 0 
 #if F_APP_SMOOTH_BAT_REPORT
             if ((app_db.device_state == APP_DEVICE_STATE_ON) && (chg_param != 0))
             {
                 uint8_t new_vol;
                 T_APP_SMOOTH_BAT_VOL result;
 
-                result = app_charger_smooth_bat_discharge(chg_param, &new_vol);
+                result = app_charger_smooth_bat_discharge(chg_param, &new_vol);    
+                         
+//ysc start
+                if(dut_flag)
+                {
+                    DBG_DIRECT("-------------- DUT --------------");
+                }
+                else
+                {
+                    uint16_t vbat = app_harman_adc_voltage_battery_get();
+                    DBG_DIRECT("-------------- vbat: %d --------------", vbat);
+
+                    if(vbat >= 4025 || vbat <= 3460)
+                    {             
+                        new_vol = get_percent_from_table(vbat);
+                        //APP_PRINT_TRACE2("+++++++++++ vbat: %d, new_vold: %d +++++++++++++++", vbat, new_vol);
+                        DBG_DIRECT("+++++++++++ vbat: %d, new_vold: %d +++++++++++++++", vbat, new_vol);
+                    }
+                }
+//ysc end
+#endif
 
                 if (result == APP_SMOOTH_BAT_VOL_DISALLOW)
                 {
@@ -1198,9 +1302,8 @@ void app_charger_handle_msg(T_IO_MSG *io_driver_msg_recv)
                     chg_param = new_vol;
                 }
             }
-#endif
-
             app_charger_handle_soc(chg_param, 0);
+#endif            
 
 #if BISTO_FEATURE_SUPPORT
             if (extend_app_cfg_const.bisto_support)
@@ -1254,3 +1357,11 @@ void app_charger_get_battery_info(bool *left_charging, uint8_t *left_battery,
                      *case_charging, *case_battery);
 }
 
+//ysc start
+#if HARMAN_DISABLE_STANDBY_LED_FLASH_WHEN_LOW_BATTERY
+    bool app_charger_get_low_bat_state(void)
+    {
+        return battery_status == BATTERY_STATUS_LOW;
+    }
+#endif
+//ysc end

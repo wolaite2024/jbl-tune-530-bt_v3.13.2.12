@@ -425,7 +425,8 @@ void app_led_disable_non_repeat_mode(void)
     app_led_reset_mode(1);
 }
 
-#if 0
+//ysc start
+#if 1
 void app_led_set_designate_led_on(uint8_t led_number)
 {
     T_LED_TABLE led_conf_table = {LED_TYPE_BYPASS};
@@ -437,6 +438,7 @@ void app_led_set_designate_led_on(uint8_t led_number)
     led_cmd(led_channel, ENABLE);
 }
 #endif
+//ysc end
 
 void app_led_set_designate_led_off(uint8_t led_number)
 {
@@ -1611,10 +1613,10 @@ void app_led_check_repeat_mode(void)
                         change_mode = LED_MODE_GAMING_MODE;
                     }
 #endif
-                    else if (app_led_is_audio_playing_state())
-                    {
-                        change_mode = LED_MODE_AUDIO_PLAYING;
-                    }
+                    // else if (app_led_is_audio_playing_state())
+                    // {
+                    //     change_mode = LED_MODE_AUDIO_PLAYING;
+                    // }
 #if 0
                     else if (app_led_is_engage_state())
                     {

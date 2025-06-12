@@ -583,16 +583,16 @@ void app_ble_common_adv_init(void)
         memcpy(&app_ble_common_adv_data[0], p_harman_adv_data, harman_adv_data_len);
 
         pid = app_harman_license_pid_get();
-        memcpy(&app_ble_common_adv_data[4], (uint8_t *)&pid, 2);
+        memcpy(&app_ble_common_adv_data[11], (uint8_t *)&pid, 2);
 
-        app_ble_common_adv_data[6] = 0x00;
-        app_ble_common_adv_data[7] = 0xF0;
+        app_ble_common_adv_data[13] = 0x00;
+        app_ble_common_adv_data[14] = 0x90;
 
         cid = app_harman_license_cid_get();
-        app_ble_common_adv_data[8] = cid;
+        app_ble_common_adv_data[15] = cid;
 
         p_bt_mac_crc = app_harman_ble_bt_mac_crc_get();
-        memcpy(&app_ble_common_adv_data[13], p_bt_mac_crc, 2);
+        memcpy(&app_ble_common_adv_data[16], p_bt_mac_crc, 2);
 
         data_len = harman_adv_data_len;
 

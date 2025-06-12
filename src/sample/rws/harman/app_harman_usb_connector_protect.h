@@ -38,12 +38,14 @@ typedef enum _t_app_harman_usb_connector_status_
     STATUS_ENABLE_CHARGER_OPEN_MOSFET     = 0x04,
 } T_APP_HARMAN_USB_CONNECTOR_STATUS;
 
+//ysc start
 typedef enum _t_app_harman_usb_connector_protect_ntc_threshold_
 {
     USB_PROTECT_NTC_THRESHOLD_HIGH            = 151,  // unit: mv
-    USB_PROTECT_NTC_THRESHOLD_MID             = 206,  // unit: mv
-    USB_PROTECT_NTC_THRESHOLD_LOW             = 409,  // unit: mv
+    USB_PROTECT_NTC_THRESHOLD_MID             = 176,  //206,  // unit: mv
+    USB_PROTECT_NTC_THRESHOLD_LOW             = 376, //409,  // unit: mv
 } T_APP_HARMAN_USB_CONNECTOR_PROTECT_NTC_THRESHOLD;
+//ysc end
 
 void app_harman_usb_connector_protect_init(void);
 void app_harman_usb_connector_adc_update(void);

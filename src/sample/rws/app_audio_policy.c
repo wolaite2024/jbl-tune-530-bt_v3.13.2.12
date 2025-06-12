@@ -135,6 +135,12 @@
 #include "multitopology_ctrl.h"
 #endif
 
+//ysc start
+#if GFPS_FEATURE_SUPPORT
+#include "app_gfps.h"
+#endif
+//ysc end
+
 #if GFPS_SASS_SUPPORT
 #include "app_sass_policy.h"
 #endif
@@ -358,7 +364,9 @@ static void app_audio_handle_vol_change(T_AUDIO_VOL_CHANGE vol_status)
 
         if (vol_status == AUDIO_VOL_CHANGE_MAX)
         {
-            app_led_change_mode(LED_MODE_VOL_MAX_MIN, true, true);
+		//ysc start
+            //app_led_change_mode(LED_MODE_VOL_MAX_MIN, true, true);
+		//ysc end
 
 #if 0
             if (app_audio_is_circular_volume_up())
@@ -406,7 +414,9 @@ static void app_audio_handle_vol_change(T_AUDIO_VOL_CHANGE vol_status)
         }
         else if (vol_status == AUDIO_VOL_CHANGE_MIN)
         {
-            app_led_change_mode(LED_MODE_VOL_MAX_MIN, true, true);
+		//ysc start
+            //app_led_change_mode(LED_MODE_VOL_MAX_MIN, true, true);
+		//ysc end	
 
             if (app_db.is_circular_vol_up == true)
             {
@@ -445,7 +455,9 @@ static void app_audio_handle_vol_change(T_AUDIO_VOL_CHANGE vol_status)
         else if (vol_status == AUDIO_VOL_CHANGE_DOWN ||
                  vol_status == AUDIO_VOL_CHANGE_UP)
         {
-            app_led_change_mode(LED_MODE_VOL_ADJUST, true, true);
+		//ysc start
+            //app_led_change_mode(LED_MODE_VOL_ADJUST, true, true);
+		//ysc end	
 
             if (app_cfg_const.disallow_sync_play_vol_changed_tone_when_vol_adjust)
             {
@@ -1591,7 +1603,10 @@ static void app_audio_policy_cback(T_AUDIO_EVENT event_type, void *event_buf, ui
             }
             else if (stream_type == AUDIO_STREAM_TYPE_VOICE)
             {
-                if (cur_volume == app_dsp_cfg_vol.voice_out_volume_max)
+			//ysc start
+                if ((cur_volume == app_dsp_cfg_vol.voice_out_volume_max)&&
+                                                (pre_volume == app_dsp_cfg_vol.voice_out_volume_max))
+			//ysc end																					
                 {
                     vol_status = AUDIO_VOL_CHANGE_MAX;
                 }
@@ -2620,6 +2635,8 @@ void app_audio_a2dp_play_status_update(T_APP_A2DP_STREAM_EVENT event)
         if (event == APP_A2DP_STREAM_AVRCP_PLAY || event == APP_A2DP_STREAM_A2DP_START)
         {
             app_db.a2dp_play_status = true;
+            //app_gfps_next_action(GFPS_ACTION_IDLE);
+            //APP_PRINT_TRACE0("app_audio_a2dp_play_status_update, app_gfps_next_action(GFPS_ACTION_IDLE); gfps stop");
 //            need_to_sync = true;
         }
     }
@@ -2628,6 +2645,10 @@ void app_audio_a2dp_play_status_update(T_APP_A2DP_STREAM_EVENT event)
         if (event == APP_A2DP_STREAM_AVRCP_PAUSE || event == APP_A2DP_STREAM_A2DP_STOP)
         {
             app_db.a2dp_play_status = false;
+			//ysc start
+            //app_gfps_adv_update_adv_interval(32);
+            //APP_PRINT_TRACE0("------------------------------  gfps 32  ------------------------------------");
+			//ysc end
 //            need_to_sync = true;
         }
     }
@@ -2646,6 +2667,11 @@ void app_audio_a2dp_play_status_update(T_APP_A2DP_STREAM_EVENT event)
 #if F_APP_GAMING_DONGLE_SUPPORT
     app_bt_policy_msg_gaming_dongle_streaming();
 #endif
+
+    //ysc start
+    //app_gfps_adv_update_adv_interval(400);
+    //APP_PRINT_TRACE0("+++++++++++++++++ app_audio_a2dp_play_status_update: gfps 400 +++++++++++++");
+    //ysc end
 
     APP_PRINT_TRACE2("app_audio_a2dp_play_status_update: event %d status %d", event,
                      app_db.a2dp_play_status);
@@ -3159,6 +3185,10 @@ static void app_audio_bt_cback(T_BT_EVENT event_type, void *event_buf, uint16_t 
 #endif
             }
         }
+		//ysc start
+        app_gfps_adv_update_adv_interval(400);
+        ENGAGE_PRINT_TRACE0("------------  BT_EVENT_ACL_CONN_SUCCESS, app_gfps_adv_update_adv_interval (400) -------------");  
+		//ysc end             
         break;
 
 #if F_APP_ERWS_SUPPORT

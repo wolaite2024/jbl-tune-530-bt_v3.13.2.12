@@ -1093,11 +1093,13 @@ static void app_device_link_policy_ind(T_BP_EVENT event, T_BP_EVENT_PARAM *event
                         extern uint8_t conn_to_new_device;
                         app_teams_audio_connected_state_vp_play(event_param->bd_addr, conn_to_new_device);
 #else
-#if F_APP_HARMAN_FEATURE_SUPPORT
+//ysc start
+#if (HARMAN_SUPPORT_CONNECT_VP_IN_HFP == 0)
                         if ((!app_hfp_sco_is_connected())
                             //&& (app_db.br_link[app_a2dp_get_active_idx()].avrcp_play_status != BT_AVRCP_PLAY_STATUS_PLAYING)
                            )
 #endif
+//ysc end
                         {
                             if (app_cfg_const.only_primary_bud_play_connected_tone)
                             {
@@ -1181,6 +1183,13 @@ static void app_device_link_policy_ind(T_BP_EVENT event, T_BP_EVENT_PARAM *event
                                     TRACE_BDADDR(event_param->bd_addr),
                                     app_db.br_link[app_link_find_br_link(event_param->bd_addr)->id].connected_profile);
                 app_harman_dump_link_information();
+                            //ysc start
+                //if(app_hfp_sco_is_connected())
+                {
+                    app_gfps_adv_update_adv_interval(400);
+                    ENGAGE_PRINT_TRACE0("------------    case BP_EVENT_PROFILE_CONN_SUC:, app_gfps_adv_update_adv_interval (400) -------------");
+                }
+                //ysc end
 #endif
             }
 

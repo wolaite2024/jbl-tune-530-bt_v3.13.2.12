@@ -383,9 +383,25 @@ void app_harman_adc_msg_handle(void)
     }
 #endif
 
+//ysc start
+#if 1
+    static uint8_t count = 0;
+    count++;
+    if(count > 10)
+    {
+        cali_vbat_percent_by_adc(0);
+        count = 0;
+    }
+#endif     
+//ysc end   
+
+
+
+
     if (app_ext_charger_check_status())
     {
         app_ext_charger_ntc_adc_update();
+
     }
 #if HARMAN_DISCHARGER_NTC_DETECT_PROTECT
     else

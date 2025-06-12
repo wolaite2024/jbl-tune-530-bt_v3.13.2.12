@@ -35,6 +35,9 @@
 #include "app_sensor.h"
 #include "hal_gpio.h"
 
+//ysc start
+#include "app_harman_vendor_cmd.h"
+//ysc end
 #if F_APP_CLI_BINARY_MP_SUPPORT
 #include "mp_test_vendor.h"
 #include "mp_test.h"
@@ -131,6 +134,14 @@
 
 #define SEPEARTE_MFB_GSENSOR (app_cfg_const.gsensor_support && !app_cfg_const.enable_mfb_pin_as_gsensor_interrupt_pin)
 
+//ysc start
+#if HARMAN_SPECAIL_ULTRA_LONG_KEY_TIME
+#define SPECAIL_ULTRA_LONG_KEY_ID           (KEY0_MASK | KEY3_MASK)
+#define SPECAIL_ULTRA_LONG_KEY_TIME         100
+#define SPECAIL_LONG_KEY_TIME               12
+#endif
+//ysc end
+
 typedef enum t_key_click
 {
     KEY_CLICK_SINGLE            = 0x01,
@@ -202,6 +213,9 @@ typedef enum t_app_key_timer
 typedef struct t_key_data
 {
     uint8_t         mfb_key;                /* MFB key (power on)*/
+	//ysc start
+	uint8_t         mfb_key1;
+	//ysc end
     uint8_t         pre_key;                /* previous key value */
     uint8_t         combine_key_bits;       /* record current hybrid press key value*/
     uint8_t         pre_combine_key_bits;   /* record previous hybrid press key value*/
@@ -338,6 +352,49 @@ static T_KEY_DATA key_data = {0}; /**<record key variable */
 static uint8_t power_onoff_combinekey_found = 0;
 static bool long_key_power_off_pressed = false;
 
+//ysc start 
+#if HARMAN_CUSTOMIZED_BUTTON_CONTROL
+    static uint8_t app_harman_gesture_func(uint8_t func_id)
+    {
+        uint8_t action = 0;
+        switch (func_id)
+        {
+            case FUNC_PLAY_PAUSE:
+                action = MMI_AV_PLAY_PAUSE;
+                //app_key_execute_action(MMI_AV_PLAY_PAUSE);
+            break;
+            case FUNC_VOICE_AWARE:
+                if(app_cfg_nv.sidetone_switch)
+                {
+                    app_cfg_nv.harman_sidetone = app_cfg_nv.harman_sidetone & 0x7F;
+                    APP_PRINT_TRACE2("FEATURE_SIDETONE: switch: %d, level: %d",
+                            app_cfg_nv.sidetone_switch,app_cfg_nv.sidetone_level);
+						app_harman_set_sidetone(app_cfg_nv.harman_sidetone);
+                }
+                else
+                {
+                    app_cfg_nv.harman_sidetone = app_cfg_nv.harman_sidetone | 0x80;
+                    APP_PRINT_TRACE2("FEATURE_SIDETONE: switch: %d, level: %d",
+                            app_cfg_nv.sidetone_switch,app_cfg_nv.sidetone_level);
+                    app_harman_set_sidetone(app_cfg_nv.harman_sidetone);
+                }
+                
+            break;
+            case FUNC_EQ_STATUS:
+                app_eq_status();
+                    //app_cfg_nv.app_mfb_eq_state_local !=app_cfg_nv.app_mfb_eq_state_local
+            break;
+            case FUNC_VOICE_ASSISTANT:
+                action = MMI_HF_INITIATE_VOICE_DIAL;
+            break;
+            default:
+                break;
+        }
+        APP_PRINT_TRACE2("app_harman_gesture_func func_id %x  action %x",func_id,action);
+        return action;
+    }
+#endif
+//ysc end
 #if F_APP_KEY_EXTEND_FEATURE
 uint8_t app_key_click_type_mapping(uint8_t key_type, uint8_t direction)
 {
@@ -1930,7 +1987,7 @@ void app_key_single_click(uint8_t key)
             key_data.key_action = app_cfg_const.key_table[long_press][app_lea_ccp_get_call_status()]
                                   [app_key_search_index(key)];
 
-            app_key_execute_action(key_data.key_action);
+            //app_key_execute_action(key_data.key_action);
         }
         else
 #endif
@@ -1965,12 +2022,41 @@ void app_key_single_click(uint8_t key)
                 }
             }
 #endif
-
-            app_key_execute_action(key_data.key_action);
         }
+//ysc start
+#if HARMAN_CUSTOMIZED_BUTTON_CONTROL
+#if F_APP_LEA_SUPPORT
+    if((app_bt_policy_get_call_status() == BT_HFP_CALL_IDLE) && (key == KEY1_MASK))
+#else
+    if((app_hfp_get_call_status() == BT_HFP_CALL_IDLE) && (key == KEY1_MASK))
 #endif
+    {
+        if (long_press == 0)
+        {
+            key_data.key_action = app_harman_gesture_func(app_harman_get_short_function());
+        }
+        else
+        {
+            key_data.key_action = app_harman_gesture_func(app_harman_get_long_function());
+        }
     }
+#endif
+//ysc end
+        app_key_execute_action(key_data.key_action);
+#endif
 
+//ysc start
+/////////////////////////////
+#if HARMAN_DETECT_BATTERY_STATUS_LED_SUPPORT
+    if ((app_db.device_state == APP_DEVICE_STATE_ON) &&
+        (app_link_get_connected_src_num() != 0) && (long_press == 0))
+    {
+        APP_PRINT_INFO0("[SD_CHECK] key_check_press blink");
+        app_led_change_mode(LED_MODE_GAMING_MODE, true, false);
+    }
+#endif
+//ysc end
+}
     app_key_clear();
 }
 
@@ -1986,6 +2072,9 @@ void app_key_single_click(uint8_t key)
 static void app_key_hybrid_click(uint8_t key)
 {
     uint8_t i;
+//ysc start	
+    uint8_t harman_action = 0;
+//ysc end	
     uint8_t hybrid_type = HYBRID_KEY_SHORT_PRESS;
     bool is_only_allow_factory_reset = false;
 
@@ -2039,7 +2128,33 @@ static void app_key_hybrid_click(uint8_t key)
                 return;
             }
         }
-
+//ysc start		
+#if HARMAN_CUSTOMIZED_BUTTON_CONTROL
+#if F_APP_LEA_SUPPORT
+    if((app_bt_policy_get_call_status() == BT_HFP_CALL_IDLE) && (key == KEY1_MASK))
+#else
+    if((app_hfp_get_call_status() == BT_HFP_CALL_IDLE) && (key == KEY1_MASK))
+#endif
+    {
+        if (hybrid_type == HYBRID_KEY_2_CLICK)
+        {
+            app_db.power_off_cause = POWER_OFF_CAUSE_HYBRID_KEY;
+            harman_action = app_harman_gesture_func(app_harman_get_double_function());
+            app_mmi_handle_action(harman_action);
+            app_key_clear();
+            return;
+        }
+        if (hybrid_type == HYBRID_KEY_3_CLICK)
+        {
+            app_db.power_off_cause = POWER_OFF_CAUSE_HYBRID_KEY;
+            harman_action = app_harman_gesture_func(app_harman_get_triple_function());
+            app_mmi_handle_action(harman_action);
+            app_key_clear();
+            return;
+        }
+    }
+#endif
+//ysc end
         for (i = 0; i < HYBRID_KEY_NUM; i++)
         {
             if (((app_cfg_const.hybrid_key_mapping[i][0] == key) &&
@@ -2635,14 +2750,9 @@ static void app_key_check_press(T_KEY_CHECK key_check)
             return;
         }
 
-#if HARMAN_DETECT_BATTERY_STATUS_LED_SUPPORT
-        if ((app_db.device_state == APP_DEVICE_STATE_ON) &&
-            (app_link_get_b2s_link_num() != 0))
-        {
-            APP_PRINT_INFO0("[SD_CHECK] key_check_press blink");
-            app_led_change_mode(LED_MODE_GAMING_MODE, true, false);
-        }
-#endif
+//ysc start
+//delete #if HARMAN_DETECT_BATTERY_STATUS_LED_SUPPORT
+//ysc end
         if ((app_cfg_const.timer_auto_power_off_while_phone_connected_and_anc_apt_off &&
              (app_link_get_b2s_link_num() != 0)))
         {
@@ -2734,9 +2844,11 @@ static void app_key_check_press(T_KEY_CHECK key_check)
                     ((app_cfg_const.key_disable_power_on_off == 0) ||
                      (app_cfg_nv.factory_reset_done == 0))) //Long press power on
                 {
+					//ysc start
                     app_start_timer(&timer_idx_key_power_on_long_press, "key_power_on_long_press",
                                     key_timer_id, APP_TIMER_KEY_POWER_ON_LONG_PRESS, key, false,
-                                    app_cfg_const.key_power_on_interval * KEY_TIMER_UNIT_MS);
+                                    SPECAIL_LONG_KEY_TIME * KEY_TIMER_UNIT_MS);
+					//ysc end				
                 }
 
                 if ((app_cfg_const.key_enter_pairing_interval != 0) &&
@@ -2796,16 +2908,44 @@ static void app_key_check_press(T_KEY_CHECK key_check)
 
                     if (app_cfg_const.key_long_press_interval != 0)
                     {
-                        app_start_timer(&timer_idx_key_long_press, "key_long_press",
+//ysc start
+#if HARMAN_SPECAIL_ULTRA_LONG_KEY_TIME
+                        if (key == key_data.mfb_key1 &&
+                                app_harman_get_long_function() == FUNC_VOICE_ASSISTANT && !app_bt_policy_get_call_status())
+                        {
+                            APP_PRINT_TRACE0("2861 APP_TIMER_KEY_LONG_PRESS_INITIATE~~~~~~~");
+                            app_start_timer(&timer_idx_key_long_press, "key_long_press",
+                                key_timer_id, APP_TIMER_KEY_LONG_PRESS, key, false,
+                                SPECAIL_LONG_KEY_TIME * KEY_TIMER_UNIT_MS);
+                        }
+                        else
+#endif
+                        {
+							APP_PRINT_TRACE0("2804 APP_TIMER_KEY_LONG_PRESS~~~~~~~");
+                            app_start_timer(&timer_idx_key_long_press, "key_long_press",
                                         key_timer_id, APP_TIMER_KEY_LONG_PRESS, key, false,
                                         app_cfg_const.key_long_press_interval * KEY_TIMER_UNIT_MS);
+                        }
                     }
 
                     if (app_cfg_const.key_ultra_long_press_interval != 0)
                     {
-                        app_start_timer(&timer_idx_key_ultra_long_press, "key_ultra_long_press",
+#if HARMAN_SPECAIL_ULTRA_LONG_KEY_TIME
+                        if (key == SPECAIL_ULTRA_LONG_KEY_ID)
+                        {
+                            APP_PRINT_TRACE0("2843 APP_TIMER_KEY_ULTRA_LONG_PRESS~~~~~~~");
+                            app_start_timer(&timer_idx_key_ultra_long_press, "key_ultra_long_press",
+                                        key_timer_id,APP_TIMER_KEY_ULTRA_LONG_PRESS, key,false,
+                                        SPECAIL_ULTRA_LONG_KEY_TIME * KEY_TIMER_UNIT_MS);
+                        }
+                        else
+#endif
+                        {
+                            app_start_timer(&timer_idx_key_ultra_long_press, "key_ultra_long_press",
                                         key_timer_id, APP_TIMER_KEY_ULTRA_LONG_PRESS, key, false,
                                         app_cfg_const.key_ultra_long_press_interval * KEY_TIMER_UNIT_MS);
+                        }
+//ysc end						
                     }
                 }
             }
@@ -2844,16 +2984,44 @@ static void app_key_check_press(T_KEY_CHECK key_check)
             {
                 if (app_cfg_const.key_long_press_interval != 0)
                 {
-                    app_start_timer(&timer_idx_key_long_press, "key_long_press",
-                                    key_timer_id, APP_TIMER_KEY_LONG_PRESS, key, false,
-                                    app_cfg_const.key_long_press_interval * KEY_TIMER_UNIT_MS);
+//ysc start				
+#if HARMAN_SPECAIL_ULTRA_LONG_KEY_TIME
+                    if (key == key_data.mfb_key1 &&
+                        app_harman_get_long_function() == FUNC_VOICE_ASSISTANT && !app_bt_policy_get_call_status())
+                    {
+                        APP_PRINT_TRACE0("2861 APP_TIMER_KEY_LONG_PRESS_INITIATE~~~~~~~");
+                        app_start_timer(&timer_idx_key_long_press, "key_long_press",
+                            key_timer_id, APP_TIMER_KEY_LONG_PRESS, key, false,
+                            SPECAIL_LONG_KEY_TIME * KEY_TIMER_UNIT_MS);
+                    }
+                    else
+#endif
+                    {
+                        APP_PRINT_TRACE0("2855 APP_TIMER_KEY_LONG_PRESS~~~~~~~");
+                        app_start_timer(&timer_idx_key_long_press, "key_long_press",
+                                        key_timer_id, APP_TIMER_KEY_LONG_PRESS, key, false,
+                                        app_cfg_const.key_long_press_interval * KEY_TIMER_UNIT_MS);
+                    }
                 }
-
+				
                 if (app_cfg_const.key_ultra_long_press_interval != 0)
                 {
-                    app_start_timer(&timer_idx_key_ultra_long_press, "key_ultra_long_press",
+#if HARMAN_SPECAIL_ULTRA_LONG_KEY_TIME
+                    if (key == SPECAIL_ULTRA_LONG_KEY_ID)
+                    {
+                        APP_PRINT_TRACE0("2916 APP_TIMER_KEY_ULTRA_LONG_PRESS~~~~~~~");
+                        app_start_timer(&timer_idx_key_ultra_long_press, "key_ultra_long_press",
+                                        key_timer_id,APP_TIMER_KEY_ULTRA_LONG_PRESS, key, false,
+                                        SPECAIL_ULTRA_LONG_KEY_TIME * KEY_TIMER_UNIT_MS);
+                    }
+                    else
+#endif
+                    {
+                        app_start_timer(&timer_idx_key_ultra_long_press, "key_ultra_long_press",
                                     key_timer_id, APP_TIMER_KEY_ULTRA_LONG_PRESS, key, false,
                                     app_cfg_const.key_ultra_long_press_interval * KEY_TIMER_UNIT_MS);
+                    }
+//ysc end					
                 }
 
 #if F_APP_TEAMS_GLOBAL_MUTE_SUPPORT
@@ -3579,6 +3747,9 @@ static void app_key_factory_reset_cback(uint32_t event, void *msg)
 void app_key_init(void)
 {
     key_data.mfb_key = KEY0_MASK;
+	//ysc start
+	key_data.mfb_key1 = KEY1_MASK;
+	//ysc end
     bt_mgr_cback_register(app_key_bt_cback);
 
 #if F_APP_KEY_EXTEND_FEATURE

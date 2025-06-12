@@ -1524,9 +1524,22 @@ void app_eq_play_audio_eq_tone(void)
 
     uint8_t eq_index = eq_utils_original_eq_index_get(SPK_SW_EQ, app_db.spk_eq_mode, app_cfg_nv.eq_idx);
 
-    app_audio_tone_type_play((T_APP_AUDIO_TONE_TYPE)(TONE_AUDIO_EQ_0 + eq_index),
-                             false, true);
+//ysc start     
+// #if HARMAN_CUSTOMIZED_BUTTON_CONTROL 
+//     if(app_cfg_nv.eq_idx == 0)
+//     {
+//         APP_PRINT_TRACE0("app_eq_play_audio_eq_tone 11111111111");
+//         app_audio_tone_type_play(TONE_BATTERY_PERCENTAGE_20,false,false);
+//     }
+//     else{
+//         APP_PRINT_TRACE0("app_eq_play_audio_eq_tone 3333333333333");
+//     }
+// #else
+     app_audio_tone_type_play((T_APP_AUDIO_TONE_TYPE)(TONE_AUDIO_EQ_0 + eq_index),
+                              false, true);
 #endif
+//ysc end	
+// #endif
 }
 
 void app_eq_play_apt_eq_tone(void)

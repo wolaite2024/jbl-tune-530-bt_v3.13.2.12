@@ -175,6 +175,10 @@ void app_gfps_get_random_addr(uint8_t *random_bd)
     memcpy(random_bd, gfps_db.random_address, GAP_BD_ADDR_LEN);
 }
 
+//ysc start
+extern bool bt_connected_flag;
+//ysc end
+
 bool app_gfps_adv_start(T_GFPS_ADV_MODE mode, bool show_ui)
 {
     bool update_addr = true;
@@ -197,11 +201,25 @@ bool app_gfps_adv_start(T_GFPS_ADV_MODE mode, bool show_ui)
     if (gfps_gen_adv_data(mode, gfps_adv_data, &gfps_adv_len, show_ui))
     {
         uint16_t interval = extend_app_cfg_const.gfps_discov_adv_interval;
+        //ysc start
+        if(bt_connected_flag)
+        {
+            interval = 400;
+            APP_PRINT_TRACE2("ysc bt_connected_flag: %d,1 interval: %d", bt_connected_flag, interval);
+        }
+        //ysc end
 
         if (mode == NOT_DISCOVERABLE_MODE)
         {
             ble_ext_adv_mgr_change_own_address_type(gfps_db.gfps_adv_handle, GAP_LOCAL_ADDR_LE_RANDOM);
             interval = extend_app_cfg_const.gfps_not_discov_adv_interval;
+            //ysc start
+            if(bt_connected_flag)
+            {
+                interval = 400;
+                APP_PRINT_TRACE2("ysc bt_connected_flag: %d,2 interval: %d", bt_connected_flag, interval);
+            }
+            //ysc end
         }
         else if (mode == DISCOVERABLE_MODE_WITH_MODEL_ID)
         {

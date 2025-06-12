@@ -155,6 +155,10 @@ static void app_lea_adv_timeout_cb(uint8_t timer_evt, uint16_t param)
     {
     case LEA_ADV_TIMER_FAST_INTERVAL:
         {
+		//ysc start
+            app_gfps_adv_update_adv_interval(400);
+            ENGAGE_PRINT_TRACE0("------------app_lea_adv_timeout_cb app_gfps_adv_update_adv_interval (400) -------------");    
+		//ysc end	        
             app_stop_timer(&timer_idx_slow_interval);
 
             if (app_bt_point_lea_link_is_full())
@@ -537,6 +541,8 @@ void app_lea_adv_update_interval_hfp(void)
             if (interval != APP_LEA_ADV_INTERVAL_SLOW)
             {
                 ble_ext_adv_mgr_change_adv_interval(app_lea_adv_handle, APP_LEA_ADV_INTERVAL_SLOW);
+                app_gfps_adv_update_adv_interval(400);
+                APP_PRINT_TRACE0("------------  app_lea_adv_update_interval_hfp, app_gfps_adv_update_adv_interval (400) -------------");  
             }
         }
     }

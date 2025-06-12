@@ -937,10 +937,12 @@ void app_lea_mgr_mmi_handle(uint8_t action)
                     {
                         if (app_db.le_link[i].conn_handle == app_lea_ccp_get_active_conn_handle())
                         {
+                            APP_PRINT_TRACE0("app_lea_mgr_mmi_handle 940");
                             p_active_link = &app_db.le_link[i];
                         }
                         else
                         {
+                            APP_PRINT_TRACE0("app_lea_mgr_mmi_handle 945");
                             p_inactive_link = &app_db.le_link[i];
                         }
                     }
@@ -957,9 +959,11 @@ void app_lea_mgr_mmi_handle(uint8_t action)
 
                     for (i = 0; i < CCP_CALL_ENTRY_NUM; i++)
                     {
+                        APP_PRINT_TRACE0("app_lea_mgr_mmi_handle 962");
                         if (p_inactive_link->lea_call_entry[i].used == true &&
                             p_inactive_link->lea_call_entry[i].call_index == p_inactive_link->active_call_index)
                         {
+                            APP_PRINT_TRACE0("app_lea_mgr_mmi_handle 966");
                             p_active_call_entry = &p_inactive_link->lea_call_entry[i];
                             break;
                         }
@@ -974,6 +978,7 @@ void app_lea_mgr_mmi_handle(uint8_t action)
                     if ((p_active_call_entry->call_state == TBS_CALL_STATE_LOCALLY_HELD) ||
                         (p_active_call_entry->call_state == TBS_CALL_STATE_LOCALLY_AND_REMOTELY_HELD))
                     {
+                        APP_PRINT_TRACE0("app_lea_mgr_mmi_handle 981");
                         write_call_cp_param.opcode = TBS_CALL_CONTROL_POINT_CHAR_OPCODE_LOCAL_RETRIEVE;
                         write_call_cp_param.param.local_retrieve_opcode_call_index = p_active_call_entry->call_index;
 
@@ -991,9 +996,11 @@ void app_lea_mgr_mmi_handle(uint8_t action)
 
                     for (i = 0; i < CCP_CALL_ENTRY_NUM; i++)
                     {
+                        APP_PRINT_TRACE0("app_lea_mgr_mmi_handle 999");
                         if (p_active_link->lea_call_entry[i].used == true &&
                             p_active_link->lea_call_entry[i].call_index == p_active_link->active_call_index)
                         {
+                            APP_PRINT_TRACE0("app_lea_mgr_mmi_handle 1003");
                             p_active_call_entry = &p_active_link->lea_call_entry[i];
                             break;
                         }
@@ -1007,6 +1014,7 @@ void app_lea_mgr_mmi_handle(uint8_t action)
 
                     if (p_active_call_entry->call_state == TBS_CALL_STATE_ACTIVE)
                     {
+                        APP_PRINT_TRACE0("app_lea_mgr_mmi_handle 1017");
                         write_call_cp_param.opcode = TBS_CALL_CONTROL_POINT_CHAR_OPCODE_LOCAL_HOLD;
                         write_call_cp_param.param.local_hold_opcode_call_index = p_active_call_entry->call_index;
 
@@ -1033,6 +1041,7 @@ void app_lea_mgr_mmi_handle(uint8_t action)
                     if ((p_inactive_call_entry->call_state == TBS_CALL_STATE_LOCALLY_HELD) ||
                         (p_inactive_call_entry->call_state == TBS_CALL_STATE_LOCALLY_AND_REMOTELY_HELD))
                     {
+                        APP_PRINT_TRACE0("app_lea_mgr_mmi_handle 1044");
                         write_call_cp_param.opcode = TBS_CALL_CONTROL_POINT_CHAR_OPCODE_LOCAL_RETRIEVE;
                         write_call_cp_param.param.local_retrieve_opcode_call_index = p_inactive_call_entry->call_index;
 
@@ -1041,6 +1050,7 @@ void app_lea_mgr_mmi_handle(uint8_t action)
                     }
                     else if (p_inactive_call_entry->call_state == TBS_CALL_STATE_INCOMING)
                     {
+                        APP_PRINT_TRACE0("app_lea_mgr_mmi_handle 1053");
                         write_call_cp_param.opcode = TBS_CALL_CONTROL_POINT_CHAR_OPCODE_ACCEPT;
                         write_call_cp_param.param.accept_opcode_call_index = p_inactive_call_entry->call_index;
 
@@ -1318,33 +1328,33 @@ fail_release_active_call_accept_held_or_waiting_call:
             if ((change_result == LEA_VOL_LEVEL_LIMIT) ||
                 ((change_result == LEA_VOL_LEVEL_CHANGE) && (app_cfg_nv.lea_vol_setting == MAX_VOLUME_SETTING)))
             {
-                if (app_db.remote_session_state == REMOTE_SESSION_STATE_DISCONNECTED)
+				//ysc start
+                if (app_db.play_min_max_vol_tone == true)
                 {
+                    if (app_cfg_nv.bud_role == REMOTE_SESSION_ROLE_PRIMARY ||
+                        app_db.remote_session_state == REMOTE_SESSION_STATE_DISCONNECTED)
+                    {
 #if F_APP_HARMAN_FEATURE_SUPPORT
-                    if (app_cfg_nv.language_status == 0)
-                    {
-                        app_audio_tone_type_play(TONE_HARMAN_VOL_MAX_MIN, false, false);
-                    }
-                    else
+                            if (app_cfg_nv.language_status == 0)
+                            {
+                                app_audio_tone_type_play(TONE_HARMAN_VOL_MAX_MIN, false, true);
+                            }
+                            else
 #endif
-                    {
-                        app_audio_tone_type_play(TONE_VOL_MAX, false, false);
+                            {
+                                app_audio_tone_type_play(TONE_VOL_MAX, false, true);
+                            }
                     }
+                    /* only play volume Max/Min tone once when adjust volume via long press repeat */
+                    
                 }
-                else if (app_cfg_nv.bud_role == REMOTE_SESSION_ROLE_PRIMARY)
-                {
-#if F_APP_HARMAN_FEATURE_SUPPORT
-                    if (app_cfg_nv.language_status == 0)
-                    {
-                        app_audio_tone_type_play(TONE_HARMAN_VOL_MAX_MIN, false, true);
-                    }
-                    else
-#endif
-                    {
-                        app_audio_tone_type_play(TONE_VOL_MAX, false, true);
-                    }
-                }
+                app_db.play_min_max_vol_tone = true;
             }
+            else
+            {
+                app_db.play_min_max_vol_tone = false;
+            }
+			//ysc end
         }
         break;
 
@@ -1380,6 +1390,11 @@ fail_release_active_call_accept_held_or_waiting_call:
                     app_audio_tone_type_play(TONE_VOL_MIN, false, true);
                 }
             }
+            else //ysc start
+            {
+                app_db.play_min_max_vol_tone = false;
+            }
+            //ysc end
         }
         break;
 

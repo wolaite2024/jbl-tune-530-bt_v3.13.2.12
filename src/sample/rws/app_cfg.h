@@ -53,6 +53,9 @@ extern "C" { /* __cplusplus */
 #define VOICE_PROMPT_OFFSET                 (TONE_DATA_OFFSET + TONE_DATA_SIZE)
 #define VOICE_PROMPT_SIZE                   137 * 1024
 
+//ysc start
+#define HARMAN_LE_UNICAST_SWITCH_LEN        1
+//ysc end
 //FTL start
 #define APP_RW_DATA_ADDR                    3072
 #define APP_RW_DATA_SIZE                    360
@@ -69,10 +72,26 @@ extern "C" { /* __cplusplus */
 #define HARMAN_PRODUCT_ID_LEN                   2
 #define HARMAN_COLOR_ID_OFFSET                  (HARMAN_PRODUCT_ID_OFFSET + HARMAN_PRODUCT_ID_LEN)
 #define HARMAN_COLOR_ID_LEN                     1
+//ysc start
+#define HARMAN_MODEL_ID_OFFSET                  (HARMAN_COLOR_ID_OFFSET + HARMAN_COLOR_ID_LEN)
+#define HARMAN_MODLE_ID_LEN                     3
+#define HARMAN_MANUFACTURER_OFFSET              (HARMAN_MODEL_ID_OFFSET + HARMAN_MODLE_ID_LEN)
+#define HARMAN_MANUFACTURER_LEN                 64
+#define HARMAN_RESVED_OFFSET                    (HARMAN_MANUFACTURER_OFFSET + HARMAN_MANUFACTURER_LEN)
+#define HARMAN_RESVED_LEN                       2
+
+#if 0
+#define HARMAN_SERIALS_NUM_OFFSET               (APP_HARMAN_RW_PAIR_LIST + APP_HARMAN_RW_LIST_SIZE)
+#define HARMAN_SERIALS_NUM_LEN                  16
+#define HARMAN_PRODUCT_ID_OFFSET                (HARMAN_SERIALS_NUM_OFFSET + HARMAN_SERIALS_NUM_LEN)
+#define HARMAN_PRODUCT_ID_LEN                   2
+#define HARMAN_COLOR_ID_OFFSET                  (HARMAN_PRODUCT_ID_OFFSET + HARMAN_PRODUCT_ID_LEN)
+#define HARMAN_COLOR_ID_LEN                     1
 #define HARMAN_RESVED_OFFSET                    (HARMAN_COLOR_ID_OFFSET + HARMAN_COLOR_ID_LEN)
 #define HARMAN_RESVED_LEN                       1
-
-// EQ DATA to DSP, max stage num is 17
+#endif
+//ysc end
+// EQ DATA to DSP, max stage num is 15
 #define APP_HARMAN_EQ_DATA                      (HARMAN_RESVED_OFFSET + HARMAN_RESVED_LEN)
 #define APP_HARMAN_EQ_DATA_SIZE                 sizeof(T_APP_HARMAN_EQ_DATA) // 176
 
@@ -207,6 +226,17 @@ typedef enum t_detect_type
     GPIO_DETECT = 2,
 } T_DETECT_TYPE;
 
+//ysc start
+#if HARMAN_CUSTOMIZED_BUTTON_CONTROL
+    typedef enum _t_app_harman_mfb_function_id_
+    {
+        FUNC_PLAY_PAUSE            =0X08,
+        FUNC_VOICE_AWARE           =0XB5,
+        FUNC_EQ_STATUS             =0XC8,
+        FUNC_VOICE_ASSISTANT       =0XA1,
+    } T_APP_HARMAN_MFB_FUNCTION_ID;
+#endif
+//ysc end
 /** @defgroup APP_CFG App Cfg
   * @brief App Cfg
   * @{
@@ -632,6 +662,13 @@ typedef struct
     uint8_t  mic_status_rsvd;
 
     uint8_t  remote_device_vendor_id[8];
+#if HARMAN_CUSTOMIZED_BUTTON_CONTROL
+    uint8_t  app_mfb_short_press;
+    uint8_t  app_mfb_long_press;
+    uint8_t  app_mfb_double_press;
+    uint8_t  app_mfb_triple_press;
+#endif
+//ysc end	
 } T_APP_CFG_NV;
 
 /** @brief  Read only configurations for inbox audio application */

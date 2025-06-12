@@ -38,6 +38,11 @@ static uint16_t harman_product_id = PRODUCT_ID_T135;
 static uint8_t harman_color_id = COLOR_ID_BLACK;
 #endif
 
+//ysc start
+static uint8_t model_id[HARMAN_MODLE_ID_LEN] = {0x99, 0xF7, 0x51};
+static uint8_t manufacturer[HARMAN_MANUFACTURER_LEN] = "RTL";
+//ysc end
+
 static void app_harman_license_gfps_info_get_from_flash(uint8_t pid_idx, uint8_t cid_idx,
                                                         T_APP_HARMAN_GFPS_INFO *p_gfps_info)
 {
@@ -158,6 +163,13 @@ static void app_harman_license_save_to_ftl(void)
     temp_size += HARMAN_PRODUCT_ID_LEN;
     memcpy(&temp_license_data[temp_size], &harman_color_id, HARMAN_COLOR_ID_LEN);
 
+//ysc start    
+    temp_size += HARMAN_COLOR_ID_LEN;
+    memcpy(&temp_license_data[temp_size], (uint8_t *)&model_id[0], HARMAN_MODLE_ID_LEN);
+    temp_size += HARMAN_MODLE_ID_LEN;
+    memcpy(&temp_license_data[temp_size], (uint8_t *)&manufacturer[0], HARMAN_MANUFACTURER_LEN);
+//ysc end
+
     ftl_save_to_storage(&temp_license_data[0], HARMAN_SERIALS_NUM_OFFSET,
                         HARMAN_LICENSE_SIZE_SAVE_TO_FTL);
 }
@@ -208,6 +220,33 @@ static void app_harman_license_load_from_ftl(void)
             // update FTL CID to default CID
             memcpy(&harman_color_id, &temp_license_data[temp_size], HARMAN_COLOR_ID_LEN);
         }
+
+//ysc start
+        temp_size += HARMAN_COLOR_ID_LEN;
+        if ((temp_license_data[temp_size] == 0xFF) || (temp_license_data[temp_size] == 0x0))
+        {
+            // write default MODEL_ID to FTL
+            need_save = true;
+        }
+        else
+        {
+            // update FTL MODEL_ID to default MODEL_ID
+            memcpy((uint8_t *)&model_id[0], &temp_license_data[temp_size], HARMAN_MODLE_ID_LEN);
+        }  
+        
+        temp_size += HARMAN_MODLE_ID_LEN;
+        if ((temp_license_data[temp_size] == 0xFF) || (temp_license_data[temp_size] == 0x0))
+        {
+            // write default MANUFACTURER to FTL
+            need_save = true;
+        }
+        else
+        {
+            // update FTL MANUFACTURER to default MANUFACTURER
+            memcpy((uint8_t *)&manufacturer[0], &temp_license_data[temp_size], HARMAN_MANUFACTURER_LEN);
+        }
+//ysc end		          
+
     }
     else if (ret == 36)
     {
@@ -247,9 +286,11 @@ void app_harman_license_get(void)
     }
 
     app_harman_license_gfps_info_dump();
-    if ((extend_app_cfg_const.gfps_model_id[0] == 0x00) &&
-        (extend_app_cfg_const.gfps_public_key[0] == 0x00) &&
-        (extend_app_cfg_const.gfps_private_key[0] == 0x00))
+//ysc start    
+    //if ((extend_app_cfg_const.gfps_model_id[0] == 0x00) &&
+    //    (extend_app_cfg_const.gfps_public_key[0] == 0x00) &&
+    //    (extend_app_cfg_const.gfps_private_key[0] == 0x00))
+//ysc end    
     {
         memcpy(extend_app_cfg_const.gfps_model_id, gfps_info.model_id, HARMAN_MODEL_ID_LEN);
         memcpy(extend_app_cfg_const.gfps_public_key, gfps_info.public_key, HARMAN_PUBLIC_KEY_LEN);
@@ -329,6 +370,94 @@ void app_harman_spp_cmd_set_handle(uint8_t *cmd_ptr, uint16_t cmd_len, uint8_t c
             }
         }
         break;
+
+//ysc start
+    case HARMAN_SPP_SUB_CMD_PID_SET:
+        {
+            uint16_t product_id_temp = cmd_ptr[3] * 0x100 + cmd_ptr[4];
+            rsp_cmd_len = 2 ;
+            p_rsp_cmd = malloc(rsp_cmd_len);
+            p_rsp_cmd[0] = cmd_ptr[2]; // sub_cmd_id
+
+            if(payload_len == sizeof(harman_product_id))
+            {
+                p_rsp_cmd[1] = CMD_SET_STATUS_COMPLETE;
+                if(harman_product_id != product_id_temp)
+                {
+                    harman_product_id = product_id_temp;
+                    app_harman_license_save_to_ftl();
+                }
+            }
+            else
+            {
+                p_rsp_cmd[1] = CMD_SET_STATUS_PARAMETER_ERROR;
+            }
+        }
+        break;
+
+    case HARMAN_SPP_SUB_CMD_MODULE_ID_SET:
+        {
+            rsp_cmd_len = 2 ;
+            p_rsp_cmd = malloc(rsp_cmd_len);
+            p_rsp_cmd[0] = cmd_ptr[2]; // sub_cmd_id
+
+            if (payload_len >= HARMAN_MODLE_ID_LEN)
+            {
+                p_rsp_cmd[1] = CMD_SET_STATUS_COMPLETE;
+
+                memcpy((uint8_t *)&model_id[0], &cmd_ptr[3], HARMAN_MODLE_ID_LEN);
+                app_harman_license_save_to_ftl();
+            }
+            else
+            {
+                p_rsp_cmd[1] = CMD_SET_STATUS_PARAMETER_ERROR;
+            }
+        }
+        break;
+
+    case HARMAN_SPP_SUB_CMD_MODULE_ID_GET:
+        {
+            rsp_cmd_len = 2 + HARMAN_MODLE_ID_LEN;
+            p_rsp_cmd = malloc(rsp_cmd_len);
+            p_rsp_cmd[0] = cmd_ptr[2]; // sub_cmd_id
+            p_rsp_cmd[1] = CMD_SET_STATUS_COMPLETE;
+            memcpy(&p_rsp_cmd[2], (uint8_t *)&model_id[0], HARMAN_MODLE_ID_LEN);
+        }
+        break;
+
+
+    case HARMAN_SPP_SUB_CMD_MANUFACTURER_SET:
+        {
+            rsp_cmd_len = 2 ;
+            p_rsp_cmd = malloc(rsp_cmd_len);
+            p_rsp_cmd[0] = cmd_ptr[2]; // sub_cmd_id
+
+            if (payload_len >= HARMAN_MANUFACTURER_LEN)
+            {
+                p_rsp_cmd[1] = CMD_SET_STATUS_COMPLETE;
+
+                memcpy((uint8_t *)&manufacturer[0], &cmd_ptr[3], HARMAN_MANUFACTURER_LEN);
+                app_harman_license_save_to_ftl();
+            }
+            else
+            {
+                p_rsp_cmd[1] = CMD_SET_STATUS_PARAMETER_ERROR;
+            }
+        }
+        break;
+
+    case HARMAN_SPP_SUB_CMD_MANUFACTURER_GET:
+        {
+            rsp_cmd_len = 2 + HARMAN_MANUFACTURER_LEN;
+            p_rsp_cmd = malloc(rsp_cmd_len);
+            p_rsp_cmd[0] = cmd_ptr[2]; // sub_cmd_id
+            p_rsp_cmd[1] = CMD_SET_STATUS_COMPLETE;
+            //memcpy(&p_rsp_cmd[2], (uint8_t *)&manufacturer[0], HARMAN_MANUFACTURER_LEN);
+            memcpy(&p_rsp_cmd[2], extend_app_cfg_const.gfps_company_name,
+                sizeof(extend_app_cfg_const.gfps_company_name));
+        }
+        break;
+//ysc end		
 
     case HARMAN_SPP_SUB_CMD_SERIALS_NUM_SET:
         {
