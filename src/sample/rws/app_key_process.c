@@ -139,6 +139,7 @@
 #define SPECAIL_ULTRA_LONG_KEY_ID           (KEY0_MASK | KEY3_MASK)
 #define SPECAIL_ULTRA_LONG_KEY_TIME         100
 #define SPECAIL_LONG_KEY_TIME               12
+#define SPECAIL_VA_KEY_TIME                 8
 #endif
 //ysc end
 
@@ -2916,7 +2917,7 @@ static void app_key_check_press(T_KEY_CHECK key_check)
                             APP_PRINT_TRACE0("2861 APP_TIMER_KEY_LONG_PRESS_INITIATE~~~~~~~");
                             app_start_timer(&timer_idx_key_long_press, "key_long_press",
                                 key_timer_id, APP_TIMER_KEY_LONG_PRESS, key, false,
-                                SPECAIL_LONG_KEY_TIME * KEY_TIMER_UNIT_MS);
+                                SPECAIL_VA_KEY_TIME * KEY_TIMER_UNIT_MS);
                         }
                         else
 #endif
@@ -2992,7 +2993,7 @@ static void app_key_check_press(T_KEY_CHECK key_check)
                         APP_PRINT_TRACE0("2861 APP_TIMER_KEY_LONG_PRESS_INITIATE~~~~~~~");
                         app_start_timer(&timer_idx_key_long_press, "key_long_press",
                             key_timer_id, APP_TIMER_KEY_LONG_PRESS, key, false,
-                            SPECAIL_LONG_KEY_TIME * KEY_TIMER_UNIT_MS);
+                            SPECAIL_VA_KEY_TIME * KEY_TIMER_UNIT_MS);
                     }
                     else
 #endif

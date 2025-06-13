@@ -1063,20 +1063,20 @@ static void app_device_link_policy_ind(T_BP_EVENT event, T_BP_EVENT_PARAM *event
         {
             if (event_param->is_first_prof)
             {
-                if (enable_pairing_complete_led)
-                {
-                    enable_pairing_complete_led = false;
-#if F_APP_BUZZER_SUPPORT
-                    buzzer_set_mode(PAIRING_COMPLETE_BUZZER);
-#endif
-#if F_APP_HARMAN_FEATURE_SUPPORT
-#else
-                    app_led_change_mode(LED_MODE_PAIRING_COMPLETE, true, false);
-#endif
-                }
-#if F_APP_HARMAN_FEATURE_SUPPORT
-                app_led_change_mode(LED_MODE_PAIRING_COMPLETE, true, false);
-#endif
+//                 if (enable_pairing_complete_led)
+//                 {
+//                     enable_pairing_complete_led = false;
+// #if F_APP_BUZZER_SUPPORT
+//                     buzzer_set_mode(PAIRING_COMPLETE_BUZZER);
+// #endif
+// #if F_APP_HARMAN_FEATURE_SUPPORT
+// #else
+//                     app_led_change_mode(LED_MODE_PAIRING_COMPLETE, true, false);
+// #endif
+//                 }
+// #if F_APP_HARMAN_FEATURE_SUPPORT
+//                 app_led_change_mode(LED_MODE_PAIRING_COMPLETE, true, false);
+// #endif
 
                 T_APP_BR_LINK *p_link = app_link_find_br_link(event_param->bd_addr);
                 if (!p_link)
@@ -1118,6 +1118,20 @@ static void app_device_link_policy_ind(T_BP_EVENT event, T_BP_EVENT_PARAM *event
                                         {
                                             app_audio_tone_type_play(TONE_LINK_CONNECTED, false, false);
                                         }
+                                        if (enable_pairing_complete_led)
+                                        {
+                                            enable_pairing_complete_led = false;
+#if F_APP_BUZZER_SUPPORT
+                                            buzzer_set_mode(PAIRING_COMPLETE_BUZZER);
+#endif
+#if F_APP_HARMAN_FEATURE_SUPPORT
+#else
+                                            app_led_change_mode(LED_MODE_PAIRING_COMPLETE, true, false);
+#endif
+                                        }
+#if F_APP_HARMAN_FEATURE_SUPPORT
+                                        app_led_change_mode(LED_MODE_PAIRING_COMPLETE, true, false);
+#endif
                                     }
                                 }
                             }
@@ -1136,6 +1150,17 @@ static void app_device_link_policy_ind(T_BP_EVENT event, T_BP_EVENT_PARAM *event
                                     {
                                         app_audio_tone_type_play(TONE_LINK_CONNECTED, false, true);
                                     }
+                                    if (enable_pairing_complete_led)
+                                        {
+                                            enable_pairing_complete_led = false;
+#if F_APP_BUZZER_SUPPORT
+                                            buzzer_set_mode(PAIRING_COMPLETE_BUZZER);
+#endif
+#if F_APP_HARMAN_FEATURE_SUPPORT
+#else
+                                            app_led_change_mode(LED_MODE_PAIRING_COMPLETE, true, false);
+#endif
+                                        }
                                 }
                             }
                         }

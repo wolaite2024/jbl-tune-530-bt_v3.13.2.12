@@ -589,6 +589,7 @@ void app_ble_gap_handle_authen_state_evt(uint8_t conn_id, uint8_t new_state, uin
                         {
                             app_audio_tone_type_play(TONE_LINK_CONNECTED, false, true);
                         }
+                        app_led_change_mode(LED_MODE_PAIRING_COMPLETE, true, false);
                     }
                 }
 #endif

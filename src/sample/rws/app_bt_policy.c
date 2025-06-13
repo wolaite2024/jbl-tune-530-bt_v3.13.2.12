@@ -5028,9 +5028,8 @@ static void app_bt_policy_stable_sched(T_STABLE_ENTER_MODE mode)
                 if ((is_pairing_timeout)
 #if F_APP_HARMAN_FEATURE_SUPPORT
                     && (app_harman_ever_link_information() == 0)
-#else
-                    && (app_cfg_const.enable_pairing_timeout_to_power_off)
 #endif
+                    && (app_cfg_const.enable_pairing_timeout_to_power_off)
 #if F_APP_ANC_SUPPORT
                     && (feature_map.user_mode == ENABLE)
                     && (!app_anc_ramp_tool_is_busy())
