@@ -878,7 +878,7 @@ static void app_led_set_mode(T_LED_MODE mode)
 
     if ((mode == LED_MODE_LOW_BATTERY) &&
         ((app_bt_policy_get_state() == BP_STATE_IDLE) ||
-         (app_bt_policy_get_state() == BP_STATE_LINKBACK) ||
+         //(app_bt_policy_get_state() == BP_STATE_LINKBACK) ||
          (app_bt_policy_get_state() == BP_STATE_PAIRING_MODE) ||
          (app_db.device_state == APP_DEVICE_STATE_OFF) ||
          (app_db.device_state == APP_DEVICE_STATE_OFF_ING) ||

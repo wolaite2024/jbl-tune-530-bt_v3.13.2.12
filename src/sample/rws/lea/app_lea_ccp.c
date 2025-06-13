@@ -753,7 +753,10 @@ static void app_lea_ccp_trigger_call_ringtone(T_APP_LE_LINK *p_link, T_APP_CALL_
 #endif
     T_APP_CALL_STATUS prev_status = call_status;
     T_APP_CALL_STATUS curr_status = p_link->call_status;
-
+    if((prev_status && !curr_status) || (!prev_status && curr_status))
+    {
+        app_harman_sco_status_notify();
+    }
     APP_PRINT_TRACE2("app_lea_ccp_trigger_call_ringtone: prev_status 0x%02X, curr_status 0x%02X",
                      prev_status, curr_status);
     switch (curr_status)

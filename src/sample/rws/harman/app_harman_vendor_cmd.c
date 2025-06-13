@@ -656,13 +656,21 @@ void app_harman_ble_paired_status_notify(uint8_t ble_paired_status, uint8_t app_
 
 void app_harman_sco_status_notify(void)
 {
-    if (app_link_get_b2s_link_num())
+    if (app_link_get_b2s_link_num() 
+#if F_APP_LEA_SUPPORT    
+        || app_link_get_lea_link_num()
+#endif
+    )
     {
         uint8_t call_status = DEVICE_IS_IDLE;
         uint8_t mobile_app_idx = MAX_BR_LINK_NUM;
-
+        APP_PRINT_TRACE1(" app_harman_sco_status_notify app_lea_ccp_get_call_status 0x%x",app_lea_ccp_get_call_status());
         harman_get_active_mobile_cmd_link(&mobile_app_idx);
-        if ((app_hfp_sco_is_connected()) || (timer_idx_hfp_ring != NULL))
+        if ((app_hfp_sco_is_connected()) || (timer_idx_hfp_ring != NULL)
+#if F_APP_LEA_SUPPORT
+            ||app_lea_ccp_get_call_status()
+#endif
+        )
         {
             call_status = DEVICE_IS_CALLING;
         }
